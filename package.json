@@ -1,0 +1,27 @@
+{
+  "name": "druzhel_izba",
+  "version": "1.0.0",
+  "description": "my lovely bot :3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mwadman",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.0",
+    "form-data": "^2.3.2",
+    "jimp": "^0.3.9",
+    "mysql": "^2.16.0",
+    "uws": "^99.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "nope"
+  },
+  "keywords": [
+    "for",
+    "me"
+  ]
+}
