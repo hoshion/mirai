@@ -195,4 +195,4 @@ client.on('message', (message) => {
     };
 });
 
-client.login("NDQ3MTMzNzM4OTAwNTIwOTYw.DmIB1A.pZvt9E3HX7Z-2ZNVOhsQOjIW4D0");
+client.login(process.env.TOKEN);
