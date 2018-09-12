@@ -72,6 +72,7 @@ exports.run = async (client, message) => {
         if(symbol == "ь" || symbol == "Ь") return "​";
         if(symbol == "ё" || symbol == "Ё") return "​:regional_indicator_e:";
         if(symbol == "ы" || symbol == "Ы") return "​:regional_indicator_u:";
+        if(symbol == "э" || symbol == "Э") return "​:regional_indicator_e:";
     }
 
     const args = message.content.slice(10).trim().split("");

@@ -9,7 +9,7 @@
   "author": "mwadman",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.4.0",
+    "discord.js": "^11.4.2",
     "form-data": "^2.3.2",
     "jimp": "^0.3.9",
     "mysql": "^2.16.0",
