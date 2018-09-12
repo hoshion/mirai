@@ -24,7 +24,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInSeconds / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("473958499496230912");
@@ -40,7 +40,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInMinutes / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("489485275903295513");
@@ -56,7 +56,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInHours / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("489485275903295513");
@@ -72,7 +72,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInDays / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("489485275903295513");
@@ -92,7 +92,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInSeconds / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("489485275903295513");
@@ -108,7 +108,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInMinutes / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("489485275903295513");
@@ -124,7 +124,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInHours / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("489485275903295513");
@@ -140,7 +140,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
             const mute = muteInDays / 1000;
             const embed = new Discord.RichEmbed()
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека" + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
+                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
             const channel = message.guild.channels.get("473958499496230912");
