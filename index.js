@@ -177,6 +177,7 @@ client.on('message', (message) => {
     if(message.content.indexOf(prefix) !== 0) return;
     if(!command) return message.channel.send("Вы не ввели команду!");
     if(message.content == "-_-") return;
+    if(message.content == "--") return message.channel.send("Успешнаааааааа");
 
     try {
         const commandFile = require(`./commands/${command}.js`);
