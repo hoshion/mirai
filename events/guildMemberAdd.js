@@ -17,12 +17,12 @@ exports.run = async (client, member) => {
     const avatar = member.user.avatarURL;
   	    Jimp.read(avatar).then(avatar => {
             Jimp.read(`images/another/welcome_background.png`).then(background => {
-                Jimp.loadFont('images/fonts/welcome_font.fnt').then(font => {
-                    Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
+                Jimp.loadFont('images/fonts/welcome_font1.fnt').then(font => {
+                    Jimp.loadFont('images/fonts/font1.fnt').then(font1 => {
                                             avatar.resize(150,150);
                                             background.composite(avatar, 625, 25);
-                                            background.print(font, 25, 55,`Добро пожаловать!\n${tag}`);                                            
-                                            //background.print(font1, 185, 89,`XP: ${result[0].xp}`);
+                                            background.print(font, 25, 55,`Добро пожаловать!`);                                            
+                                            background.print(font1, 25, 95,`${tag}`);
                                             background.write('welcome_last.png');
                                             background.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
                                                 defaultChannel.send({files: [{name: 'welcome_last.png', attachment: buffer}]});
