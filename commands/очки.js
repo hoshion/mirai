@@ -1,10 +1,10 @@
 exports.run = (client, message, [second_command, mention, xp_count]) => {
     const mysql = require("mysql");
     const con = mysql.createConnection({
-        host: "db4free.net",
-        user: "botdrizba",
-        password: "drizba123",
-        database: "drizba"
+        host: process.env.DATABASE_HOST,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE_NAME
     });
 
     const memberMention = message.mentions.members.first();
