@@ -17,7 +17,7 @@ exports.run = async (client, member) => {
     const avatar = member.user.avatarURL;
   	    Jimp.read(avatar).then(avatar => {
             Jimp.read(`images/another/welcome_background.png`).then(background => {
-                Jimp.loadFont('images/fonts/welcome_font3.fnt').then(font => {
+                Jimp.loadFont('images/fonts/welcome_font5.fnt').then(font => {
                     Jimp.loadFont('images/fonts/font1.fnt').then(font1 => {
                                             avatar.resize(150,150);
                                             background.composite(avatar, 625, 25);
