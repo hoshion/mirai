@@ -1,10 +1,10 @@
 exports.run = (client, message, args) => {
     const mysql = require("mysql");
     const con = mysql.createConnection({
-        host: "db4free.net",
-        user: "botdrizba",
-        password: "drizba123",
-        database: "drizba"
+        host: process.env.DATABASE_HOST,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE_NAME
     });
 
     if(args[0] == "добавить"){
