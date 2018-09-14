@@ -21,7 +21,7 @@ exports.run = async (client, member) => {
                     Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
                                             avatar.resize(150,150);
                                             background.composite(avatar, 625, 25);
-                                            background.print(font, 185, 55,`Добро пожаловать!\n${tag}`);                                            
+                                            background.print(font, 25, 55,`Добро пожаловать!\n${tag}`);                                            
                                             //background.print(font1, 185, 89,`XP: ${result[0].xp}`);
                                             background.write('welcome_last.png');
                                             background.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
