@@ -48,10 +48,10 @@ exports.run = (client, message, [mention, time, ...reason]) => {
         }
         else if(timeFull1 == "ч") {
             const muteInHours = timeTime * timeHours;
-            muteMember.addRole("474161649041932288");
+            muteMember.addRole("490500248624562177");
             message.channel.send("**" + muteMember.user.username + "** Замучен!");
             setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
+                muteMember.removeRole("490500248624562177");
             }, muteInHours);
             const mute = muteInHours / 1000;
             const embed = new Discord.RichEmbed()
@@ -64,10 +64,10 @@ exports.run = (client, message, [mention, time, ...reason]) => {
         }
         else if(timeFull1 == "д") {
             const muteInDays = timeTime * timeDays;
-            muteMember.addRole("474161649041932288");
+            muteMember.addRole("490500248624562177");
             message.channel.send("**" + muteMember.user.username + "** Замучен!");
             setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
+                muteMember.removeRole("490500248624562177");
             }, muteInDays);
             const mute = muteInDays / 1000;
             const embed = new Discord.RichEmbed()
@@ -84,10 +84,10 @@ exports.run = (client, message, [mention, time, ...reason]) => {
         const timeTime = time.slice(0,2).trim();
         if(timeFull1 == "с") {
             const muteInSeconds = timeTime * timeSeconds;
-            muteMember.addRole("474161649041932288");
+            muteMember.addRole("490500248624562177");
             message.channel.send("**" + muteMember.user.username + "** Замучен!");
             setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
+                muteMember.removeRole("490500248624562177");
             }, muteInSeconds);
             const mute = muteInSeconds / 1000;
             const embed = new Discord.RichEmbed()
@@ -100,10 +100,10 @@ exports.run = (client, message, [mention, time, ...reason]) => {
         }
         else if(timeFull1 == "м") {
             const muteInMinutes = timeTime * timeMinutes;
-            muteMember.addRole("474161649041932288");
+            muteMember.addRole("490500248624562177");
             message.channel.send("**" + muteMember.user.username + "** Замучен!");
             setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
+                muteMember.removeRole("490500248624562177");
             }, muteInMinutes);
             const mute = muteInMinutes / 1000;
             const embed = new Discord.RichEmbed()
@@ -116,10 +116,10 @@ exports.run = (client, message, [mention, time, ...reason]) => {
         }
         else if(timeFull1 == "ч") {
             const muteInHours = timeTime * timeHours;
-            muteMember.addRole("474161649041932288");
+            muteMember.addRole("490500248624562177");
             message.channel.send("**" + muteMember.user.username + "** Замучен!");
             setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
+                muteMember.removeRole("490500248624562177");
             }, muteInHours);
             const mute = muteInHours / 1000;
             const embed = new Discord.RichEmbed()
@@ -132,10 +132,10 @@ exports.run = (client, message, [mention, time, ...reason]) => {
         }
         else if(timeFull1 == "д") {
             const muteInDays = timeTime * timeDays;
-            muteMember.addRole("474161649041932288");
+            muteMember.addRole("490500248624562177");
             message.channel.send("**" + muteMember.user.username + "** Замучен!");
             setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
+                muteMember.removeRole("490500248624562177");
             }, muteInDays);
             const mute = muteInDays / 1000;
             const embed = new Discord.RichEmbed()
