@@ -39,127 +39,111 @@ client.on('message', (message) => {
                 if(err) throw err;
                 let memberXP = result[0].xp;
                 if(memberXP >= 1 && memberXP < 100){
-                  //  message.member.removeRole("468166002622988318"); // интроверт
-                    message.member.removeRole("468166056968716298"); // молчаливый
-                    message.member.removeRole("468166393527795742"); // умеет говорить
-                    message.member.removeRole("468166107186987010"); // общительный
-                    message.member.removeRole("468166387253116957"); // оратор
-                    message.member.removeRole("468166629037965313"); // душа компании
-                    message.member.removeRole("468167438987427840"); // экстраверт
-                  //  if(message.member.roles.has("468166393527795742")) return;
-                  //  message.channel.send("Это ваше первое сообщение! Вы получаете роль **Интроверт**");
-                  //  message.member.addRole("468166393527795742");
+                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("490432511453954065"); // низкая трава
+                    message.member.removeRole("490424280077697044"); // пахнущий цветок
+                    message.member.removeRole("490424279230578689"); // ягодный куст
+                    message.member.removeRole("490424278584655873"); // высокое дерево
+                    message.member.removeRole("490424277108260864"); // 300-летний дуб
                     const toNew = memberXP - 0;
                     con.query(`UPDATE test SET lvl = 0, tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 100 && memberXP < 500){
-                  // message.member.removeRole("468166002622988318"); // интроверт
-                  //  message.member.removeRole("468166056968716298"); // молчаливый
-                    message.member.removeRole("468166393527795742"); // умеет говорить
-                    message.member.removeRole("468166107186987010"); // общительный
-                    message.member.removeRole("468166387253116957"); // оратор
-                    message.member.removeRole("468166629037965313"); // душа компании
-                    message.member.removeRole("468167438987427840"); // экстраверт
+                    message.member.removeRole("490432511453954065"); // низкая трава
+                    message.member.removeRole("490424280077697044"); // пахнущий цветок
+                    message.member.removeRole("490424279230578689"); // ягодный куст
+                    message.member.removeRole("490424278584655873"); // высокое дерево
+                    message.member.removeRole("490424277108260864"); // 300-летний дуб
                     const toNew = memberXP - 100;
                     con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
-                    if(message.member.roles.has("468166056968716298")) return;
-                    message.channel.send("Вы получили первый уровень! Получите роль **Молчаливый**");
-                    message.member.addRole("468166056968716298");
+                    if(message.member.roles.has("490424278022619137")) return;
+                    message.channel.send("Вы получили первый уровень! Получите роль **Маленькое зёрнышко**");
+                    message.member.addRole("490424278022619137");
                     con.query(`UPDATE test SET lvl = 1 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 500 && memberXP < 1000){
-                 //   message.member.removeRole("468166002622988318"); // интроверт
-                    message.member.removeRole("468166056968716298"); // молчаливый
-                 //   message.member.removeRole("468166393527795742"); // умеет говорить
-                    message.member.removeRole("468166107186987010"); // общительный
-                    message.member.removeRole("468166387253116957"); // оратор
-                    message.member.removeRole("468166629037965313"); // душа компании
-                    message.member.removeRole("468167438987427840"); // экстраверт
+                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("490424280077697044"); // пахнущий цветок
+                    message.member.removeRole("490424279230578689"); // ягодный куст
+                    message.member.removeRole("490424278584655873"); // высокое дерево
+                    message.member.removeRole("490424277108260864"); // 300-летний дуб
                     const toNew = memberXP - 500;
                     con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
-                    if(message.member.roles.has("468166393527795742")) return;
-                    message.channel.send("Вы получили второй уровень! Получите роль **Умеет говорить**");
-                    message.member.addRole("468166393527795742");
+                    if(message.member.roles.has("490432511453954065")) return;
+                    message.channel.send("Вы получили второй уровень! Получите роль **Низкая трава**");
+                    message.member.addRole("490432511453954065");
                     con.query(`UPDATE test SET lvl = 2 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 1000 && memberXP < 5000){
-                 //   message.member.removeRole("468166002622988318); // интроверт
-                    message.member.removeRole("468166056968716298"); // молчаливый
-                    message.member.removeRole("468166393527795742"); // умеет говорить
-                 //   message.member.removeRole("468166107186987010"); // общительный
-                    message.member.removeRole("468166387253116957"); // оратор
-                    message.member.removeRole("468166629037965313"); // душа компании
-                    message.member.removeRole("468167438987427840"); // экстраверт
+                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("490432511453954065"); // низкая трава
+                    message.member.removeRole("490424279230578689"); // ягодный куст
+                    message.member.removeRole("490424278584655873"); // высокое дерево
+                    message.member.removeRole("490424277108260864"); // 300-летний дуб
                     const toNew = memberXP - 1000;
                     con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
-                    if(message.member.roles.has("468166107186987010")) return;
-                    message.channel.send("Вы получили третий уровень! Получите роль **Общительный**");
-                    message.member.addRole("468166107186987010");
+                    if(message.member.roles.has("490424280077697044")) return;
+                    message.channel.send("Вы получили третий уровень! Получите роль **Пахнущий цветок**");
+                    message.member.addRole("490424280077697044");
                     con.query(`UPDATE test SET lvl = 3 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 5000 && memberXP < 10000){
-                 //   message.member.removeRole("468166002622988318"); // интроверт
-                    message.member.removeRole("468166056968716298"); // молчаливый
-                    message.member.removeRole("468166393527795742"); // умеет говорить
-                    message.member.removeRole("468166107186987010"); // общительный
-                 //   message.member.removeRole("468166387253116957"); // оратор
-                    message.member.removeRole("468166629037965313"); // душа компании
-                    message.member.removeRole("468167438987427840"); // экстраверт
+                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("490432511453954065"); // низкая трава
+                    message.member.removeRole("490424280077697044"); // пахнущий цветок
+                    message.member.removeRole("490424278584655873"); // высокое дерево
+                    message.member.removeRole("490424277108260864"); // 300-летний дуб
                     const toNew = memberXP - 5000;
                     con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
-                    if(message.member.roles.has("468166387253116957")) return;
-                    message.channel.send("Вы получили четвёртый уровень! Получите роль **Оратор**");
-                    message.member.addRole("468166387253116957");
+                    if(message.member.roles.has("490424279230578689")) return;
+                    message.channel.send("Вы получили четвёртый уровень! Получите роль **Ягодный куст**");
+                    message.member.addRole("490424279230578689");
                     con.query(`UPDATE test SET lvl = 4 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 10000 && memberXP < 25000){
-                 //   message.member.removeRole("468166002622988318); // интроверт
-                    message.member.removeRole("468166056968716298"); // молчаливый
-                    message.member.removeRole("468166393527795742"); // умеет говорить
-                    message.member.removeRole("468166107186987010"); // общительный
-                    message.member.removeRole("468166387253116957"); // оратор
-                 //   message.member.removeRole("468166629037965313"); // душа компании
-                    message.member.removeRole("468167438987427840"); // экстраверт
+                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("490432511453954065"); // низкая трава
+                    message.member.removeRole("490424280077697044"); // пахнущий цветок
+                    message.member.removeRole("490424279230578689"); // ягодный куст
+                    message.member.removeRole("490424277108260864"); // 300-летний дуб
                     const toNew = memberXP - 10000;
                     con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
-                    if(message.member.roles.has("468166629037965313")) return;
-                    message.channel.send("Вы получили пятый уровень! Получите роль **Душа компании**");
-                    message.member.addRole("468166629037965313");
+                    if(message.member.roles.has("490424278584655873")) return;
+                    message.channel.send("Вы получили пятый уровень! Получите роль **Высокое дерево**");
+                    message.member.addRole("490424278584655873");
                     con.query(`UPDATE test SET lvl = 5 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 25000 && memberXP < 50000){
-                 //   message.member.removeRole("468166002622988318"); // интроверт
-                    message.member.removeRole("468166056968716298"); // молчаливый
-                    message.member.removeRole("468166393527795742"); // умеет говорить
-                    message.member.removeRole("468166107186987010"); // общительный
-                    message.member.removeRole("468166387253116957"); // оратор
-                    message.member.removeRole("468166629037965313"); // душа компании
-                 //   message.member.removeRole("468167438987427840"); // экстраверт
-                    if(message.member.roles.has("468167438987427840")) return;
-                    message.channel.send("Вы получили шестой уровень! Получите роль **Экстраверт**");
-                    message.member.addRole("468167438987427840");
+                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("490432511453954065"); // низкая трава
+                    message.member.removeRole("490424280077697044"); // пахнущий цветок
+                    message.member.removeRole("490424279230578689"); // ягодный куст
+                    message.member.removeRole("490424278584655873"); // высокое дерево
+                    if(message.member.roles.has("490424277108260864")) return;
+                    message.channel.send("Вы получили шестой уровень! Получите роль **300-летний дуб**");
+                    message.member.addRole("490424277108260864");
                     con.query(`UPDATE test SET lvl = 6 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
