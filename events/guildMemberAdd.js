@@ -11,8 +11,8 @@ exports.run = async (client, member) => {
         database: "drizba"
     });
 
-	member.send("Дружок, я вижу ты зашёл на сервер ***Дружелюбная Изба***. Будь хорошим мальчиком и старайся общаться. Советуем заглянуть в комнату " + member.guild.channels.get("468154431347884032") + ", " + member.guild.channels.get("468152369293819936") + ", " + member.guild.channels.get("468146986084990976") + "и " + member.guild.channels.get("468174552225284106") + ". Получай опыт и становись выше других.");
-    member.addRole("468166002622988318");
+	member.send("Дружок, я вижу ты зашёл на сервер ***Spring***. Будь хорошим мальчиком и старайся общаться. Советуем заглянуть в комнату " + member.guild.channels.get("468154431347884032") + ", " + member.guild.channels.get("468152369293819936") + ", " + member.guild.channels.get("468146986084990976") + "и " + member.guild.channels.get("468174552225284106") + ". Получай опыт и становись выше других.");
+    member.addRole("490444823162126346");
     const tag = member.user.tag;
     const avatar = member.user.avatarURL;
   	    Jimp.read(avatar).then(avatar => {
