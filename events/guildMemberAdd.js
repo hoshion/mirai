@@ -1,5 +1,5 @@
 exports.run = async (client, member) => {
-	const defaultChannel = member.guild.channels.get("489469778067718155");
+	const defaultChannel = member.guild.channels.get("490443607074144259");
     defaultChannel.startTyping()
     
     const Jimp = require("jimp");
