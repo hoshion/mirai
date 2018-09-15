@@ -27,7 +27,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("473958499496230912");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
         else if(timeFull1 == "м") {
@@ -43,7 +43,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("489485275903295513");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
         else if(timeFull1 == "ч") {
@@ -59,7 +59,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("489485275903295513");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
         else if(timeFull1 == "д") {
@@ -75,7 +75,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("489485275903295513");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
     }
@@ -95,7 +95,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("489485275903295513");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
         else if(timeFull1 == "м") {
@@ -111,7 +111,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("489485275903295513");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
         else if(timeFull1 == "ч") {
@@ -127,7 +127,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("489485275903295513");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
         else if(timeFull1 == "д") {
@@ -143,7 +143,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
                 .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
                 .setColor("ff0000")
                 .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("473958499496230912");
+            const channel = message.guild.channels.get("490502418140889088");
             channel.send(embed);
         }
     }
