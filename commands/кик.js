@@ -10,7 +10,7 @@ exports.run = (client, message, [mention, ...reason]) => {
     member.kick(reason.join(""))
     .then(() => message.channel.send("Вы кикнули **" + member.user.username + "** по причине **" + reason + "** !"))
     .catch(() => message.channel.send("Чота у него дофига прав."));
-    const channel = message.guild.channels.get("489485275903295513");
+    const channel = message.guild.channels.get("490502418140889088");
     const embed = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
     .setDescription("Кикнул человека " + member.user.username + "\nПо причине : " + reason.join(" "))
