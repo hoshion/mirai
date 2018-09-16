@@ -6,151 +6,40 @@ exports.run = (client, message, [mention, time, ...reason]) => {
     if(!muteMember) return message.channel.send("Вы не указали человека!");
     if(!time) return message.channel.send("Вы не указали время!");
 
-    const timeSeconds = 1000;
-    const timeMinutes = 60000;
-    const timeHours = 3600000;
-    const timeDays = 86400000;
-
     function findTime(type){
+		const timeSeconds = 1000;
+    	const timeMinutes = 60000;
+    	const timeHours = 3600000;
+    	const timeDays = 86400000;
         if(type.length == 2){
-        const TimeType = type.slice(0,1)
+        	const TimeType = type.slice(1).trim();
+			const TimeCount = time.slice(0,1).trim();
+        	if(TimeType == "с" || TimeType == "С" || TimeType == "s" || TimeType == "S") return TimeCount * timeSeconds;
+			if(TimeType == "м" || TimeType == "М" || TimeType == "m" || TimeType == "M") return TimeCount * timeMinutes;
+			if(TimeType == "ч" || TimeType == "Ч" || TimeType == "h" || TimeType == "H") return TimeCount * timeHours;
+			if(TimeType == "д" || TimeType == "Д" || TimeType == "d" || TimeType == "D") return TimeCount * timeDays;
+        }
+			if(type.length == 3){
+        	const TimeType = type.slice(2).trim();
+			const TimeCount = time.slice(0,2).trim();
+        	if(TimeType == "с" || TimeType == "С" || TimeType == "s" || TimeType == "S") return TimeCount * timeSeconds;
+			if(TimeType == "м" || TimeType == "М" || TimeType == "m" || TimeType == "M") return TimeCount * timeMinutes;
+			if(TimeType == "ч" || TimeType == "Ч" || TimeType == "h" || TimeType == "H") return TimeCount * timeHours;
+			if(TimeType == "д" || TimeType == "Д" || TimeType == "d" || TimeType == "D") return TimeCount * timeDays;
         }
     }
-
-    if(time.length == 2){
-        const timeFull1 = time.slice(1).trim();
-        const timeTime = time.slice(0,1).trim();
-        if(timeFull1 == "с") {
-            const muteInSeconds = timeTime * timeSeconds;
-            muteMember.addRole("474161649041932288");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
-            }, muteInSeconds);
-            const mute = muteInSeconds / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-        else if(timeFull1 == "м") {
-            const muteInMinutes = timeTime * timeMinutes;
-            muteMember.addRole("474161649041932288");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("474161649041932288");
-            }, muteInMinutes);
-            const mute = muteInMinutes / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-        else if(timeFull1 == "ч") {
-            const muteInHours = timeTime * timeHours;
-            muteMember.addRole("490500248624562177");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("490500248624562177");
-            }, muteInHours);
-            const mute = muteInHours / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-        else if(timeFull1 == "д") {
-            const muteInDays = timeTime * timeDays;
-            muteMember.addRole("490500248624562177");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("490500248624562177");
-            }, muteInDays);
-            const mute = muteInDays / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-    }
-    else if(time.length == 3){
-        const timeFull1 = time.slice(2).trim();
-        const timeTime = time.slice(0,2).trim();
-        if(timeFull1 == "с") {
-            const muteInSeconds = timeTime * timeSeconds;
-            muteMember.addRole("490500248624562177");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("490500248624562177");
-            }, muteInSeconds);
-            const mute = muteInSeconds / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-        else if(timeFull1 == "м") {
-            const muteInMinutes = timeTime * timeMinutes;
-            muteMember.addRole("490500248624562177");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("490500248624562177");
-            }, muteInMinutes);
-            const mute = muteInMinutes / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-        else if(timeFull1 == "ч") {
-            const muteInHours = timeTime * timeHours;
-            muteMember.addRole("490500248624562177");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("490500248624562177");
-            }, muteInHours);
-            const mute = muteInHours / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-        else if(timeFull1 == "д") {
-            const muteInDays = timeTime * timeDays;
-            muteMember.addRole("490500248624562177");
-            message.channel.send("**" + muteMember.user.username + "** Замучен!");
-            setTimeout(() => {
-                muteMember.removeRole("490500248624562177");
-            }, muteInDays);
-            const mute = muteInDays / 1000;
-            const embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + mute + " секунд\nПо причине : " + reason.join(" "))
-                .setColor("ff0000")
-                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            const channel = message.guild.channels.get("490502418140889088");
-            channel.send(embed);
-        }
-    }
+	
+	const mute = findTime(time);
+    muteMember.addRole("490500248624562177");
+    message.channel.send("**" + muteMember.user.username + "** Замучен!");
+    setTimeout(() => {
+        muteMember.removeRole("490500248624562177");
+    }, mute);
+    const embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + Math(mute / 1000) +" cекунд\nПо причине : " + reason.join(" "))
+        .setColor("ff0000")
+        .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
+    const channel = message.guild.channels.get("490502418140889088");
+    channel.send(embed);
 };
