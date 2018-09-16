@@ -15,6 +15,6 @@ exports.run = (client, message, [mention, ...reason]) => {
     .setAuthor(message.author.username, message.author.avatarURL)
     .setDescription("Забанил человека " + member.user.tag + "\nПо причине : " + reason.join(" "))
     .setColor("ff0000")
-    .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
+    .setFooter("Ваш бот - Цветущая Весна", client.user.avatarURL);
     channel.send(embed);
 }
