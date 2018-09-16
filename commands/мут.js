@@ -11,6 +11,12 @@ exports.run = (client, message, [mention, time, ...reason]) => {
     const timeHours = 3600000;
     const timeDays = 86400000;
 
+    function findTime(type){
+        if(type.length == 2){
+        const TimeType = type.slice(0,1)
+        }
+    }
+
     if(time.length == 2){
         const timeFull1 = time.slice(1).trim();
         const timeTime = time.slice(0,1).trim();
