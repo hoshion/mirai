@@ -40,7 +40,7 @@ exports.run = (client, message, [mention, time, ...reason]) => {
         .setAuthor(message.author.username, message.author.avatarURL)
         .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + muteTime +" cекунд\nПо причине : " + reason.join(" "))
         .setColor("ff0000")
-        .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
+        .setFooter("Ваш бот - Цветущая Весна", client.user.avatarURL);
     const channel = message.guild.channels.get("490502418140889088");
     channel.send(embed);
 };
