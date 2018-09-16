@@ -35,9 +35,10 @@ exports.run = (client, message, [mention, time, ...reason]) => {
     setTimeout(() => {
         muteMember.removeRole("490500248624562177");
     }, mute);
+	const muteTime = mute / 1000;
     const embed = new Discord.RichEmbed()
         .setAuthor(message.author.username, message.author.avatarURL)
-        .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + Math(mute / 1000) +" cекунд\nПо причине : " + reason.join(" "))
+        .setDescription("Замутил человека " + muteMember.user.username + "\nНа время : " + muteTime +" cекунд\nПо причине : " + reason.join(" "))
         .setColor("ff0000")
         .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
     const channel = message.guild.channels.get("490502418140889088");
