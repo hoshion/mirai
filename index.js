@@ -173,7 +173,7 @@ client.on('message', (message) => {
             message.member.addRole(result[0].roleid);
             message.channel.send(message.author + result[0].message);
             } else {
-                message.channel.send("Команды не существует бляха муха!")
+                message.channel.send("Команды не существует!")
             }
         })
     };
