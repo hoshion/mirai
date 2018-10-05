@@ -8,13 +8,13 @@ exports.run = (client, message, [mention, ...reason]) => {
     console.log(message.author.username + " Использовал команду -бан @" + member.user.tag);
     
     member.ban(reason.join(" "))
-    .then(() => message.channel.send("Вы забанили **" + member.user.tag + "** по причине **" + reason + "** !"))
+    .then(() => message.channel.send("Вы забанили **" + member.user.tag + "** по причине - **" + reason + "** !"))
     .catch(() => message.channel.send("Чота у него дофига прав."));
-    const channel = message.guild.channels.get("489485275903295513");
+    const channel = message.guild.channels.get("497837552636788737");
     const embed = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
     .setDescription("Забанил человека " + member.user.tag + "\nПо причине : " + reason.join(" "))
     .setColor("ff0000")
-    .setFooter("Ваш бот - Цветущая Весна", client.user.avatarURL);
+    .setFooter("Ваш бот - Верховный суд", client.user.avatarURL);
     channel.send(embed);
 }
