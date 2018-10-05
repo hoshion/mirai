@@ -1,5 +1,5 @@
 exports.run = async (client, member) => {
-	const defaultChannel = member.guild.channels.get("490443607074144259");
+	const defaultChannel = member.guild.channels.get("497837586187026432");
     defaultChannel.startTyping()
     
     const Jimp = require("jimp");
@@ -11,7 +11,7 @@ exports.run = async (client, member) => {
         database: "drizba"
     });
 
-	member.send("Дружок, я вижу ты зашёл на сервер ***Spring***. Будь хорошим мальчиком и старайся общаться. Советуем заглянуть в комнату " + member.guild.channels.get("468154431347884032") + ", " + member.guild.channels.get("468152369293819936") + ", " + member.guild.channels.get("468146986084990976") + "и " + member.guild.channels.get("468174552225284106") + ". Получай опыт и становись выше других.");
+	member.send("Дружок, я вижу ты зашёл на сервер ***Kyoto City***. Будь хорошим мальчиком и старайся общаться. Советуем заглянуть в комнату " + member.guild.channels.get("497834668981354497") + ", " + member.guild.channels.get("497834766679277569") + ", " + member.guild.channels.get("497836123725496322") + "и " + member.guild.channels.get("497835838147657749") + ". Получай опыт и становись выше других.");
     member.addRole("490444823162126346");
     const tag = member.user.tag;
     const avatar = member.user.avatarURL;
