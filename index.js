@@ -60,7 +60,7 @@ client.on('message', (message) => {
                     con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
-                    if(message.member.roles.has("490424278022619137")) return;
+                    if(message.member.roles.has("497821061635899402")) return;
                     message.channel.send("Вы получили первый уровень! Получите роль **Маленькое зёрнышко**");
                     message.member.addRole("497821061635899402");
                     con.query(`UPDATE test SET lvl = 1 WHERE userid = ${message.author.id}`, function(err){
