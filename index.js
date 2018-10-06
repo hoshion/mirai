@@ -26,8 +26,16 @@ fs.readdir("./events/", (err, files) => {
 
 client.on('message', (message) => {
     if(message.author.bot) return;
-
-    const memberCreate = `INSERT INTO test VALUES('${message.author.id}',1,'0',0, 100, 'null', 'null')`;
+    
+    function roleDeleter() => {
+        message.member.removeRole("497821551014576131");
+        message.member.removeRole("497821061635899402");
+        message.member.removeRole("497821212894953473");
+        message.member.removeRole("497821268813414400");
+        message.member.removeRole("497821405618896917");
+        message.member.removeRole("497843318953345024");
+    }
+    const memberCreate = `INSERT INTO test VALUES('${message.author.id}',1,'0',0, 'null', 'null')`;
     con.query(`SELECT xp FROM test WHERE userid='${message.author.id}'`, function(err, xp){
         if(err) throw err;
         if(xp.length == 0){
@@ -39,111 +47,58 @@ client.on('message', (message) => {
                 if(err) throw err;
                 let memberXP = result[0].xp;
                 if(memberXP >= 1 && memberXP < 100){
-                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
-                    message.member.removeRole("490432511453954065"); // низкая трава
-                    message.member.removeRole("490424280077697044"); // пахнущий цветок
-                    message.member.removeRole("490424279230578689"); // ягодный куст
-                    message.member.removeRole("490424278584655873"); // высокое дерево
-                    message.member.removeRole("490424277108260864"); // 300-летний дуб
-                    const toNew = memberXP - 0;
-                    con.query(`UPDATE test SET lvl = 0, tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
-                        if(err) throw err;
-                    });
+                    roleDeleter();
                 }
                 if(memberXP >= 100 && memberXP < 500){
-                    message.member.removeRole("490432511453954065"); // низкая трава
-                    message.member.removeRole("490424280077697044"); // пахнущий цветок
-                    message.member.removeRole("490424279230578689"); // ягодный куст
-                    message.member.removeRole("490424278584655873"); // высокое дерево
-                    message.member.removeRole("490424277108260864"); // 300-летний дуб
-                    const toNew = memberXP - 100;
-                    con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
-                        if(err) throw err;
-                    });
-                    if(message.member.roles.has("497821061635899402")) return;
-                    message.channel.send("Вы получили первый уровень! Получите роль **Маленькое зёрнышко**");
-                    message.member.addRole("497821061635899402");
+                    if(message.member.roles.has("497821551014576131")) return;
+                    roleDeleter();
+                    message.channel.send("Вы получили первый уровень! Получите роль **Туристы**");
+                    message.member.addRole("497821551014576131");
                     con.query(`UPDATE test SET lvl = 1 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 500 && memberXP < 1000){
-                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
-                    message.member.removeRole("490424280077697044"); // пахнущий цветок
-                    message.member.removeRole("490424279230578689"); // ягодный куст
-                    message.member.removeRole("490424278584655873"); // высокое дерево
-                    message.member.removeRole("490424277108260864"); // 300-летний дуб
-                    const toNew = memberXP - 500;
-                    con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
-                        if(err) throw err;
-                    });
-                    if(message.member.roles.has("490432511453954065")) return;
-                    message.channel.send("Вы получили второй уровень! Получите роль **Низкая трава**");
-                    message.member.addRole("490432511453954065");
+                    if(message.member.roles.has("497821061635899402")) return;
+                    roleDeleter();
+                    message.channel.send("Вы получили второй уровень! Получите роль **Граждане**");
+                    message.member.addRole("497821061635899402");
                     con.query(`UPDATE test SET lvl = 2 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 1000 && memberXP < 5000){
-                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
-                    message.member.removeRole("490432511453954065"); // низкая трава
-                    message.member.removeRole("490424279230578689"); // ягодный куст
-                    message.member.removeRole("490424278584655873"); // высокое дерево
-                    message.member.removeRole("490424277108260864"); // 300-летний дуб
-                    const toNew = memberXP - 1000;
-                    con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
-                        if(err) throw err;
-                    });
-                    if(message.member.roles.has("490424280077697044")) return;
-                    message.channel.send("Вы получили третий уровень! Получите роль **Пахнущий цветок**");
-                    message.member.addRole("490424280077697044");
+                    if(message.member.roles.has("497821212894953473")) return;
+                    roleDeleter();
+                    message.channel.send("Вы получили третий уровень! Получите роль **Активист**");
+                    message.member.addRole("497821212894953473");
                     con.query(`UPDATE test SET lvl = 3 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 5000 && memberXP < 10000){
-                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
-                    message.member.removeRole("490432511453954065"); // низкая трава
-                    message.member.removeRole("490424280077697044"); // пахнущий цветок
-                    message.member.removeRole("490424278584655873"); // высокое дерево
-                    message.member.removeRole("490424277108260864"); // 300-летний дуб
-                    const toNew = memberXP - 5000;
-                    con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
-                        if(err) throw err;
-                    });
-                    if(message.member.roles.has("490424279230578689")) return;
-                    message.channel.send("Вы получили четвёртый уровень! Получите роль **Ягодный куст**");
-                    message.member.addRole("490424279230578689");
+                    if(message.member.roles.has("497821268813414400")) return;
+                    roleDeleter();
+                    message.channel.send("Вы получили четвёртый уровень! Получите роль **Народный спаситель**");
+                    message.member.addRole("497821268813414400");
                     con.query(`UPDATE test SET lvl = 4 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 10000 && memberXP < 25000){
-                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
-                    message.member.removeRole("490432511453954065"); // низкая трава
-                    message.member.removeRole("490424280077697044"); // пахнущий цветок
-                    message.member.removeRole("490424279230578689"); // ягодный куст
-                    message.member.removeRole("490424277108260864"); // 300-летний дуб
-                    const toNew = memberXP - 10000;
-                    con.query(`UPDATE test SET tolvl = ${toNew} WHERE userid = ${message.author.id}`, function(err){
-                        if(err) throw err;
-                    });
-                    if(message.member.roles.has("490424278584655873")) return;
-                    message.channel.send("Вы получили пятый уровень! Получите роль **Высокое дерево**");
-                    message.member.addRole("490424278584655873");
+                    if(message.member.roles.has("497821405618896917")) return;
+                    roleDeleter();
+                    message.channel.send("Вы получили пятый уровень! Получите роль **Честный политик**");
+                    message.member.addRole("497821405618896917");
                     con.query(`UPDATE test SET lvl = 5 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 25000 && memberXP < 50000){
-                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
-                    message.member.removeRole("490432511453954065"); // низкая трава
-                    message.member.removeRole("490424280077697044"); // пахнущий цветок
-                    message.member.removeRole("490424279230578689"); // ягодный куст
-                    message.member.removeRole("490424278584655873"); // высокое дерево
-                    if(message.member.roles.has("490424277108260864")) return;
-                    message.channel.send("Вы получили шестой уровень! Получите роль **300-летний дуб**");
-                    message.member.addRole("490424277108260864");
+                    if(message.member.roles.has("497843318953345024")) return;
+                    roleDeleter();
+                    message.channel.send("Вы получили шестой уровень! Получите роль **Мэр**");
+                    message.member.addRole("497843318953345024");
                     con.query(`UPDATE test SET lvl = 6 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
