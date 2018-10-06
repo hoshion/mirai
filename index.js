@@ -39,7 +39,7 @@ client.on('message', (message) => {
                 if(err) throw err;
                 let memberXP = result[0].xp;
                 if(memberXP >= 1 && memberXP < 100){
-                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
                     message.member.removeRole("490432511453954065"); // низкая трава
                     message.member.removeRole("490424280077697044"); // пахнущий цветок
                     message.member.removeRole("490424279230578689"); // ягодный куст
@@ -62,13 +62,13 @@ client.on('message', (message) => {
                     });
                     if(message.member.roles.has("490424278022619137")) return;
                     message.channel.send("Вы получили первый уровень! Получите роль **Маленькое зёрнышко**");
-                    message.member.addRole("490424278022619137");
+                    message.member.addRole("497821061635899402");
                     con.query(`UPDATE test SET lvl = 1 WHERE userid = ${message.author.id}`, function(err){
                         if(err) throw err;
                     });
                 }
                 if(memberXP >= 500 && memberXP < 1000){
-                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
                     message.member.removeRole("490424280077697044"); // пахнущий цветок
                     message.member.removeRole("490424279230578689"); // ягодный куст
                     message.member.removeRole("490424278584655873"); // высокое дерево
@@ -85,7 +85,7 @@ client.on('message', (message) => {
                     });
                 }
                 if(memberXP >= 1000 && memberXP < 5000){
-                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
                     message.member.removeRole("490432511453954065"); // низкая трава
                     message.member.removeRole("490424279230578689"); // ягодный куст
                     message.member.removeRole("490424278584655873"); // высокое дерево
@@ -102,7 +102,7 @@ client.on('message', (message) => {
                     });
                 }
                 if(memberXP >= 5000 && memberXP < 10000){
-                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
                     message.member.removeRole("490432511453954065"); // низкая трава
                     message.member.removeRole("490424280077697044"); // пахнущий цветок
                     message.member.removeRole("490424278584655873"); // высокое дерево
@@ -119,7 +119,7 @@ client.on('message', (message) => {
                     });
                 }
                 if(memberXP >= 10000 && memberXP < 25000){
-                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
                     message.member.removeRole("490432511453954065"); // низкая трава
                     message.member.removeRole("490424280077697044"); // пахнущий цветок
                     message.member.removeRole("490424279230578689"); // ягодный куст
@@ -136,7 +136,7 @@ client.on('message', (message) => {
                     });
                 }
                 if(memberXP >= 25000 && memberXP < 50000){
-                    message.member.removeRole("490424278022619137"); // маленькое зёрнышко
+                    message.member.removeRole("497821061635899402"); // маленькое зёрнышко
                     message.member.removeRole("490432511453954065"); // низкая трава
                     message.member.removeRole("490424280077697044"); // пахнущий цветок
                     message.member.removeRole("490424279230578689"); // ягодный куст
