@@ -27,7 +27,7 @@ fs.readdir("./events/", (err, files) => {
 client.on('message', (message) => {
     if(message.author.bot) return;
     
-    function roleDeleter() => {
+    function roleDeleter(){
         message.member.removeRole("497821551014576131");
         message.member.removeRole("497821061635899402");
         message.member.removeRole("497821212894953473");
