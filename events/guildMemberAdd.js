@@ -4,15 +4,15 @@ exports.run = async (client, member) => {
     
     const Jimp = require("jimp");
     const mysql = require("mysql");
-    const con = mysql.createConnection({
-        host: "db4free.net",
-        user: "botdrizba",
-        password: "drizba123",
-        database: "drizba"
+	const con = mysql.createConnection({
+        host: process.env.DATABASE_HOST,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE_NAME
     });
 
 	member.send("Дружок, я вижу ты зашёл на сервер ***Kyoto City***. Будь хорошим мальчиком и старайся общаться. Советуем заглянуть в комнату " + member.guild.channels.get("497834668981354497") + ", " + member.guild.channels.get("497834766679277569") + ", " + member.guild.channels.get("497836123725496322") + "и " + member.guild.channels.get("497835838147657749") + ". Получай опыт и становись выше других.");
-    member.addRole("490444823162126346");
+    member.addRole("497821551014576131");
     const tag = member.user.tag;
     const avatar = member.user.avatarURL;
   	    Jimp.read(avatar).then(avatar => {
