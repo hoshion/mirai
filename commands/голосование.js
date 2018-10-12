@@ -7,5 +7,5 @@ exports.run = (client, message) => {
 			return number;
 		}
 	}
-	message.channel.send(args[0] + args[1] + argsReturn(args[2]));
+	message.channel.send(`${args[0]} ${args[1]} ${argsReturn(args[2])}`);
 }
