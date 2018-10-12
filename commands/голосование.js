@@ -1,5 +1,5 @@
 exports.run = (client, message) => {
-	const args = message.content.slice(14).trim().split(` "`);
+	const args = message.content.slice(14).trim().split(`" `);
 	function argsReturn(number){
 		if(!number) {
 			return " "
