@@ -20,5 +20,9 @@ exports.run = (client, message, args) => {
             const calc = parseInt(number1) / parseInt(number2);
             message.channel.send(calc);
         }
+        if(sign1 == "^"){
+            const calc = parseInt(number1) ^ parseInt(number2);
+            message.channel.send(calc);
+        }
     }
 }
