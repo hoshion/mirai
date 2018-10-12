@@ -18,7 +18,14 @@ exports.run = async (client, message, args) => {
         if(lvl == 4) return 5000;
         if(lvl == 5) return 15000;
     }
-
+    function tolvl(xp, lvl){
+        if(lvl = "0") return 100 - xp
+        if(lvl = "1") return 500 - xp
+        if(lvl = "2") return 1000 - xp
+        if(lvl = "3") return 5000 - xp
+        if(lvl = "4") return 10000 - xp
+        if(lvl = "5") return 25000 - xp
+    }
     const mentionMember = message.mentions.members.first();
     const tag = message.author.tag;
     const avatar = message.author.avatarURL
@@ -45,7 +52,7 @@ exports.run = async (client, message, args) => {
             }
             return;
         }
-        if(result[0].profileback == "null") return message.channel.send("Вы не установили фон для профиля. \nЧтобы установить напишите `-тест фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-тест фоны`. \nЧтобы увидеть фон, напишите `-тест фоны [название_фона]`");
+        if(result[0].profileback == "null") return message.channel.send("Вы не установили фон для профиля. \nЧтобы установить напишите `-профиль фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-профиль фоны`. \nЧтобы увидеть фон, напишите `-профиль фоны [название_фона]`");
         Jimp.read(avatar).then(avatar => {
             Jimp.read(`images/backgrounds/${result[0].profileback}.jpg`).then(image => {
                 Jimp.loadFont('images/fonts/font1.fnt').then(font => {
@@ -55,7 +62,7 @@ exports.run = async (client, message, args) => {
                                 new Jimp(150, 150, "#FFFFFF", function(err, background2){    
                                     new Jimp(610,16, "#999999", function(err, lvl){
                                         const number = count(result[0].lvl) / 100; // Количество очков на 1 процент длины
-                                        const xpnumber = result[0].tolvl / number;
+                                        const xpnumber = tolvl(result[0].xp, result[0].lvl) / number;
                                         const length = xpnumber * 6.1;
                                         new Jimp(length, 16, "#43A740", function(err, xpneed){
                                             if(result[0].lvl == 1)
