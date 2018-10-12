@@ -104,7 +104,7 @@ client.on('message', (message) => {
                     });
                 }
             });
-            con.query(`UPDATE test SET xp = xp + 1 WHERE userid = ${message.author.id}`, function(err){
+            con.query(`UPDATE test SET xp = xp + 3 WHERE userid = ${message.author.id}`, function(err){
                 if(err) throw err;
             });
         };
