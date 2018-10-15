@@ -19,12 +19,12 @@ exports.run = async (client, message, args) => {
         if(lvl == 5) return 15000;
     }
     function tolvl(xp, lvl){
-        if(lvl == 0) return 100 - xp
-        if(lvl == 1) return 500 - xp
-        if(lvl == 2) return 1000 - xp
-        if(lvl == 3) return 5000 - xp
-        if(lvl == 4) return 10000 - xp
-        if(lvl == 5) return 25000 - xp
+        if(lvl == 0) return xp - 0
+        if(lvl == 1) return xp - 100
+        if(lvl == 2) return xp - 500
+        if(lvl == 3) return xp - 1000
+        if(lvl == 4) return xp - 5000
+        if(lvl == 5) return xp - 25000
     }
     const mentionMember = message.mentions.members.first();
     const tag = message.author.tag;
