@@ -12,5 +12,5 @@ exports.run = (client, message) => {
         + "." + message.createdAt.getFullYear())
     .setColor("ffda8b")
     .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-    message.guild.channels.get("497837552636788737").send(embed);
+    message.guild.channels.get("502879882758455296").send(embed);
 };
