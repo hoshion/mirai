@@ -10,26 +10,10 @@ exports.run = async (client, message, args) => {
         database: process.env.DATABASE_NAME
     });
 
-    function count(lvl){
-        if(lvl == 0) return 100;
-        if(lvl == 1) return 400;
-        if(lvl == 2) return 500;
-        if(lvl == 3) return 4000;
-        if(lvl == 4) return 5000;
-        if(lvl == 5) return 15000;
-    }
-    function tolvl(xp, lvl){
-        if(lvl == 0) return xp - 0
-        if(lvl == 1) return xp - 100
-        if(lvl == 2) return xp - 500
-        if(lvl == 3) return xp - 1000
-        if(lvl == 4) return xp - 5000
-        if(lvl == 5) return xp - 25000
-    }
     const mentionMember = message.mentions.members.first();
     const tag = message.author.tag;
     const avatar = message.author.avatarURL
-    con.query(`SELECT * FROM test WHERE userid = ${message.author.id}`, function(err, result){
+    con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
         if(args[0] == "фоны"){
             if(!args[1]) return message.channel.send("Список фонов : \n **Аниме фоны**: `anime1`, `anime2`, `anime3`, `anime4`, `anime5`, `anime6`, `anime7`, `anime8`, `anime9`, `miku1`, `dodji1`, `seiber1`, `seiber2`, `tokiogyl1`, `tokiogyl2` \n **Абстрактные фоны**: `abstract1`, `abstract2`, `abstract3`, `abstract4`, `abstract5` \n **Города**:`moscow1`, `moscow2`, `tokio1`, `tokio2`, `paris1` \n **Природа**: `sakura1`, `sakura2`, `sakura3`, `flower1`\n **Игры**: `minecraft1`, `minecraft2`, `detroit1`, `detroit2`, `detroit3`\n **Другое**: `another1`, `another2`, `another3`");
             if(args[1]){
@@ -77,7 +61,8 @@ exports.run = async (client, message, args) => {
                                             image.composite(frame,0,0);
                                             image.composite(lvl,185,130);
                                             image.composite(xpneed,185,130);
-                                            image.print(font, 185, 55,`${tag}`);                                            image.print(font1, 185, 89,`XP: ${result[0].xp}`);
+                                            image.print(font, 185, 55,`${tag}`);                                            
+                                            image.print(font1, 185, 89,`XP: ${result[0].xp}`);
                                             image.print(font1, 305, 89,`LVL: ${result[0].lvl}`);
                                             image.write('test1.png');
                                             image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
