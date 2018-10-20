@@ -8,12 +8,12 @@ exports.run = (client, message, [command, ...welcome]) => {
     });
 	
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND type = 'welcome'`, function(err, result){
-		if(!args[0]){
+		if(!command){
 			if(!result[0]) return message.channel.send("**У вас не установлено приветствие!**\n\nЧтобы его установить напишите `-приветствие добавить [текст приветствия]\nЧтобы установить канал для приветствия, напишите `-приветствие добавить #канал`")
 			message.channel.send(`Приветствие на этом сервере ー **${result[0].message}**`)
 			return;
 		}
-		if(args[0].toLowerCase() == "добавить"){
+		if(command.toLowerCase() == "добавить"){
 			if(!message.mentions.channels.first()){
 				if(!result[0].message){
 					con.query(`INSERT INTO local (serverid,type,message) VALUES('${message.guild.id}','welcome','${args.join(" ")}')`, function(err){
