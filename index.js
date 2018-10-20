@@ -24,7 +24,7 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
     if(message.author.bot) return;
     
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
@@ -32,12 +32,15 @@ client.on('message', (message) => {
         if(!result[0]){
             con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
         } else {
-            con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
-			con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
-				con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
-			})
-			con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
-				if(result[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
+            await con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
+			await con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
+				await console.log(result2[0].lvl)
+				await con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
+				await con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
+					await if(err) console.log(err)
+					await console.log(result3[0].lvl)
+					await if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
+				})
 			})
         }
     })
@@ -60,7 +63,7 @@ client.on('message', (message) => {
     if(message.content.indexOf(prefix) !== 0) return;
     if(!command) return message.channel.send("Вы не ввели команду!");
     if(message.content == "-_-") return;
-    if(message.content == "--") return message.channel.send("Успешнаааааааа");
+    if(message.content == "--") return;
 
     try {
         const commandFile = require(`./commands/${command}.js`);
