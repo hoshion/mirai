@@ -71,7 +71,7 @@ client.on('message', function(message){
     } catch (err) {
 		con.query(`SELECT * FROM global WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(err) console.log("АЩИБКА - " + err);
-            if(result.length  1){
+            if(result.length == 1){
             message.member.addRole(result[0].roleid);
             message.channel.send(message.author + result[0].message);
             } else {
