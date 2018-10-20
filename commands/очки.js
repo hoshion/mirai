@@ -17,11 +17,11 @@ exports.run = (client, message, [second_command, mention, xp_count]) => {
         con.query(`SELECT * FROM global WHERE userid = ${memberMention.user.id}`, function(err, xp){
             if(err) throw err;
             if(xp.length == 0){
-                con.query(`INSERT INTO global VALUES('${memberMention.id}',${xp_count},'0',0)`)
+                con.query(`INSERT INTO global (userid, xp) VALUES('${memberMention.id}',${xp_count})`)
                 message.channel.send(`Очки пользователя ${memberMention} успешно увеличены до **${xp_count}**`)
             } else {
                 const newXP = parseInt(xp_count) + xp[0].xp;
-                con.query(`UPDATE test SET xp = ${newXP} WHERE userid = ${memberMention.user.id}`, function(err){
+                con.query(`UPDATE global SET xp = ${newXP} WHERE userid = ${memberMention.user.id}`, function(err){
                     if(err) throw err;
                     message.channel.send(`Очки пользователя ${memberMention} успешно увеличены с **${xp[0].xp}** до **${newXP}**`);
                 })
@@ -35,7 +35,7 @@ exports.run = (client, message, [second_command, mention, xp_count]) => {
         con.query(`SELECT * FROM global WHERE userid = ${memberMention.user.id}`, function(err, xp){
             if(err) throw err;
             if(xp.length == 0){
-                con.query(`INSERT INTO global VALUES('${memberMention.id}',${xp_count},'0',0)`)
+                con.query(`INSERT INTO global (userid, xp) VALUES('${memberMention.id}',${xp_count})`)
                 message.channel.send(`Очки пользователя ${memberMention} успешно уменьшены до **${xp_count}**`)
             } else {
                 const newXP = xp[0].xp - xp_count;
