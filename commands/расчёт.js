@@ -3,5 +3,6 @@ exports.run = (client, message) => {
 		let n;
 		n = 104 * i
 		console.log(n)
+		console.log(i)
 	}
 }
