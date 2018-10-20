@@ -35,7 +35,7 @@ client.on('message', (message) => {
             con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
         }
     })
-    con.query(`SELECT * FROM local WHERE userid='${message.author.id}'`, function(err, result){
+    con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
         if(err) throw err;
         if(!result[0]){
             con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
