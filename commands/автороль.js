@@ -16,12 +16,12 @@ exports.run = (client, message, args) => {
 			if(!result[0]){
 				con.query(`INSERT INTO local (serverid,type,roleid) VALUES('${message.guild.id}','autorole','${message.mentions.roles.first().id}')`, function(err){
 					if(err) console.log(err);
-					message.channel.send(`Вы установили роль **${message.guild.roles.get(result[0].roleid).name}** по умолчанию`)
+					message.channel.send(`Вы установили роль **${message.mentions.roles.first().name}** по умолчанию`)
 				})
 			} else {
 				con.query(`UPDATE local SET roleid = ${message.mentions.roles.first().id} WHERE serverid = '${message.guild.id}' AND type = 'autorole'`, function(err){
 					if(err) console.log(err);
-					message.channel.send(`Вы установили роль **${message.guild.roles.get(result[0].roleid).name}** по умолчанию`)
+					message.channel.send(`Вы установили роль **${message.mentions.roles.first().name}** по умолчанию`)
 				})
 			}
 		}
