@@ -37,8 +37,7 @@ client.on('message', (message) => {
 				con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
 			})
 			con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
-				if(result[0].lvl == result3[0].lvl) return;
-				message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
+				if(result[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
 			})
         }
     })
