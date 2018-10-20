@@ -42,7 +42,7 @@ client.on('message', (message) => {
                 if(err) console.log(err);
             })
         } else {
-            con.query(`UPDATE local SET xp = xp + 3 WHERE userid = ${message.author.id}, serverid = ${message.guild.id}, type = member`, function(err){
+            con.query(`UPDATE local SET xp = xp + 3 [WHERE userid = '${message.author.id}', serverid = '${message.guild.id}', type = 'member']`, function(err){
                 if(err) console.log(err);
             });
         };
