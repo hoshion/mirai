@@ -16,7 +16,7 @@ exports.run = (client, message, [command, ...welcome]) => {
 		if(command.toLowerCase() == "добавить"){
 			if(!message.mentions.channels.first()){
 				if(!result[0]){
-					con.query(`INSERT INTO local (serverid,type,message) VALUES('${message.guild.id}','welcome','${args.join(" ")}')`, function(err){
+					con.query(`INSERT INTO local (serverid,type,message) VALUES('${message.guild.id}','welcome','${welcome}')`, function(err){
 						if(err) console.log(err);
 						message.channel.send(`Вы установили приветствие!`)
 					})
