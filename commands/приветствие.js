@@ -15,7 +15,7 @@ exports.run = (client, message, [command, ...welcome]) => {
 		}
 		if(command.toLowerCase() == "добавить"){
 			if(!message.mentions.channels.first()){
-				if(!result[0].message){
+				if(!result[0]){
 					con.query(`INSERT INTO local (serverid,type,message) VALUES('${message.guild.id}','welcome','${args.join(" ")}')`, function(err){
 						if(err) console.log(err);
 						message.channel.send(`Вы установили приветствие!`)
@@ -29,7 +29,7 @@ exports.run = (client, message, [command, ...welcome]) => {
 				return
 			}
 			if(message.mentions.channels.first()){
-				if(!result[0].channelid){
+				if(!result[0]){
 					con.query(`INSERT INTO local (serverid,type,channelid) VALUES('${message.guild.id}','welcome','${message.mentions.channels.first().id}')`, function(err){
 						if(err) console.log(err);
 						message.channel.send(`Вы установили канал ${message.mentions.channels.first().id} для приветствия!`)
