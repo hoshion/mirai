@@ -30,7 +30,7 @@ client.on('message', (message) => {
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
         if(err) console.log(err);
         if(!result[0]){
-            con.query(`INSERT INTO global (userid) VALUES(${message.author.id})`)
+            con.query(`INSERT INTO global VALUES(${message.author.id})`)
         } else {
             con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
         }
