@@ -1,8 +1,8 @@
 exports.run = (client, message) => {
 	let st;
-	for(let st = 1; st < 100; st++){
-		let n = 100;
-		n = n + n * 0.3
-		message.channel.send(n + n * 0.3);
+	for(let st = 100; st < 156000){
+		st = 100;
+		st = st + (st * 0.3)
+		message.channel.send(st);
 	}
 }
