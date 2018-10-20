@@ -68,19 +68,18 @@ client.on('message', function(message){
     try {
         const commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
-    } catch (err) {
+    } catch (error) {
 		con.query(`SELECT * FROM global WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(err) console.log("АЩИБКА - " + err);
-            if(result.length == 1){
-            message.member.addRole(result[0].roleid);
-            message.channel.send(message.author + result[0].message);
+            if(!result[0]){
+		console.log(error);
+		message.channel.send("Команды не найдено")
+		return;
             } else {
-                message.channel.send("Команды не существует!")
+                message.member.addRole(result[0].roleid);
+            	message.channel.send(message.author + result[0].message);
             }
         })
-        if(err) console.log("АЩИБКА - " + err);
-        message.channel.send("Команды не существует!")
-	}
 });
 
 function lvl(xp){
