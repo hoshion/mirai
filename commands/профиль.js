@@ -12,7 +12,8 @@ exports.run = async (client, message, args) => {
 
     const mentionMember = message.mentions.members.first();
     const tag = message.author.tag;
-    const avatar = message.author.avatarURL
+    const avatar = message.author.avatarURL]
+    
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
         if(args[0] == "фоны"){
             if(!args[1]) return message.channel.send("Список фонов : \n **Аниме фоны**: `anime1`, `anime2`, `anime3`, `anime4`, `anime5`, `anime6`, `anime7`, `anime8`, `anime9`, `miku1`, `dodji1`, `seiber1`, `seiber2`, `tokiogyl1`, `tokiogyl2` \n **Абстрактные фоны**: `abstract1`, `abstract2`, `abstract3`, `abstract4`, `abstract5` \n **Города**:`moscow1`, `moscow2`, `tokio1`, `tokio2`, `paris1` \n **Природа**: `sakura1`, `sakura2`, `sakura3`, `flower1`\n **Игры**: `minecraft1`, `minecraft2`, `detroit1`, `detroit2`, `detroit3`\n **Другое**: `another1`, `another2`, `another3`");
@@ -79,4 +80,10 @@ exports.run = async (client, message, args) => {
         });
     });
     message.channel.stopTyping()
+function tolvl(xp, lvl){
+    if(lvl == 8) return xp - 3744
+}
+function count(lvl){
+    if(lvl == 8) return 832
+}
 }
