@@ -24,7 +24,7 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-client.on('message', async (message) => {
+client.on('message', async function(message){
     if(message.author.bot) return;
     
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
