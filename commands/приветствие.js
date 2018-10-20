@@ -28,7 +28,8 @@ exports.run = (client, message, args) => {
 					})
 				}
 				return
-			} else {
+			}
+			if(message.mentions.channels.first){
 				if(!result[0].channelid){
 					con.query(`INSERT INTO local (serverid,type,channelid) VALUES('${message.guild.id}','welcome','${message.mentions.channels.first().id}')`, function(err){
 						if(err) console.log(err);
@@ -41,6 +42,7 @@ exports.run = (client, message, args) => {
 					})
 				}
 				return
+				}
 			}
 		}
 	})
