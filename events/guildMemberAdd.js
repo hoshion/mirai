@@ -15,7 +15,7 @@ exports.run = async (client, member) => {
 		member.addRole(member.guild.roles.get(result[0].roleid));
     })
 	con.query(`SELECT * FROM local WHERE serverid = '${member.guild.id}' AND type = 'welcome'`, function(err, result){
-		member.guild.channels.get(result[0].channel.id).send(result[0].message);
+		member.guild.channels.get(result[0].channelid).send(result[0].message);
 	})
     /*const tag = member.user.tag;
     const avatar = member.user.avatarURL;
