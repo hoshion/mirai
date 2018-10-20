@@ -1,7 +1,7 @@
 exports.run = (client, message) => {
-	for(let i = 208; i < 156000;){
-		i = i + (i * 0.40)
-		console.log(i)
-		i =  i - 208
+	for(let i = 208; i < 100; i++){
+		let n;
+		n = 104 * i
+		console.log(n)
 	}
 }
