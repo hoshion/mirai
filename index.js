@@ -27,6 +27,14 @@ fs.readdir("./events/", (err, files) => {
 client.on('message', (message) => {
     if(message.author.bot) return;
     
+    con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
+        if(err), console.log(err);
+        if(!result[0]){
+            con.query(`INSERT INTO global (userid) VALUES(${message.author.id})`)
+        } else {
+            con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
+        }
+    })
     /*function roleDeleter(){
         message.member.removeRole("497821551014576131");
         message.member.removeRole("497821061635899402");
