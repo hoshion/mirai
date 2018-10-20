@@ -1,4 +1,4 @@
-exports.run = (client, message, args){
+exports.run = (client, message, args) => {
     const mysql = require("mysql")
     const con = mysql.createConnection({
         host: process.env.DATABASE_HOST,
