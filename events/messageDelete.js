@@ -24,7 +24,7 @@ exports.run = (client, message) => {
                 + "." + message.createdAt.getFullYear())
             .setColor("ffda8b")
             .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            message.guild.channels.get(result.channelid[0]).send(embed);
+            message.guild.channels.get(result[0].channelid).send(embed);
         }    
     })
 };
