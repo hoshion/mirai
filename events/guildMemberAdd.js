@@ -10,9 +10,13 @@ exports.run = async (client, member) => {
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME
     });
-
+	
 	member.send("Дружок, я вижу ты зашёл на сервер ***Kyoto City***. Будь хорошим мальчиком и старайся общаться. Советуем заглянуть в комнату " + member.guild.channels.get("497834668981354497") + ", " + member.guild.channels.get("497834766679277569") + ", " + member.guild.channels.get("497836123725496322") + "и " + member.guild.channels.get("497835838147657749") + ". Получай опыт и становись выше других.");
-    member.addRole("498218442034249728");
+    con.query(`SELECT * FROM local WHERE serverid = '${member.guild.id}' AND type = 'autorole'`, function(err, result){
+		if(err) console.log(err);
+		if(!result[0]) return;
+		member.addRole(member.guild.roles.get(result[0].roleid));
+    })
     const tag = member.user.tag;
     const avatar = member.user.avatarURL;
   	    Jimp.read(avatar).then(avatar => {
