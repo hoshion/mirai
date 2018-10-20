@@ -69,117 +69,122 @@ client.on('message', function(message){
         const commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
     } catch (err) {
-        con.query(`SELECT * FROM roles WHERE commandname = '${command}'`, function(err, result){
+		con.query(`SELECT * FROM global WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(err) console.log("АЩИБКА - " + err);
-            if(result.length == 1){
+            if(result.length  1){
             message.member.addRole(result[0].roleid);
             message.channel.send(message.author + result[0].message);
             } else {
                 message.channel.send("Команды не существует!")
             }
         })
-    };
+        if(err) console.log("АЩИБКА - " + err);
+        message.channel.send("Команды не существует!")
+	}
 });
 
 function lvl(xp){
-    if(xp > 104 && xp < 208 ) return 1
-    if(xp > 208 && xp < 312 ) return 2
-    if(xp > 312 && xp < 416 ) return 3
-    if(xp > 416 && xp < 520 ) return 4
-    if(xp > 520 && xp < 624 ) return 5
-    if(xp > 624 && xp < 728 ) return 6
-    if(xp > 728 && xp < 832 ) return 7
-    if(xp > 832 && xp < 936 ) return 8
-    if(xp > 936 && xp < 1040 ) return 9
-    if(xp > 1040 && xp < 1144 ) return 10
-    if(xp > 1144 && xp < 1248 ) return 11
-    if(xp > 1248 && xp < 1352 ) return 12
-    if(xp > 1352 && xp < 1456 ) return 13
-    if(xp > 1456 && xp < 1560 ) return 14
-    if(xp > 1560 && xp < 1664 ) return 15
-    if(xp > 1664 && xp < 1768 ) return 16
-    if(xp > 1768 && xp < 1872 ) return 17
-    if(xp > 1872 && xp < 1976 ) return 18
-    if(xp > 1976 && xp < 2080 ) return 19
-    if(xp > 2080 && xp < 2184 ) return 20
-    if(xp > 2184 && xp < 2288 ) return 21
-    if(xp > 2288 && xp < 2392 ) return 22
-    if(xp > 2392 && xp < 2496 ) return 23
-    if(xp > 2496 && xp < 2600 ) return 24
-    if(xp > 2600 && xp < 2704 ) return 25
-    if(xp > 2704 && xp < 2808 ) return 26
-    if(xp > 2808 && xp < 2912 ) return 27
-    if(xp > 2912 && xp < 3016 ) return 28
-    if(xp > 3016 && xp < 3120 ) return 29
-    if(xp > 3120 && xp < 3224 ) return 30
-    if(xp > 3224 && xp < 3328 ) return 31
-    if(xp > 3328 && xp < 3432 ) return 32
-    if(xp > 3432 && xp < 3536 ) return 33
-    if(xp > 3536 && xp < 3640 ) return 34
-    if(xp > 3640 && xp < 3744 ) return 35
-    if(xp > 3744 && xp < 3848 ) return 36
-    if(xp > 3848 && xp < 3952 ) return 37
-    if(xp > 3952 && xp < 4056 ) return 38
-    if(xp > 4056 && xp < 4160 ) return 39
-    if(xp > 4160 && xp < 4264 ) return 40
-    if(xp > 4264 && xp < 4368 ) return 41
-    if(xp > 4368 && xp < 4472 ) return 42
-    if(xp > 4472 && xp < 4576 ) return 43
-    if(xp > 4576 && xp < 4680 ) return 44
-    if(xp > 4680 && xp < 4784 ) return 45
-    if(xp > 4784 && xp < 4888 ) return 46
-    if(xp > 4888 && xp < 4992 ) return 47
-    if(xp > 4992 && xp < 5096 ) return 48
-    if(xp > 5096 && xp < 5200 ) return 49
-    if(xp > 5200 && xp < 5304 ) return 50
-    if(xp > 5304 && xp < 5408 ) return 51
-    if(xp > 5408 && xp < 5512 ) return 52
-    if(xp > 5512 && xp < 5616 ) return 53
-    if(xp > 5616 && xp < 5720 ) return 54
-    if(xp > 5720 && xp < 5824 ) return 55
-    if(xp > 5824 && xp < 5928 ) return 56
-    if(xp > 5928 && xp < 6032 ) return 57
-    if(xp > 6032 && xp < 6136 ) return 58
-    if(xp > 6136 && xp < 6240 ) return 59
-    if(xp > 6240 && xp < 6344 ) return 60
-    if(xp > 6344 && xp < 6448 ) return 61
-    if(xp > 6448 && xp < 6552 ) return 62
-    if(xp > 6552 && xp < 6656 ) return 63
-    if(xp > 6656 && xp < 6760 ) return 64
-    if(xp > 6760 && xp < 6864 ) return 65
-    if(xp > 6864 && xp < 6968 ) return 66
-    if(xp > 6968 && xp < 7072 ) return 67
-    if(xp > 7072 && xp < 7176 ) return 68
-    if(xp > 7176 && xp < 7280 ) return 69
-    if(xp > 7280 && xp < 7384 ) return 70
-    if(xp > 7384 && xp < 7488 ) return 71
-    if(xp > 7488 && xp < 7592 ) return 72
-    if(xp > 7592 && xp < 7696 ) return 73
-    if(xp > 7696 && xp < 7800 ) return 74
-    if(xp > 7800 && xp < 7904 ) return 75
-    if(xp > 7904 && xp < 8008 ) return 76
-    if(xp > 8008 && xp < 8112 ) return 77
-    if(xp > 8112 && xp < 8216 ) return 78
-    if(xp > 8216 && xp < 8320 ) return 79
-    if(xp > 8320 && xp < 8424 ) return 80
-    if(xp > 8424 && xp < 8528 ) return 81
-    if(xp > 8528 && xp < 8632 ) return 82
-    if(xp > 8632 && xp < 8736 ) return 83
-    if(xp > 8736 && xp < 8840 ) return 84
-    if(xp > 8840 && xp < 8944 ) return 85
-    if(xp > 8944 && xp < 9048 ) return 86
-    if(xp > 9048 && xp < 9152 ) return 87
-    if(xp > 9152 && xp < 9256 ) return 88
-    if(xp > 9256 && xp < 9360 ) return 89
-    if(xp > 9360 && xp < 9464 ) return 90
-	if(xp > 9464 && xp < 9568 ) return 91
-    if(xp > 9568 && xp < 9672 ) return 92
-    if(xp > 9672 && xp < 9776 ) return 93
-    if(xp > 9776 && xp < 9880 ) return 94
-    if(xp > 9880 && xp < 9984 ) return 95
-    if(xp > 9984 && xp < 10088 ) return 96
-    if(xp > 10088 && xp < 10192 ) return 97
-    if(xp > 10192 && xp < 10296 ) return 98
+	if(xp > 104 && xp < 312) return 1
+	if(xp > 312 && xp < 624) return 2
+	if(xp > 624 && xp < 1040) return 3
+	if(xp > 1040 && xp < 1560) return 4
+	if(xp > 1560 && xp < 2184) return 5
+	if(xp > 2184 && xp < 2912) return 6
+	if(xp > 2912 && xp < 3744) return 7
+	if(xp > 3744 && xp < 4680) return 8
+	if(xp > 4680 && xp < 5720) return 9
+	if(xp > 5720 && xp < 6864) return 10
+	if(xp > 6864 && xp < 8112) return 11
+	if(xp > 8112 && xp < 9464) return 12
+	if(xp > 9464 && xp < 10920) return 13
+	if(xp > 10920 && xp < 12480) return 14
+	if(xp > 12480 && xp < 14144) return 15
+	if(xp > 14144 && xp < 15920) return 16
+	if(xp > 15920 && xp < 17784) return 17
+	if(xp > 17784 && xp < 19760) return 18
+	if(xp > 19760 && xp < 21840) return 19
+	if(xp > 21840 && xp < 24042) return 20
+	if(xp > 24042 && xp < 208) return 21
+	if(xp > 26312 && xp < 208) return 22
+	if(xp > 28704 && xp < 208) return 23
+	if(xp > 31200 && xp < 208) return 24
+	if(xp > 33800 && xp < 208) return 25
+	if(xp > 36504 && xp < 208) return 26
+	if(xp > 39312 && xp < 208) return 27
+	if(xp > 42224 && xp < 208) return 28
+	if(xp > 45240 && xp < 208) return 29
+	if(xp > 48360 && xp < 208) return 30
+	if(xp > 51584 && xp < 208) return 31
+	if(xp > 54912 && xp < 208) return 32
+	if(xp > 58344 && xp < 208) return 33
+	if(xp > 61880 && xp < 208) return 34
+	if(xp > 65520 && xp < 208) return 35
+	if(xp > 69264 && xp < 208) return 36
+	if(xp > 73112 && xp < 208) return 37
+	if(xp > 77064 && xp < 208) return 38
+	if(xp > 81120 && xp < 208) return 39
+	if(xp > 85280 && xp < 208) return 40
+	if(xp > 89544 && xp < 208) return 41
+	if(xp > 93920 && xp < 208) return 42
+	if(xp > 98392 && xp < 208) return 43
+	if(xp > 102968 && xp < 208) return 44
+	if(xp > 107648 && xp < 208) return 45
+	if(xp > 112432 && xp < 208) return 46
+	if(xp > 117320 && xp < 208) return 47
+	if(xp > 122312 && xp < 208) return 48
+	if(xp > 127408 && xp < 208) return 49
+	if(xp > 132608 && xp < 208) return 50
+	if(xp > 137912 && xp < 208) return 51
+	if(xp > 143320 && xp < 208) return 52
+	if(xp > 148832 && xp < 208) return 53
+	if(xp > 154448 && xp < 208) return 54
+	if(xp > 160168 && xp < 208) return 55
+	if(xp > 165992 && xp < 208) return 56
+	if(xp > 171920 && xp < 208) return 57
+	if(xp > 177952 && xp < 208) return 58
+	if(xp > 184088 && xp < 208) return 59
+	if(xp > 190328 && xp < 208) return 60
+	if(xp > 196568 && xp < 208) return 61
+	if(xp > 202912 && xp < 208) return 62
+	if(xp > 209360 && xp < 208) return 63
+	if(xp > 215912 && xp < 208) return 64
+	if(xp > 222568 && xp < 208) return 65
+	if(xp > 229328 && xp < 208) return 66
+	if(xp > 236192 && xp < 208) return 67
+	if(xp > 243160 && xp < 208) return 68
+	if(xp > 250232 && xp < 208) return 69
+	if(xp > 257408 && xp < 208) return 70
+	if(xp > 264688 && xp < 208) return 71
+	if(xp > 272072 && xp < 208) return 72
+	if(xp > 279560 && xp < 208) return 73
+	if(xp > 287152 && xp < 208) return 74
+	if(xp > 294848 && xp < 208) return 75
+	if(xp > 302648 && xp < 208) return 76
+	if(xp > 310552 && xp < 208) return 77
+	if(xp > 318560 && xp < 208) return 78
+	if(xp > 326672 && xp < 208) return 79
+	if(xp > 334888 && xp < 208) return 80
+	if(xp > 343208 && xp < 208) return 81
+	if(xp > 351528 && xp < 208) return 82
+	if(xp > 359952 && xp < 208) return 83
+	if(xp > 368480 && xp < 208) return 84
+	if(xp > 377112 && xp < 208) return 85
+	if(xp > 385848 && xp < 208) return 86
+	if(xp > 394688 && xp < 208) return 87
+	if(xp > 403632 && xp < 208) return 88
+	if(xp > 412680 && xp < 208) return 89
+	if(xp > 421832 && xp < 208) return 90
+	if(xp > 431088 && xp < 208) return 91
+	if(xp > 440448 && xp < 208) return 92
+	if(xp > 449912 && xp < 208) return 93
+	if(xp > 459480 && xp < 208) return 94
+	if(xp > 469152 && xp < 208) return 95
+	if(xp > 478928 && xp < 208) return 96
+	if(xp > 488808 && xp < 208) return 97
+	if(xp > 498792 && xp < 208) return 98
+	if(xp > 508880 && xp < 208) return 99
+	if(xp > 519072 && xp < 208) return 100
+	if(xp > 529368 && xp < 208) return 101
 }
 
 client.login(process.env.TOKEN);
