@@ -28,7 +28,7 @@ client.on('message', (message) => {
     if(message.author.bot) return;
     
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
-        if(err), console.log(err);
+        if(err) console.log(err);
         if(!result[0]){
             con.query(`INSERT INTO global (userid) VALUES(${message.author.id})`)
         } else {
