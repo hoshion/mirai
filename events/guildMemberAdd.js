@@ -1,7 +1,4 @@
 exports.run = async (client, member) => {
-	const defaultChannel = member.guild.channels.get("497837586187026432");
-    defaultChannel.startTyping()
-    
     const Jimp = require("jimp");
     const mysql = require("mysql");
 	const con = mysql.createConnection({
@@ -17,7 +14,10 @@ exports.run = async (client, member) => {
 		if(!result[0]) return;
 		member.addRole(member.guild.roles.get(result[0].roleid));
     })
-    const tag = member.user.tag;
+	con.query(`SELECT * FROM local WHERE serverid = '${member.guild.id}' AND type = 'welcome'`, function(err, result){
+		member.guild.channels.get(result[0].channel.id).send(result[0].message);
+	})
+    /*const tag = member.user.tag;
     const avatar = member.user.avatarURL;
   	    Jimp.read(avatar).then(avatar => {
             Jimp.read(`images/another/welcome_background2.png`).then(background => {
@@ -34,7 +34,6 @@ exports.run = async (client, member) => {
                     });
                 });
             });
-        });
+        });*/
 	console.log("Присоединился " + member.user.username);
-    defaultChannel.stopTyping()
 }
