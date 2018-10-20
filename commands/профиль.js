@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
 
     const mentionMember = message.mentions.members.first();
     const tag = message.author.tag;
-    const avatar = message.author.avatarURL]
+    const avatar = message.author.avatarURL;
     
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
         if(args[0] == "фоны"){
