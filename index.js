@@ -69,12 +69,12 @@ client.on('message', function(message){
         const commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
     } catch (error) {
-	con.query(`SELECT * FROM global WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
+	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(err) console.log("АЩИБКА - " + err);
             if(!result[0]){
-				console.log(error);
-				message.channel.send("Команды не найдено")
-				return;
+		console.log(error);
+		message.channel.send("Команды не найдено")
+		return;
             } else {
                 message.member.addRole(result[0].roleid);
             	message.channel.send(message.author + result[0].message);
