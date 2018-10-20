@@ -14,7 +14,7 @@ exports.run = (client, message, args) => {
 			return;
 		}
 		if(args[0].toLowerCase() == "добавить"){
-			if(!message.mentions.channels.first){
+			if(!message.mentions.channels.first()){
 				if(!result[0].message){
 					con.query(`INSERT INTO local (serverid,type,message) VALUES('${message.guild.id}','welcome','${args.join(" ")}')`, function(err){
 						if(err) console.log(err);
