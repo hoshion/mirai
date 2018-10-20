@@ -10,6 +10,7 @@ exports.run = (client, message, args) => {
 		if(!args[0]){
 			if(!result[0]) return message.channel.send("**У вас нету установленной автороли!**\n\nЧтобы установить автороль, напишите `-автороль добавить @роль`")
 			message.channel.send(`Установленная автороль на сервере ー **${message.guild.roles.get(result[0].roleid).name}**`)
+			return
 		}
 		if(args[0].toLowerCase() == "добавить"){
 			if(!result[0]){
