@@ -1,4 +1,4 @@
-exports.run = (client, message, args) => {
+exports.run = (client, message, [command, ...welcome]) => {
     const mysql = require("mysql");
 	const con = mysql.createConnection({
         host: process.env.DATABASE_HOST,
@@ -21,14 +21,14 @@ exports.run = (client, message, args) => {
 						message.channel.send(`Вы установили приветствие!`)
 					})
 				} else {
-					con.query(`UPDATE local SET message = ${args.join(" ")} WHERE serverid = '${message.guild.id}' AND type = 'welcome'`, function(err){
+					con.query(`UPDATE local SET message = '${welcome.join(" ")}' WHERE serverid = '${message.guild.id}' AND type = 'welcome'`, function(err){
 						if(err) console.log(err);
 						message.channel.send(`Вы установили приветствие!`)
 					})
 				}
 				return
 			}
-			if(!args){
+			if(!welcome){
 				if(!result[0].channelid){
 					con.query(`INSERT INTO local (serverid,type,channelid) VALUES('${message.guild.id}','welcome','${message.mentions.channels.first().id}')`, function(err){
 						if(err) console.log(err);
