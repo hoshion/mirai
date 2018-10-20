@@ -18,6 +18,6 @@ function clear_count (text, arr, channel, count, count_all = 0) {
 };
 
 message.delete().then(() => {
-	func.clear_count('Успешно удалено', ['сообщение', 'сообщения', 'сообщений'], message.channel, parseInt(args[0]));
+	clear_count('Успешно удалено', ['сообщение', 'сообщения', 'сообщений'], message.channel, parseInt(args[0]));
 });
 }
