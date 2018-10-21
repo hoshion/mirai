@@ -86,6 +86,7 @@ client.on('message', function(message){
 				message.channel.send("Поиск не дал результатов ;(")
 			}
 		}
+		return videoHandler(video, message, voiceChannel);
 	}
 	if(message.content == "присоединиться"){
 		voiceChannel.join();
