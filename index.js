@@ -74,13 +74,11 @@ client.on('message', function(message){
 		if(!permissions.has('SPEAK')) return message.channel.send("Я не могу говорить в этом канале!")
 
 		try {
-			var video = youtube.getVideo(url);
-			return videoHandler(video, message, voiceChannel);
+			const video = youtube.getVideo(url);
 		} catch(err) {
 			try {
-				var videos = youtube.searchVideos(searchString, 1)
-				var video = youtube.getVideoByID(videos[0].id)
-				return videoHandler(video, message, voiceChannel);
+				const videos = youtube.searchVideos(searchString, 1)
+				const video = youtube.getVideoByID(videos[0].id)
 			} catch(err) {
 				console.log(err)
 				message.channel.send("Поиск не дал результатов ;(")
