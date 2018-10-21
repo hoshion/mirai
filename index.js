@@ -75,12 +75,12 @@ client.on('message', function(message){
 
 		try {
 			var video = youtube.getVideo(url);
-			videoHandler(video, message, voiceChannel);
+			return videoHandler(video, message, voiceChannel);
 		} catch(err) {
 			try {
 				var videos = youtube.searchVideos(searchString, 1)
 				var video = youtube.getVideoByID(videos[0].id)
-				videoHandler(video, message, voiceChannel);
+				return videoHandler(video, message, voiceChannel);
 			} catch(err) {
 				console.log(err)
 				message.channel.send("Поиск не дал результатов ;(")
