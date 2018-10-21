@@ -60,7 +60,7 @@ client.on('message', function(message){
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-	if(args[1] == "включить"){
+	if(message.content == "включить"){
 		message.member.voiceChannel.join();
 	}
 
