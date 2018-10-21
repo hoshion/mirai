@@ -68,7 +68,7 @@ client.on('message', function(message){
 	const voiceChannel = message.member.voiceChannel;
 	const permissions = voiceChannel.permissionsFor(message.client.user);
 
-	if(message.content == "проигрывать"){
+	if(message.content.startsWith("проигрывать")){
 		if(!voiceChannel) return message.channel.send("Вы не находитесь в голосовом канале!")
 		if(!permissions.has('CONNECT')) return message.channel.send("Я не могу подключиться к каналу!")
 		if(!permissions.has('SPEAK')) return message.channel.send("Я не могу говорить в этом канале!")
