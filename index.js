@@ -161,7 +161,7 @@ function videoHandler(video, message, voiceChannel){
 	const serverQueue = queue.get(message.guild.id)
 	const song = {
 		id: video.id,
-		title: Discord.Util.escapeMarkdown(video.title),
+		title: Discord.Util().escapeMarkdown(video.title),
 		url: `https://www.youtube.com/watch?v=${video.id}`
 	}
 	if(!serverQueue){
