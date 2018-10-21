@@ -66,7 +66,7 @@ client.on('message', function(message){
 	const searchString = args.slice(1).join(' ');
 	const serverQueue = queue.get(message.guild.id);
 	const voiceChannel = message.member.voiceChannel;
-	const permissions = voiceChannel.permissionFor(message.client.user);
+	const permissions = voiceChannel.permissionsFor(message.client.user);
 
 	if(message.content == "проигрывать"){
 		if(!voiceChannel) return message.channel.send("Вы не находитесь в голосовом канале!")
