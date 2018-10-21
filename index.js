@@ -182,6 +182,7 @@ function videoHandler(video, message, voiceChannel){
 			console.log(err);
 			queue.delete(message.guild.id);
 			message.channel.send("Я не могу присоединиться к каналу!");
+		}
 	} else {
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs)
