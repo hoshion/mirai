@@ -17,6 +17,7 @@
     "simple-youtube-api": "^5.0.2",
     "ytdl-core": "^0.26.3",
     "ffmpeg": "^0.0.4"
+    "node-opus": "^0.3.0"
   },
   "devDependencies": {},
   "repository": {
