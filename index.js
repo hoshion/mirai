@@ -60,9 +60,12 @@ client.on('message', function(message){
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-	if(message.content == "включить"){
+	if(message.content == "присоединиться"){
 		message.member.voiceChannel.join();
 	}
+	if(message.content == "отключиться"){
+		message.member.voiceChannel.leave();
+	}	
 
     if(message.content.indexOf(prefix) !== 0) return;
     if(!command) return message.channel.send("Вы не ввели команду!");
