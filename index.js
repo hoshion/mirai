@@ -4,6 +4,8 @@ const fs = require("fs");
 const mysql = require("mysql")
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
+const youtube = new YouTube(process.env.YOUTUBE_TOKEN);
+const queue = new Map();
 const prefix = '-';
 
 const con = mysql.createConnection({
@@ -60,12 +62,75 @@ client.on('message', function(message){
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
+	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
+	const searchString = args.slice(1).join(' ');
+	const serverQueue = queue.get(message.guild.id);
+	const voiceChannel = message.member.voiceChannel;
+	const permissions = voiceChannel.permissionFor(message.client.user);
+
+	if(message.content == "проигрывать"){
+		if(!voiceChannel) return message.channel.send("Вы не находитесь в голосовом канале!")
+		if(!permissions.has('CONNECT')) return message.channel.send("Я не могу подключиться к каналу!")
+		if(!permissions.has('SPEAK')) return message.channel.send("Я не могу говорить в этом канале!")
+
+		try {
+			var video = youtube.getVideo(url);
+			videoHandler()
+		} catch(err) {
+			try {
+				var videos = youtube.searchVideos(searchString, 1)
+				var video = youtube.getVideoByID(videos[0].id)
+			} catch(err) {
+				console.log(err)
+				message.channel.send("Поиск не дал результатов ;(")
+			}
+		}
+	}
 	if(message.content == "присоединиться"){
-		message.member.voiceChannel.join();
+		voiceChannel.join();
 	}
 	if(message.content == "отключиться"){
-		message.member.voiceChannel.leave();
-	}	
+		voiceChannel.leave();
+	}
+	if(message.content == "пропустить"){
+	if(!voiceChannel) return message.channel.send("Вы не в голосовом канале!");
+	if(!serverQueue) return message.channel.send("Нечего пропускать!");
+	serverQueue.connection.dispatcher.end(`Кнопка пропустить была задействована!`)
+	}
+	if(message.content == "остановить"){
+	if(!voiceChannel) return message.channel.send("Вы не в голосовом канале!");
+	if(!serverQueue) return message.channel.send("Нечего останавливать!");
+	serverQueue.songs = [];
+	serverQueue.connection.dispatcher.end(`Кнопка остановить полностью была задействована!`);
+	}
+	if(message.content == "громкость"){
+	if(!voiceChannel) return message.channel.send("Вы не в голосовом канале!");
+	if(!serverQueue) return message.channel.send("Нечему увеличивать/уменшать громкость!");
+	if(!args[0]) return message.channel.send(`Ваша громкость - **${serverQueue.volume}**`);
+	serverQueue.volume = args[0];
+	serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 5);
+	return message.channel.send(`Громкость установлена на ${args[0]}`)
+	}
+	if(message.content == "песня"){
+	if(!serverQueue) return message.channel.send("Сейчас ничего не играет!");
+	return message.channel.send(`Сейчас играет ー **${serverQueue.songs[0].title}**`)
+	}
+	if(message.content == "пауза"){
+	if(serverQueue && serverQueue.playing) {
+		serverQueue.playing = false;
+		serverQueue.connection.dispatcher.pause();
+		message.channel.send(`Музыка поставлена успешно на паузу`);
+	}
+	return message.channel.send(`Ничего не играет`)
+	}
+	if(message.content == "Продолжить"){
+	if(serverQueue && !serverQueue.playing) {
+		serverQueue.playing = true;
+		serverQueue.connection.dispatcher.resume();
+		message.channel.send(`Музыка успешно включена`)
+	}
+	return message.channel.send(`Ничего не играет`)
+	}
 
     if(message.content.indexOf(prefix) !== 0) return;
     if(!command) return message.channel.send("Вы не ввели команду!");
@@ -89,6 +154,59 @@ client.on('message', function(message){
         })
     }
 });
+
+function videoHandler(video, message, voiceChannel){
+	const serverQueue = queue.get(message.guild.id)
+	const song = {
+		id: video.id,
+		title: Discord.Util.escapeMarkdown(video.title),
+		url: `https://www.youtube.com/watch?v=${video.id}`
+	}
+	if(!serverQueue){
+		const queueConstructor = {
+			textChannel: message.channel,
+			voiceChannel: voiceChannel,
+			connection: null,
+			songs: [],
+			volume: 5,
+			playing: true,
+		}
+		queue.set(message.guild.id, queueConstructor)
+		queueConstructor.songs.push.song;
+		
+		try {
+			const connection = voiceChannel.join();
+			queueConstructor.connection = connection;
+			play(message.guild, queueConstructor.songs[0]);
+		} catch(err) {
+			console.log(err);
+			queue.delete(message.guild.id);
+			message.channel.send("Я не могу присоединиться к каналу!");
+	} else {
+		serverQueue.songs.push(song);
+		console.log(serverQueue.songs)
+		message.channel.send(`Песня **${song.title}** успешно добавлена в очередь!`)
+	}
+}
+
+function play(guild, song){
+	const serverQueue = queue.get(guild.id)
+	if(!song) {
+		serverQueue.voiceChannel.leave();
+	}
+	console.log(serverQueue.songs);
+	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+		.on('end', reason => {
+			if(reason === "Stream is not generating quickly enough.") console.log("Песня закончилась");
+			else console.log(reason);
+			serverQueue.songs.shift();
+			play(guild, serverQueue.songs[0]);
+		})
+		.on('error', error => console.log(error));
+	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+	serverQueue.textChannel.send(`Началась песня ー **${song.title}**`)
+}
+
 
 function lvl(xp){
 	if(xp > 104 && xp <= 312) return 1
