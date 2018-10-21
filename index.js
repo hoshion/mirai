@@ -75,16 +75,17 @@ client.on('message', function(message){
 
 		try {
 			const video = youtube.getVideo(url);
+			return videoHandler(video, message, voiceChannel);
 		} catch(err) {
 			try {
 				const videos = youtube.searchVideos(searchString, 1)
 				const video = youtube.getVideoByID(videos[0].id)
+				return videoHandler(video, message, voiceChannel);
 			} catch(err) {
 				console.log(err)
 				message.channel.send("Поиск не дал результатов ;(")
 			}
 		}
-		return videoHandler(video, message, voiceChannel);
 	}
 	if(message.content == "присоединиться"){
 		voiceChannel.join();
