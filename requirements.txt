@@ -3,3 +3,4 @@ mysql
 jimp
 ytdl-core
 simple-youtube-api
+ffmpeg
