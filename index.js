@@ -1,6 +1,5 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const util = new Discord.Util;
+const { Client, Util } = require('discord.js');
+const client = new Client();
 const fs = require("fs");
 const mysql = require("mysql")
 const YouTube = require('simple-youtube-api');
@@ -162,7 +161,7 @@ function videoHandler(video, message, voiceChannel){
 	const serverQueue = queue.get(message.guild.id)
 	const song = {
 		id: video.id,
-		title: util.escapeMarkdown(video.title),
+		title: Util.escapeMarkdown(video.title),
 		url: `https://www.youtube.com/watch?v=${video.id}`
 	}
 	if(!serverQueue){
