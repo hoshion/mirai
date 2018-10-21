@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const util = new Discord.Util();
+const util = new Discord.Util;
 const fs = require("fs");
 const mysql = require("mysql")
 const YouTube = require('simple-youtube-api');
