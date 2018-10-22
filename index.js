@@ -219,6 +219,7 @@ function play(guild, song){
 
 
 function lvl(xp){
+	if(xp <= 104) return 0
 	if(xp > 104 && xp <= 312) return 1
 	if(xp > 312 && xp <= 624) return 2
 	if(xp > 624 && xp <= 1040) return 3
