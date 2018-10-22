@@ -65,10 +65,10 @@ client.on('message', function(message){
 	const url = args[0] ? args[0].replace(/<(.+)>/g, '$1') : '';
 	const searchString = args.join(' ');
 	const serverQueue = queue.get(message.guild.id);
-	const voiceChannel = message.member.voiceChannel;
-	const permissions = voiceChannel.permissionsFor(message.client.user);
 
 	if(message.content.startsWith("проигрывать")){
+		const voiceChannel = message.member.voiceChannel;
+		const permissions = voiceChannel.permissionsFor(message.client.user);
 		if(!voiceChannel) return message.channel.send("Вы не находитесь в голосовом канале!")
 		if(!permissions.has('CONNECT')) return message.channel.send("Я не могу подключиться к каналу!")
 		if(!permissions.has('SPEAK')) return message.channel.send("Я не могу говорить в этом канале!")
@@ -89,23 +89,28 @@ client.on('message', function(message){
 		}
 	}
 	if(message.content == "присоединиться"){
+		const voiceChannel = message.member.voiceChannel;
 		voiceChannel.join();
 	}
 	if(message.content == "отключиться"){
+		const voiceChannel = message.member.voiceChannel;
 		voiceChannel.leave();
 	}
 	if(message.content == "пропустить"){
+	const voiceChannel = message.member.voiceChannel;
 	if(!voiceChannel) return message.channel.send("Вы не в голосовом канале!");
 	if(!serverQueue) return message.channel.send("Нечего пропускать!");
 	serverQueue.connection.dispatcher.end(`Кнопка пропустить была задействована!`)
 	}
 	if(message.content == "остановить"){
+	const voiceChannel = message.member.voiceChannel;
 	if(!voiceChannel) return message.channel.send("Вы не в голосовом канале!");
 	if(!serverQueue) return message.channel.send("Нечего останавливать!");
 	serverQueue.songs = [];
 	serverQueue.connection.dispatcher.end(`Кнопка остановить полностью была задействована!`);
 	}
 	if(message.content == "громкость"){
+	const voiceChannel = message.member.voiceChannel;
 	if(!voiceChannel) return message.channel.send("Вы не в голосовом канале!");
 	if(!serverQueue) return message.channel.send("Нечему увеличивать/уменшать громкость!");
 	if(!args[0]) return message.channel.send(`Ваша громкость - **${serverQueue.volume}**`);
@@ -197,7 +202,7 @@ function play(guild, song){
 	const serverQueue = queue.get(guild.id)
 	if(!song) {
 		serverQueue.voiceChannel.leave();
-		queue.delete(message.delete(guild.id))
+		queue.delete(queue.delete(guild.id))
 	}
 	console.log(serverQueue.songs);
 	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
