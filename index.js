@@ -161,7 +161,7 @@ client.on('message', function(message){
     }
 });
 
-function videoHandler(video, message, voiceChannel){
+async function videoHandler(video, message, voiceChannel){
 	const serverQueue = queue.get(message.guild.id)
 	console.log(video);
 	const song = {
@@ -190,7 +190,7 @@ function videoHandler(video, message, voiceChannel){
 		console.log(queue.get(message.guild.id))
 		
 		try {
-			const connection = voiceChannel.join();
+			const connection = await voiceChannel.join();
 			queueConstructor.connection = connection;
 			play(message.guild, queueConstructor.songs[0]);
 		} catch(err) {
