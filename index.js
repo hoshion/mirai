@@ -83,14 +83,7 @@ client.on('message', function(message){
 			} else {
 				youtube.searchVideos(searchString, 1)
 				.then(videos => {
-					const video = youtube.getVideoByID(videos.id);
-					console.log("Дальше videos[0]")
-					console.log(videos[0]);
-					console.log("videos[0].id");
-					console.log(videos[0].id);
-					console.log("Дальше video")
-					console.log(video)
-					return videoHandler(video, message, voiceChannel);
+					return videoHandler(videos[0], message, voiceChannel);
 				})
 			}
 		} catch(err) {
