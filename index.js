@@ -179,7 +179,7 @@ function videoHandler(video, message, voiceChannel){
 			playing: true,
 		}
 		queue.set(message.guild.id, queueConstructor)
-		queueConstructor.songs.push.song;
+		queueConstructor.songs.push(song);
 		console.log("Название песни")
 		console.log(song.title)
 		console.log("Ссылка на песню")
