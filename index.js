@@ -210,8 +210,8 @@ function play(guild, song){
 	if(!song) {
 		serverQueue.voiceChannel.leave();
 	}
-	console.log(serverQueue.songs);
-	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+	console.log(serverQueue);
+	const dispatcher = serverQueue.connection.playStream(ytdl(song.url, { filter : 'audioonly' }))
 		.on('end', reason => {
 			if(reason === "Stream is not generating quickly enough.") console.log("Песня закончилась");
 			else console.log(reason);
