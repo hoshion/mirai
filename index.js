@@ -74,7 +74,7 @@ client.on('message', function(message){
 		if(!permissions.has('SPEAK')) return message.channel.send("Я не могу говорить в этом канале!")
 
 		try {
-			if(url.match(/https&\/\/(www.youtube.com|youtube.com)\/watch\?v=(.+)/)){
+			if(url.match(/https?:\/\/(www.youtube.com|youtube.com)\/watch\?v=(.+)/)){
 				const video = youtube.getVideo(url);
 				return videoHandler(video, message, voiceChannel);
 			} else {
