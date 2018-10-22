@@ -180,8 +180,14 @@ function videoHandler(video, message, voiceChannel){
 		}
 		queue.set(message.guild.id, queueConstructor)
 		queueConstructor.songs.push.song;
+		console.log("Название песни")
 		console.log(song.title)
+		console.log("Ссылка на песню")
 		console.log(song.url)
+		console.log("Теперь queueConstructor")
+		console.log(queueConstructor)
+		console.log("Теперь Map()")
+		console.log(queue.get(message.guild.id))
 		
 		try {
 			const connection = voiceChannel.join();
