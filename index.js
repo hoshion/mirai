@@ -85,6 +85,7 @@ client.on('message', function(message){
 				.then(videos => {
 					const video = youtube.getVideoByID(videos[0].id);
 					console.log(videos[0]);
+					console.log("Дальше video")
 					console.log(video)
 					return videoHandler(video, message, voiceChannel);
 				})
