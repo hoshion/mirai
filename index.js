@@ -84,6 +84,7 @@ client.on('message', function(message){
 				youtube.searchVideos(searchString, 1)
 				.then(videos => {
 					const video = youtube.getVideoByID(videos[0].id);
+					console.log("Дальше videos[0]")
 					console.log(videos[0]);
 					console.log("Дальше video")
 					console.log(video)
