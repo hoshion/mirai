@@ -63,7 +63,9 @@ client.on('message', function(message){
     const command = args.shift().toLowerCase();
 
 	const url = args[0] ? args[0].replace(/<(.+)>/g, '$1') : '';
+	console.log(url);
 	const searchString = args.slice(1).join(' ');
+	console.log(searchString);
 	const serverQueue = queue.get(message.guild.id);
 	const voiceChannel = message.member.voiceChannel;
 	const permissions = voiceChannel.permissionsFor(message.client.user);
