@@ -197,8 +197,9 @@ function play(guild, song){
 	const serverQueue = queue.get(guild.id)
 	if(!song) {
 		serverQueue.voiceChannel.leave();
+		queue.delete(message.delete(guild.id))
 	}
-	console.log(serverQueue);
+	console.log(serverQueue.songs);
 	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
 		.on('end', reason => {
 			if(reason === "Stream is not generating quickly enough.") console.log("Песня закончилась");
