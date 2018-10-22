@@ -78,9 +78,11 @@ client.on('message', function(message){
 				const video = youtube.getVideo(url);
 				return videoHandler(video, message, voiceChannel);
 			} else {
-				const videos = youtube.searchVideos(searchString, 1)
-				const video = youtube.getVideoByID(videos[0].id)
-				return videoHandler(video, message, voiceChannel);
+				youtube.searchVideos(searchString, 1)
+				.then(videos => {
+					const video = youtube.getVideoByID(videos[0].id)
+					return videoHandler(video, message, voiceChannel);
+				})
 			}
 		} catch(err) {
 			console.log(err)
@@ -175,6 +177,8 @@ function videoHandler(video, message, voiceChannel){
 		}
 		queue.set(message.guild.id, queueConstructor)
 		queueConstructor.songs.push.song;
+		console.log(song.title)
+		console.log(song.url)
 		
 		try {
 			const connection = voiceChannel.join();
