@@ -77,10 +77,11 @@ client.on('message', function(message){
 			if(url.match(/https&\/\/(www.youtube.com|youtube.com)\/watch\?v=(.+)/)){
 				const video = youtube.getVideo(url);
 				return videoHandler(video, message, voiceChannel);
+			} else {
+				const videos = youtube.searchVideos(searchString, 1)
+				const video = youtube.getVideoByID(videos[0].id)
+				return videoHandler(video, message, voiceChannel);
 			}
-			const videos = youtube.searchVideos(searchString, 1)
-			const video = youtube.getVideoByID(videos[0].id)
-			return videoHandler(video, message, voiceChannel);
 		} catch(err) {
 			console.log(err)
 			message.channel.send("Поиск не дал результатов ;(")
