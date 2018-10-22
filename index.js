@@ -77,14 +77,14 @@ client.on('message', function(message){
 
 		try {
 			if(url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/watch\?v=(.+)$/)){
-				const video = youtube.getVideo(url);
+				const video = youtube.getVideo(url)
 				console.log(video)
 				return videoHandler(video, message, voiceChannel);
 			} else {
 				youtube.searchVideos(searchString, 1)
 				.then(videos => {
 					const video = youtube.getVideoByID(videos[0].id);
-					console.log(videos);
+					console.log(videos[0]);
 					console.log(video)
 					return videoHandler(video, message, voiceChannel);
 				})
