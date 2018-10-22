@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
             if(args[1]){
                 Jimp.read(`images/backgrounds/${args[1]}.jpg`, (err, image) => {
                     if(err) return message.channel.send("Неверное название фона");
-                    con.query(`UPDATE test SET profileback = '${args[1]}' WHERE userid = ${message.author.id}`)
+                    con.query(`UPDATE global SET profileback = '${args[1]}' WHERE userid = ${message.author.id}`)
                     return message.channel.send(`Успешно установлен фон **${args[1]}**`)
                 });
             }
