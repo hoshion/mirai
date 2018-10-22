@@ -137,6 +137,7 @@ client.on('message', function(message){
     if(!command) return message.channel.send("Вы не ввели команду!");
     if(message.content == "-_-") return;
     if(message.content == "--") return;
+	if(message.content == "---") return message.channel.send("Круто")
 
     try {
         const commandFile = require(`./commands/${command}.js`);
