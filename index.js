@@ -74,17 +74,16 @@ client.on('message', function(message){
 		if(!permissions.has('SPEAK')) return message.channel.send("Я не могу говорить в этом канале!")
 
 		try {
-			const video = youtube.getVideo(url);
+			if(url.match(/https&\/\/(www.youtube.com|youtube.com)\/watch\?v=(.+)/)){
+				const video = youtube.getVideo(url);
+				return videoHandler(video, message, voiceChannel);
+			}
+			const videos = youtube.searchVideos(searchString, 1)
+			const video = youtube.getVideoByID(videos[0].id)
 			return videoHandler(video, message, voiceChannel);
 		} catch(err) {
-			try {
-				const videos = youtube.searchVideos(searchString, 1)
-				const video = youtube.getVideoByID(videos[0].id)
-				return videoHandler(video, message, voiceChannel);
-			} catch(err) {
-				console.log(err)
-				message.channel.send("Поиск не дал результатов ;(")
-			}
+			console.log(err)
+			message.channel.send("Поиск не дал результатов ;(")
 		}
 	}
 	if(message.content == "присоединиться"){
