@@ -76,7 +76,6 @@ client.on('message', function(message){
 		try {
 			if(url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/watch\?v=(.+)$/)){
 				const video = youtube.getVideo(url)
-				console.log(video)
 				return videoHandler(video, message, voiceChannel);
 			} else {
 				youtube.searchVideos(searchString, 1)
@@ -161,7 +160,6 @@ client.on('message', function(message){
 
 async function videoHandler(video, message, voiceChannel){
 	const serverQueue = queue.get(message.guild.id)
-	console.log(video);
 	const song = {
 		id: video.id,
 		title: video.title,
