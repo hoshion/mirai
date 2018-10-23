@@ -15,11 +15,12 @@ exports.run = async (client, message, args) => {
     const avatar = message.author.avatarURL;
     
     con.query(`SELECT * FROM local WHERE userid = ${message.author.id} AND serverid = ${message.guild.id}`, function(err, result){
-        /*if(args[0] == "фоны"){
-            if(!args[1]) return message.channel.send("Список фонов : \n **Аниме фоны**: `anime1`, `anime2`, `anime3`, `anime4`, `anime5`, `anime6`, `anime7`, `anime8`, `anime9`, `miku1`, `dodji1`, `seiber1`, `seiber2`, `tokiogyl1`, `tokiogyl2` \n **Абстрактные фоны**: `abstract1`, `abstract2`, `abstract3`, `abstract4`, `abstract5` \n **Города**:`moscow1`, `moscow2`, `tokio1`, `tokio2`, `paris1` \n **Природа**: `sakura1`, `sakura2`, `sakura3`, `flower1`\n **Игры**: `minecraft1`, `minecraft2`, `detroit1`, `detroit2`, `detroit3`\n **Другое**: `another1`, `another2`, `another3`");
+        if(args[0] == "фоны"){
+            if(!args[1]) return message.channel.send("Список фонов : `autumn`, `greenleaves`");
             if(args[1]){
-                Jimp.read(`images/backgrounds/${args[1]}.jpg`).then(image => {
+                Jimp.read(`images/rank/${args[1]}.png`).then(image => {
                     image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+						if(err) return message.channel.send("Неверное название фона!")
                         message.channel.send({files: [{name: `${args[1]}.jpg`, attachment: buffer}]});
                     });
                 });
@@ -29,19 +30,18 @@ exports.run = async (client, message, args) => {
         if(args[0] == "фон"){
             if(!args[1]) return message.channel.send("Вы не ввели название фона для установки!");
             if(args[1]){
-                Jimp.read(`images/backgrounds/${args[1]}.jpg`, (err, image) => {
-                    if(err) return message.channel.send("Неверное название фона");
-                    con.query(`UPDATE global SET profileback = '${args[1]}' WHERE userid = ${message.author.id}`)
+                Jimp.read(`images/rank/${args[1]}.png`, (err, image) => {
+                    if(err) return message.channel.send("Неверное название фона!");
+                    con.query(`UPDATE local SET profileback = '${args[1]}' WHERE userid = ${message.author.id} AND serverid = ${message.guild.id}`)
                     return message.channel.send(`Успешно установлен фон **${args[1]}**`)
                 });
             }
             return;
         }
-        if(result[0].profileback == null) return message.channel.send("Вы не установили фон для профиля. \nЧтобы установить напишите `-профиль фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-профиль фоны`. \nЧтобы увидеть фон, напишите `-профиль фоны [название_фона]`");*/
+        if(result[0].profileback == null) return message.channel.send("Вы не установили фон для профиля. \nЧтобы установить напишите `-профиль фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-профиль фоны`. \nЧтобы увидеть фон, напишите `-профиль фоны [название_фона]`");
         Jimp.read(avatar).then(avatar => {
 			new Jimp(300, 700, '#383838', function(err, image){
-				Jimp.read('images/rank/greenleaves.png').then(background3 => {
-					//Jimp.read(`images/backgrounds/${result[0].profileback}.jpg`).then(image => {//
+					Jimp.read(`images/rank/${result[0].profileback}.png`).then(background3 => {
 						Jimp.loadFont('images/fonts/font1.fnt').then(font => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
 								new Jimp(250, 400, '#383838', function(err, shadow1){
