@@ -46,7 +46,7 @@ exports.run = async (client, message, args) => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
 								new Jimp(250, 400, '#383838', function(err, shadow1){
 									new Jimp(250, 400, '#FFFFFF', function(err, background) {
-										new Jimp(254, 254, "#000000", function(err, background2){
+										new Jimp(250, 250, "#000000", function(err, background2){
 											if(err) console.log(err);
 											avatar.resize(250, 250);
 											background.opacity(0.8);
@@ -55,8 +55,8 @@ exports.run = async (client, message, args) => {
 											image.composite(background3, 0, 0);
 											image.composite(shadow1, 35, 295);
 											image.composite(background, 25, 285);
-											image.composite(background2, 23, 23);
-											image.composite(avatar, 25, 25);
+											image.composite(background2, 35, 20);
+											image.composite(avatar, 25, 10);
 											image.print(font, 25, 325, `${message.author.username}`);
 											image.print(font, 25, 405, `Место - в разработке`)
 											image.print(font, 25, 365, `XP: ${result[0].xp}`);
