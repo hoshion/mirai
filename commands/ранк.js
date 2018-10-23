@@ -57,9 +57,9 @@ exports.run = async (client, message, args) => {
 											image.composite(background, 25, 285);
 											image.composite(background2, 35, 20);
 											image.composite(avatar, 25, 10);
-											image.print(font, 25, 325, `${message.author.username}`);
-											image.print(font, 25, 405, `Место - в разработке`)
-											image.print(font, 25, 365, `XP: ${result[0].xp}`);
+											image.print(font, 30, 305, `${message.author.username}`);
+											image.print(font, 30, 385, `Место: в разработке`)
+											image.print(font, 30, 345, `XP: ${result[0].xp}`);
 											image.write('rank.png');
 											image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
 												message.channel.send({files: [{name: 'rank.png', attachment: buffer}]});
