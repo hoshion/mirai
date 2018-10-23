@@ -44,16 +44,14 @@ exports.run = async (client, message, args) => {
                 Jimp.loadFont('images/fonts/font1.fnt').then(font => {
                     Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
                         new Jimp(775, 100, '#FFFFFF', function(err, background) {
-                            new Jimp(154, 154, "#FFFFFF", function(err, background2){
+                            new Jimp(154, 154, "#000000", function(err, background2){
                                 if(err) console.log(err);
                                 avatar.resize(150,150);
                                 background.opacity(0.8);
                                 background2.opacity(0.8);
-                                lvl.opacity(0.8);
                                 image.composite(background, 180, 50);
                                 image.composite(background2, 73, 23);
                                 image.composite(avatar, 75, 25);
-                                image.composite(frame,0,0);
                                 image.print(font, 2, 215,`${message.member.username}`);                                            
                                 image.print(font1, 2, 245,`XP: ${result[0].xp}`);
                                 image.write('rank.png');
