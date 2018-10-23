@@ -44,13 +44,13 @@ exports.run = async (client, message, args) => {
 					//Jimp.read(`images/backgrounds/${result[0].profileback}.jpg`).then(image => {//
 						Jimp.loadFont('images/fonts/font1.fnt').then(font => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
-								new Jimp(278, 378, '#383838', function(err, shadow1){
+								new Jimp(278, 389, '#383838', function(err, shadow1){
 									new Jimp(278, 389, '#FFFFFF', function(err, background) {
 										new Jimp(278, 278, "#000000", function(err, background2){
 											if(err) console.log(err);
 											avatar.resize(274,274);
 											background.opacity(0.8);
-											shadow1.opacity(0.4)
+											shadow1.opacity(0.9);
 											background2.opacity(0.8);
 											image.composite(background3, 0, 0);
 											image.composite(shadow1, 16, 305);
