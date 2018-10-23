@@ -44,19 +44,19 @@ exports.run = async (client, message, args) => {
 					//Jimp.read(`images/backgrounds/${result[0].profileback}.jpg`).then(image => {//
 						Jimp.loadFont('images/fonts/font1.fnt').then(font => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
-								new Jimp(278, 389, '#383838', function(err, shadow1){
-									new Jimp(278, 389, '#FFFFFF', function(err, background) {
-										new Jimp(278, 278, "#000000", function(err, background2){
+								new Jimp(250, 405, '#383838', function(err, shadow1){
+									new Jimp(250, 405, '#FFFFFF', function(err, background) {
+										new Jimp(254, 254, "#000000", function(err, background2){
 											if(err) console.log(err);
-											avatar.resize(274,274);
+											avatar.resize(250, 250);
 											background.opacity(0.8);
-											shadow1.opacity(0.9);
+											shadow1.opacity(0.8);
 											background2.opacity(0.8);
 											image.composite(background3, 0, 0);
-											image.composite(shadow1, 16, 305);
-											image.composite(background, 11, 300);
-											image.composite(background2, 11, 11);
-											image.composite(avatar, 13, 13);
+											image.composite(shadow1, 35, 295);
+											image.composite(background, 25, 285);
+											image.composite(background2, 23, 23);
+											image.composite(avatar, 25, 25);
 											image.print(font, 11, 325, `${message.author.username}`);
 											image.print(font, 11, 405, `Место - в разработке`)
 											image.print(font, 11, 365, `XP: ${result[0].xp}`);
