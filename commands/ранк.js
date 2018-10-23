@@ -46,7 +46,7 @@ exports.run = async (client, message, args) => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
 								new Jimp(278, 378, '#383838', function(err, shadow1){
 									new Jimp(278, 389, '#FFFFFF', function(err, background) {
-											new Jimp(278, 278, "#000000", function(err, background2){
+										new Jimp(278, 278, "#000000", function(err, background2){
 											if(err) console.log(err);
 											avatar.resize(274,274);
 											background.opacity(0.8);
@@ -68,7 +68,6 @@ exports.run = async (client, message, args) => {
 									});
 								});
 							});
-						});
 					});
 				});
 		    });
