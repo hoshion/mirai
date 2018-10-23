@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
         if(result[0].profileback == null) return message.channel.send("Вы не установили фон для профиля. \nЧтобы установить напишите `-профиль фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-профиль фоны`. \nЧтобы увидеть фон, напишите `-профиль фоны [название_фона]`");*/
         Jimp.read(avatar).then(avatar => {
 			new Jimp(300, 700, '#383838', function(err, image){
-				Jimp.loadFont('images/rank/greenleaves.png').then(background3 => {
+				Jimp.read('images/rank/greenleaves.png').then(background3 => {
 					//Jimp.read(`images/backgrounds/${result[0].profileback}.jpg`).then(image => {//
 						Jimp.loadFont('images/fonts/font1.fnt').then(font => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
