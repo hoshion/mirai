@@ -44,8 +44,8 @@ exports.run = async (client, message, args) => {
 					//Jimp.read(`images/backgrounds/${result[0].profileback}.jpg`).then(image => {//
 						Jimp.loadFont('images/fonts/font1.fnt').then(font => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
-								new Jimp(250, 405, '#383838', function(err, shadow1){
-									new Jimp(250, 405, '#FFFFFF', function(err, background) {
+								new Jimp(250, 400, '#383838', function(err, shadow1){
+									new Jimp(250, 400, '#FFFFFF', function(err, background) {
 										new Jimp(254, 254, "#000000", function(err, background2){
 											if(err) console.log(err);
 											avatar.resize(250, 250);
@@ -57,9 +57,9 @@ exports.run = async (client, message, args) => {
 											image.composite(background, 25, 285);
 											image.composite(background2, 23, 23);
 											image.composite(avatar, 25, 25);
-											image.print(font, 11, 325, `${message.author.username}`);
-											image.print(font, 11, 405, `Место - в разработке`)
-											image.print(font, 11, 365, `XP: ${result[0].xp}`);
+											image.print(font, 25, 325, `${message.author.username}`);
+											image.print(font, 25, 405, `Место - в разработке`)
+											image.print(font, 25, 365, `XP: ${result[0].xp}`);
 											image.write('rank.png');
 											image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
 												message.channel.send({files: [{name: 'rank.png', attachment: buffer}]});
