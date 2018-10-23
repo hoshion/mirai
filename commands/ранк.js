@@ -39,29 +39,37 @@ exports.run = async (client, message, args) => {
         }
         if(result[0].profileback == null) return message.channel.send("Вы не установили фон для профиля. \nЧтобы установить напишите `-профиль фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-профиль фоны`. \nЧтобы увидеть фон, напишите `-профиль фоны [название_фона]`");*/
         Jimp.read(avatar).then(avatar => {
-        	new Jimp(300, 700, '#383838', function(err, image){   
+        	new Jimp(300, 700, '#383838', function(err, image){
+            Jimp.loadFont(`http://fotozona.pro/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/4/7/47_21535_stena-iz-plyushha-i-terrasnye-korichnevye-doski-vinilovyj-fotofon-kupit.png`).then(background3 => {
             //Jimp.read(`images/backgrounds/${result[0].profileback}.jpg`).then(image => {//
                 Jimp.loadFont('images/fonts/font1.fnt').then(font => {
                     Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
-                        new Jimp(278, 378, '#FFFFFF', function(err, background) {
+                        new Jimp(278, 378, '#383838', function(err, shadow1){
+                        new Jimp(278, 389, '#FFFFFF', function(err, background) {
                             new Jimp(278, 278, "#000000", function(err, background2){
                                 if(err) console.log(err);
                                 avatar.resize(274,274);
                                 background.opacity(0.8);
+								shadow1.opacity(0.4)
                                 background2.opacity(0.8);
+                                image.composite(background3, 0, 0);
+								image.composite(shadow1, 16, 305);
                                 image.composite(background, 11, 300);
                                 image.composite(background2, 11, 11);
                                 image.composite(avatar, 13, 13);
-                                image.print(font, 11, 325,`${message.author.username}`);                                            
-                                image.print(font, 11, 355,`XP: ${result[0].xp}`);
+                                image.print(font, 11, 325, `${message.author.username}`);
+                                image.print(font, 11, 405, `Место - в разработке`)
+                                image.print(font, 11, 365, `XP: ${result[0].xp}`);
                                 image.write('rank.png');
                                 image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
                                     message.channel.send({files: [{name: 'rank.png', attachment: buffer}]});
                                 });
                             });
                         });
+						});
                     });
                 });
+            });
             });
         });
     });
