@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
             }
             return;
         }
-        if(result[0].profileback == null) return message.channel.send("Вы не установили фон для профиля. \nЧтобы установить напишите `-профиль фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-профиль фоны`. \nЧтобы увидеть фон, напишите `-профиль фоны [название_фона]`");
+        if(result[0].profileback == null) return message.channel.send("Вы не установили фон для ранга. \nЧтобы установить напишите `-ранг фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-ранг фоны`. \nЧтобы увидеть фон, напишите `-ранг фоны [название_фона]`");
         Jimp.read(avatar).then(avatar => {
 			new Jimp(300, 700, '#383838', function(err, image){
 					Jimp.read(`images/rank/${result[0].profileback}.png`).then(background3 => {
