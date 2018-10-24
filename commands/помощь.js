@@ -18,9 +18,9 @@ exports.run = (client, message, prefix) => {
 				setTimeout(() => {
 					msg.delete();
 					message.channel.send(embed)
-				}, 3000)
-			}, 3000)
-		}, 3000)
+				}, 2000)
+			}, 2000)
+		}, 2000)
     })
     console.log('Команда "помощь" использована пользователем ' + message.author.username + '. Результат - успешно');
 };
