@@ -8,8 +8,9 @@ exports.run = (client, message) => {
 	});
 	
 	con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = member ORDER BY local.xp DESC`, function(err, result){
+		if(err) console.log(err);
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND userid = ${message.author.id}`, function(err, result2){
-			message.channel.send("Проверка"); 
+			console.log(result);
 		});
 	});
 };
