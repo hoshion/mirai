@@ -16,6 +16,7 @@ exports.run = (client, message, args) => {
 			if(!result[0]){
 				con.query(`INSERT INTO local (serverid,type,roleid) VALUES('${message.guild.id}','autorole','${message.mentions.roles.first().id}')`, function(err){
 					if(err) console.log(err);
+					if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
 					message.channel.send(`Вы установили роль **${message.mentions.roles.first().name}** по умолчанию`)
 				})
 			} else {
