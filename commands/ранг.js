@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
         }
         if(result[0].profileback == null) return message.channel.send("Вы не установили фон для ранга. \nЧтобы установить напишите `-ранг фон [название_фона]`. \nЧтобы узнать, какие фоны есть, напишите `-ранг фоны`. \nЧтобы увидеть фон, напишите `-ранг фоны [название_фона]`");
         Jimp.read(avatar).then(avatar => {
-			new Jimp(300, 700, '#383838', function(err, image){
+				Jimp.read(`images/another/rankframe.png`).then(rankframe => {
 					Jimp.read(`images/rank/${result[0].profileback}.png`).then(background3 => {
 						Jimp.loadFont('images/fonts/font1.fnt').then(font => {
 							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
@@ -52,25 +52,25 @@ exports.run = async (client, message, args) => {
 											background.opacity(0.8);
 											shadow1.opacity(0.8);
 											background2.opacity(0.8);
-											image.composite(background3, 0, 0);
-											image.composite(shadow1, 35, 295);
-											image.composite(background, 25, 285);
-											image.composite(background2, 35, 20);
-											image.composite(avatar, 25, 10);
-											image.print(font, 30, 305, `${message.author.username}`);
-											image.print(font, 30, 385, `Место: в разработке`)
-											image.print(font, 30, 345, `XP: ${result[0].xp}`);
-											image.write('rank.png');
-											image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+											rankframe.composite(background3, 0, 0);
+											rankframe.composite(shadow1, 35, 295);
+											rankframe.composite(background, 25, 285);
+											rankframe.composite(background2, 35, 20);
+											rankframe.composite(avatar, 25, 10);
+											rankframe.print(font, 30, 305, `${message.author.username}`);
+											rankframe.print(font, 30, 385, `Место: в разработке`)
+											rankframe.print(font, 30, 345, `XP: ${result[0].xp}`);
+											rankframe.write('rank.png');
+											rankframe.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
 												message.channel.send({files: [{name: 'rank.png', attachment: buffer}]});
 											});
 										});
 									});
 								});
 							});
+						});
 					});
 				});
-		    });
 		});
     });
     message.channel.stopTyping()
