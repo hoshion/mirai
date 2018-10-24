@@ -12,10 +12,11 @@ exports.run = (client, message, prefix) => {
     .setColor("ffda8b");
     message.channel.send("Сейчас, сейчас").then(msg => {
    		setTimeout(() => {
-			message.edit("Бля, никак не могу найти его")
+			msg.edit("Бля, никак не могу найти его")
 			setTimeout(()=> {
-				message.edit("Нашёл!")
+				msg.edit("Нашёл!")
 				setTimeout(() => {
+					msg.delete();
 					message.channel.send(embed)
 				}, 3000)
 			}, 3000)
