@@ -52,16 +52,16 @@ exports.run = async (client, message, args) => {
 											background.opacity(0.8);
 											shadow1.opacity(0.8);
 											background2.opacity(0.8);
-											rankframe.mask(background3, 0, 0);
-											rankframe.composite(shadow1, 35, 295);
-											rankframe.composite(background, 25, 285);
-											rankframe.composite(background2, 35, 20);
-											rankframe.composite(avatar, 25, 10);
-											rankframe.print(font, 30, 305, `${message.author.username}`);
-											rankframe.print(font, 30, 385, `Место: в разработке`)
-											rankframe.print(font, 30, 345, `XP: ${result[0].xp}`);
-											rankframe.write('rank.png');
-											rankframe.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+											background3.mask(rankframe, 0, 0);
+											background3.composite(shadow1, 35, 295);
+											background3.composite(background, 25, 285);
+											background3.composite(background2, 35, 20);
+											background3.composite(avatar, 25, 10);
+											background3.print(font, 30, 305, `${message.author.username}`);
+											background3.print(font, 30, 385, `Место: в разработке`)
+											background3.print(font, 30, 345, `XP: ${result[0].xp}`);
+											background3.write('rank.png');
+											background3.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
 												message.channel.send({files: [{name: 'rank.png', attachment: buffer}]});
 											});
 										});
