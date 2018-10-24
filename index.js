@@ -58,8 +58,6 @@ client.on('message', function(message){
             });
         };
     });
-
-	require(`placement.js`).run(client, message);
 	
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -146,6 +144,7 @@ client.on('message', function(message){
     if(message.content == "-_-") return;
     if(message.content == "--") return;
 	if(message.content == "---") return message.channel.send("Круто")
+	require(`placement.js`).run(client, message);
 
     try {
         const commandFile = require(`./commands/${command}.js`);
