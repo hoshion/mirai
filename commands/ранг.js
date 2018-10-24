@@ -53,13 +53,13 @@ exports.run = async (client, message, args) => {
 											shadow1.opacity(0.8);
 											background2.opacity(0.8);
 											background3.mask(rankframe, 0, 0);
-											background3.composite(shadow1, 35, 295);
-											background3.composite(background, 25, 285);
-											background3.composite(background2, 35, 20);
-											background3.composite(avatar, 25, 10);
-											background3.print(font, 30, 305, `${message.author.username}`);
-											background3.print(font, 30, 385, `Место: в разработке`)
-											background3.print(font, 30, 345, `XP: ${result[0].xp}`);
+											background3.composite(shadow1, 30, 295);
+											background3.composite(background, 20, 285);
+											background3.composite(background2, 30, 20);
+											background3.composite(avatar, 20, 10);
+											background3.print(font, 25, 305, `${message.author.username}`);
+											background3.print(font, 25, 385, `Место: в разработке`)
+											background3.print(font, 25, 345, `XP: ${result[0].xp}`);
 											background3.write('rank.png');
 											background3.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
 												message.channel.send({files: [{name: 'rank.png', attachment: buffer}]});
