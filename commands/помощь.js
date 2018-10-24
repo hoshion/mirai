@@ -10,6 +10,16 @@ exports.run = (client, message, prefix) => {
     .addField("Фан", "**Кубик** __*<число>*__ - Выдача рандомного числа в пределах указанного\n**ppap** - Мем с PPAP\n**Поцеловать/обнять/пнуть/ударить** __*[упоминание]*__ - Поцеловать/обнять/пнуть/ударить кого-либо")
     .addField("Остальное", "**Помощь** - Мои команды")
     .setColor("ffda8b");
-    message.channel.send(embed);
+    message.channel.send("Сейчас, сейчас").then(msg => {
+   		setTimeout(() => {
+			message.edit("Бля, никак не могу найти его")
+			setTimeout(()=> {
+				message.edit("Нашёл!")
+				setTimeout(() => {
+					message.channel.send(embed)
+				}, 3000)
+			}, 3000)
+		}, 3000)
+    })
     console.log('Команда "помощь" использована пользователем ' + message.author.username + '. Результат - успешно');
 };
