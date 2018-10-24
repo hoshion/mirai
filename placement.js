@@ -9,7 +9,7 @@ exports.run = (client, message) => {
 	
 	con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = member ORDER BY local.xp DESC`, function(err, result){
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND userid = ${message.author.id}`, function(err, result2){
-			message.channel.send(result.xp.join(" ")); 
+			message.channel.send("Проверка"); 
 		});
 	});
 };
