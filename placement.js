@@ -7,7 +7,7 @@ exports.run = (client, message) => {
 		database: process.env.DATABASE_NAME
 	});
 	
-	con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = member ORDER BY local.xp DESC`, function(err, result){
+	con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = `member` ORDER BY local.xp DESC`, function(err, result){
 		if(err) console.log(err);
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND userid = ${message.author.id}`, function(err, result2){
 			console.log(result);
