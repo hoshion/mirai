@@ -52,7 +52,7 @@ exports.run = async (client, message, args) => {
 											background.opacity(0.8);
 											shadow1.opacity(0.8);
 											background2.opacity(0.8);
-											rankframe.composite(background3, 0, 0);
+											rankframe.blit(background3, 0, 0);
 											rankframe.composite(shadow1, 35, 295);
 											rankframe.composite(background, 25, 285);
 											rankframe.composite(background2, 35, 20);
