@@ -13,6 +13,7 @@ exports.run = (client, message, [second_command, mention, xp_count]) => {
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
         if(!memberMention) return message.channel.send("Вы не указали человека!");
         if(!xp_count) return message.channel.send("Вы не указали количество очков!");
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
         
         con.query(`SELECT * FROM global WHERE userid = ${memberMention.user.id}`, function(err, xp){
             if(err) throw err;
