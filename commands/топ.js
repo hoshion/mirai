@@ -6,7 +6,7 @@ exports.run = (client, message) => {
         password: "drizba123",
         database: "drizba"
     });
-    let number = con.query(`SELECT * FROM local ORDER by local.xp DESC`, function(err, result){
+    let number = con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, result){
         if(err) throw err;
         if(message.author.id == result[0].userid){
             number = 1;
@@ -39,12 +39,12 @@ exports.run = (client, message) => {
             number = 10;
         }
     })
-    let XP = con.query(`SELECT * FROM test WHERE userid = ${message.author.id}`, function(err, result){
+    let XP = con.query(`SELECT * FROM local WHERE userid = ${message.author.id} AND serverid = ${message.guild.id} AND type = 'member'`, function(err, result){
         if(err) throw err;
         XP = result[0].xp;
     })
 
-    con.query(`SELECT userid, xp FROM local ORDER by test.xp DESC`, function(err, top){
+    con.query(`SELECT userid, xp FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, top){
         if(err) throw err;
         message.channel.send("**```ini\n[1 место] - " + message.guild.members.get(top[0].userid).user.username + "\n    XP ; " + top[0].xp + 
         "\n[2 место] - " + message.guild.members.get(top[1].userid).user.username + "\n    XP ; " + top[1].xp + 
