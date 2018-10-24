@@ -43,7 +43,7 @@ exports.run = async (client, message, args) => {
 				Jimp.read(`images/another/rankframe.png`).then(rankframe => {
 					Jimp.read(`images/rank/${result[0].profileback}.png`).then(background3 => {
 						Jimp.loadFont('images/fonts/font1.fnt').then(font => {
-							Jimp.loadFont('images/fonts/font2.fnt').then(font1 => {
+							Jimp.loadFont(Jimp.FONT_SANS_14_BLACK).then(font1 => {
 								new Jimp(250, 400, '#383838', function(err, shadow1){
 									new Jimp(250, 400, '#FFFFFF', function(err, background) {
 										new Jimp(250, 250, "#000000", function(err, background2){
