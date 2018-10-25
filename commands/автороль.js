@@ -14,7 +14,6 @@ exports.run = (client, message, args) => {
 		}
 		if(args[0].toLowerCase() == "добавить"){
 			if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
-			if(!message.mentions.channels.first()){
 			if(!result[0]){
 				con.query(`INSERT INTO local (serverid,type,roleid) VALUES('${message.guild.id}','autorole','${message.mentions.roles.first().id}')`, function(err){
 					if(err) console.log(err);
