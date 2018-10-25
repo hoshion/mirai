@@ -13,6 +13,8 @@ exports.run = (client, message, args) => {
 			return
 		}
 		if(args[0].toLowerCase() == "добавить"){
+			if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
+        if(!memberMention) return message.channel.send("Вы не указали человека!");
 			if(!result[0]){
 				con.query(`INSERT INTO local (serverid,type,roleid) VALUES('${message.guild.id}','autorole','${message.mentions.roles.first().id}')`, function(err){
 					if(err) console.log(err);
