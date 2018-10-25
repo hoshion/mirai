@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
     const tag = message.author.tag;
     const avatar = message.author.avatarURL;
 	const nickargs = message.author.username.split("");
-	console.log(nickargs);
+	lol(nickargs);
 	
     con.query(`SELECT * FROM local WHERE userid = ${message.author.id} AND serverid = ${message.guild.id}`, function(err, result){
         if(args[0] == "фоны"){
@@ -77,6 +77,6 @@ exports.run = async (client, message, args) => {
     });
     message.channel.stopTyping()
 }
-function lol(){
-
+function lol(nick){
+	console.log("Вот ник в join(\"\")" + nick.join(""));
 }
