@@ -77,6 +77,7 @@ exports.run = async (client, message, args) => {
     message.channel.stopTyping()
 }
 function lol(nick){
+	console.log(nick)
 	if(!nick) return "";
 	else if(nick == "𝓥") return "В"
 	else return nick 
