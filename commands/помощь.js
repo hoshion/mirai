@@ -19,7 +19,7 @@ exports.run = (client, message, prefix) => {
 					msg.delete();
 					message.channel.send(embed)
 				}, 1000)
-			}, 2000)
+			}, 1000)
 		}, 2000)
     })
 };
