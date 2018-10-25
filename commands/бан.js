@@ -11,8 +11,6 @@ exports.run = (client, message, [mention, ...reason]) => {
     });
     if(!member) return message.channel.send("Вы не указали человека!");
     if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("Недостаточно прав!");
-
-    console.log(message.author.username + " Использовал команду -бан @" + member.user.tag);
     
     member.ban(reason.join(" "))
     .then(() => message.channel.send("Вы забанили **" + member.user.tag + "** по причине - **" + reason + "** !"))
@@ -23,7 +21,7 @@ exports.run = (client, message, [mention, ...reason]) => {
 		const channel = message.guild.channels.get("497837552636788737");
 		const embed = new Discord.RichEmbed()
 		.setAuthor(message.author.username, message.author.avatarURL)
-		.setDescription(`Кикнул человека ${member.user.username}\nПо причине : ${reason.join(" ")}`)
+		.setDescription(`Забанил человека ${member.user.username}\nПо причине : ${reason.join(" ")}`)
 		.setColor(`ff0000`)
 		.setFooter(`Ваш бот - ${client.user.username}`, client.user.avatarURL);
 		channel.send(embed);
