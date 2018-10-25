@@ -15,7 +15,6 @@ exports.run = (client, message, [command, ...welcome]) => {
 		}
 		if(command.toLowerCase() == "добавить"){
 			if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
-        if(!memberMention) return message.channel.send("Вы не указали человека!");
 			if(!message.mentions.channels.first()){
 				if(!result[0]){
 					con.query(`INSERT INTO local (serverid,type,message) VALUES('${message.guild.id}','welcome','${welcome.join(" ")}')`, function(err){
