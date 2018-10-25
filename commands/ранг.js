@@ -13,7 +13,9 @@ exports.run = async (client, message, args) => {
     const mentionMember = message.mentions.members.first();
     const tag = message.author.tag;
     const avatar = message.author.avatarURL;
-    
+	const nickargs = message.author.username.split("");
+	console.log(nickargs);
+	
     con.query(`SELECT * FROM local WHERE userid = ${message.author.id} AND serverid = ${message.guild.id}`, function(err, result){
         if(args[0] == "фоны"){
             if(!args[1]) return message.channel.send("Список фонов : `autumn`, `greenleaves`");
@@ -75,3 +77,4 @@ exports.run = async (client, message, args) => {
     });
     message.channel.stopTyping()
 }
+function()
