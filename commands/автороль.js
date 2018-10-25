@@ -1,46 +1,30 @@
-exports.run = (client, message, [command, ...welcome]) => {
+exports.run = (client, message, args) => {
     const mysql = require("mysql");
-	const con = mysql.createConnection({
-        host: process.env.DATABASE_HOST,
-        user: process.env.DATABASE_USER,
-        password: process.env.DATABASE_PASSWORD,
-        database: process.env.DATABASE_NAME
+    const con = mysql.createConnection({
+        host: "db4free.net",
+        user: "botdrizba",
+        password: "drizba123",
+        database: "drizba"
     });
-	
-	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND type = 'welcome'`, function(err, result){
-		if(!command){
-			if(!result[0]) return message.channel.send("**У вас не установлено приветствие!**\n\nЧтобы его установить напишите `-приветствие добавить [текст приветствия]\nЧтобы установить канал для приветствия, напишите `-приветствие добавить #канал`")
-			message.channel.send(`Приветствие на этом сервере ー **${result[0].message}**`)
-			return;
+	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND type = 'autorole'`,function (err,result){
+		if(!args[0]){
+			if(!result[0]) return message.channel.send("**У вас нету установленной автороли!**\n\nЧтобы установить автороль, напишите `-автороль добавить @роль`")
+			message.channel.send(`Установленная автороль на сервере ー **${message.guild.roles.get(result[0].roleid).name}**`)
+			return
 		}
-		if(command.toLowerCase() == "добавить"){
+		if(args[0].toLowerCase() == "добавить"){
 			if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
-			if(!message.mentions.channels.first()){
-				if(!result[0]){
-					con.query(`INSERT INTO local (serverid,type,message) VALUES('${message.guild.id}','welcome','${welcome.join(" ")}')`, function(err){
-						if(err) console.log(err);
-						message.channel.send(`Вы установили приветствие!`)
-					})
-				} else {
-					con.query(`UPDATE local SET message = '${welcome.join(" ")}' WHERE serverid = '${message.guild.id}' AND type = 'welcome'`, function(err){
-						if(err) console.log(err);
-						message.channel.send(`Вы установили приветствие!`)
-					})
-				}
-				return
-			}
-			if(message.mentions.channels.first()){
-				if(!result[0]){
-					con.query(`INSERT INTO local (serverid,type,channelid) VALUES('${message.guild.id}','welcome','${message.mentions.channels.first().id}')`, function(err){
-						if(err) console.log(err);
-						message.channel.send(`Вы установили канал ${message.mentions.channels.first().id} для приветствия!`)
-					})
-				} else {
-					con.query(`UPDATE local SET channelid = ${message.mentions.channels.first().id} WHERE serverid = '${message.guild.id}' AND type = 'welcome'`, function(err){
-						if(err) console.log(err);
-						message.channel.send(`Вы установили канал ${message.mentions.channels.first().id} для приветствия!`)
-					})
-				}
+			if(!result[0]){
+				con.query(`INSERT INTO local (serverid,type,roleid) VALUES('${message.guild.id}','autorole','${message.mentions.roles.first().id}')`, function(err){
+					if(err) console.log(err);
+					if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Недостаточно прав!");
+					message.channel.send(`Вы установили роль **${message.mentions.roles.first().name}** по умолчанию`)
+				})
+			} else {
+				con.query(`UPDATE local SET roleid = ${message.mentions.roles.first().id} WHERE serverid = '${message.guild.id}' AND type = 'autorole'`, function(err){
+					if(err) console.log(err);
+					message.channel.send(`Вы установили роль **${message.mentions.roles.first().name}** по умолчанию`)
+				})
 			}
 		}
 	})
