@@ -153,7 +153,7 @@ client.on('message', function(message){
 	if(error) console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
-		console.log(err);
+		if(err) console.log(err);
 		message.channel.send("Команды не найдено")
 		return;
             } else {
