@@ -56,6 +56,8 @@ exports.run = (client, message) => {
         "\n[8 место] - " + message.guild.members.get(top[7].userid).user.username + "\n    XP ; " + top[7].xp + 
         "\n[9 место] - " + message.guild.members.get(top[8].userid).user.username + "\n    XP ; " + top[8].xp + 
         "\n[10 место] - " + message.guild.members.get(top[9].userid).user.username + "\n    XP ; " + top[9].xp + 
-        "\n\n Ваше место - [" + number + "] Ваше XP - [" + (XP + 1) + "]```**").catch(err => if(err) message.channel.send("Ошибка"))
+        "\n\n Ваше место - [" + number + "] Ваше XP - [" + (XP + 1) + "]```**").catch(err => {
+            if(err) message.channel.send("Ошибка")
+        })
     });
 };
