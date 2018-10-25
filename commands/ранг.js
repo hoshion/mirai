@@ -77,4 +77,6 @@ exports.run = async (client, message, args) => {
     });
     message.channel.stopTyping()
 }
-function()
+function lol(){
+
+}
