@@ -58,7 +58,7 @@ exports.run = async (client, message, args) => {
 											background3.composite(background, 20, 285);
 											background3.composite(background2, 30, 20);
 											background3.composite(avatar, 20, 10);
-											background3.print(font, 25, 305, `${lol(nickargs[0])} ${lol(nickargs[1])} ${lol(nickargs[2])} ${lol(nickargs[3])} ${lol(nickargs[4])} ${lol(nickargs[5])}`);
+											background3.print(font, 25, 305, `${message.author.username}`);
 											background3.print(font, 25, 385, `Место: в разработке`)
 											background3.print(font, 25, 345, `XP: ${result[0].xp}`);
 											background3.write('rank.png');
@@ -75,10 +75,4 @@ exports.run = async (client, message, args) => {
 		});
     });
     message.channel.stopTyping()
-}
-function lol(nick){
-	console.log(nick)
-	if(!nick) return "";
-	else if(nick == "𝓥") return "В"
-	else return nick 
 }
