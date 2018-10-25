@@ -148,9 +148,10 @@ client.on('message', function(message){
     try {
         const commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
+	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`)
     } catch (error) {
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
-            if(err) console.log("АЩИБКА - " + err);
+            if(err) console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + err);
             if(!result[0]){
 		console.log(error);
 		message.channel.send("Команды не найдено")
