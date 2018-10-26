@@ -4,6 +4,7 @@ exports.run = (client, message) => {
     if(!anotherMember){
 		const embed = Discord.RichEmbed()
 			.setAuthor(message.author.username)
+			.setDescription(`проверка`)
 			.setThumbnail(message.author.avatarURL)
 			.addField(`ID`, message.author.id, true)
 			.addField(`Никнейм`, message.member.nickname, true)
@@ -13,6 +14,7 @@ exports.run = (client, message) => {
 	}
 	const embed = Discord.RichEmbed()
 		.setAuthor(anotherMember.user.username)
+		.setDescription(`проверка`)
 		.setThumbnail(anotherMember.user.avatarURL)
 		.addField(`ID`, anotherMember.user.id, true)
 		.addField(`Никнейм`, anotherMember.nickname, true)
