@@ -10,6 +10,5 @@ exports.run = (client, message, args) => {
        .addField('Роли', message.guild.roles.size, true)
        .addField('Регион', message.guild.region, true)
        .setThumbnail(message.guild.iconURL)
-    msg.channel.send(embed)
-    }
+    message.channel.send(embed)
 }
