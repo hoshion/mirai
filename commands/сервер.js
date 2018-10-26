@@ -9,6 +9,8 @@ exports.run = (client, message, args) => {
        .addField('id владельца', message.guild.ownerID, true)
        .addField('Роли', message.guild.roles.size, true)
        .addField('Регион', message.guild.region, true)
+       .addField('Участники', `${message.guild.presences.size} в сети\n${message.guild.memberCount} всего`, true)
+       .addField('AFK канал', message.guild.afkChannel.name, true)
        .setThumbnail(message.guild.iconURL)
     message.channel.send(embed)
 }
