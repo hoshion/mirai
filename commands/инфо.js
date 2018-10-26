@@ -2,9 +2,8 @@ exports.run = (client, message) => {
     const Discord = require('discord.js');
     const anotherMember = message.mentions.members.first();
     if(!anotherMember){
-		const embed = Discord.RichEmbed()
+		const embed = new Discord.RichEmbed()
 			.setAuthor(message.author.username)
-			.setDescription(`проверка`)
 			.setThumbnail(message.author.avatarURL)
 			.addField(`ID`, message.author.id, true)
 			.addField(`Никнейм`, message.member.nickname, true)
@@ -12,9 +11,8 @@ exports.run = (client, message) => {
 			.addField(`Вступил на сервер`, message.member.joinedAt)
 		return message.channel.send(embed);
 	}
-	const embed = Discord.RichEmbed()
+	const embed = new Discord.RichEmbed()
 		.setAuthor(anotherMember.user.username)
-		.setDescription(`проверка`)
 		.setThumbnail(anotherMember.user.avatarURL)
 		.addField(`ID`, anotherMember.user.id, true)
 		.addField(`Никнейм`, anotherMember.nickname, true)
