@@ -6,7 +6,7 @@ exports.run = (client, message) => {
 			.setAuthor(message.author.username)
 			.setThumbnail(message.author.avatarURL)
 			.addField(`ID`, message.author.id, true)
-			.addField(`Никнейм`, message.member.nickname, true)
+			.addField(`Никнейм`, nickname(message.member), true)
 			.addField(`Аккаунт создан`, message.author.createdAt)
 			.addField(`Вступил на сервер`, message.member.joinedAt)
 		return message.channel.send(embed);
@@ -15,8 +15,12 @@ exports.run = (client, message) => {
 		.setAuthor(anotherMember.user.username)
 		.setThumbnail(anotherMember.user.avatarURL)
 		.addField(`ID`, anotherMember.user.id, true)
-		.addField(`Никнейм`, anotherMember.nickname, true)
+		.addField(`Никнейм`, nickname(anotherMember), true)
 		.addField(`Аккаунт создан`, anotherMember.user.createdAt)
 		.addField(`Вступил на сервер`, anotherMember.joinedAt)
 	return message.channel.send(embed);
+	function nickname(nick) {
+		if(nick.nickname == "null") return nick.user.username;
+		else return nick.nickname
+	}
 }
