@@ -20,7 +20,7 @@ exports.run = (client, message) => {
 		.addField(`Вступил на сервер`, anotherMember.joinedAt)
 	return message.channel.send(embed);
 	function nickname(nick) {
-		if(nick.nickname == "null") return nick.user.username;
+		if(!nick.nickname) return nick.user.username;
 		else return nick.nickname
 	}
 }
