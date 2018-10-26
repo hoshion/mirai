@@ -1,7 +1,7 @@
 exports.run = (client, message, args) => {
     const Discord = require('discord.js')
     const embed = new Discord.RichEmbed() 
-       .setColor(0xffffff)
+       .setColor(0xffda8b)
        .setTitle('Серверинфо')
        .setDescription('Данные:')
        .addField('id', message.guild.id, true)
