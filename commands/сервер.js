@@ -15,6 +15,5 @@ exports.run = (client, message, args) => {
        .addField('Смайликов', message.guild.emojis.size, true)
        .setFooter('Сервер создан')
        .setTimestamp(new Date(message.guild.createdTimestamp))
-       .setThumbnail(message.guild.iconURL)
     message.channel.send(embed)
 }
