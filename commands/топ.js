@@ -8,6 +8,7 @@ exports.run = (client, message) => {
     });
     let number = con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, result){
         if(err) throw err;
+        if(!result[9]) return message.channel.send("Здесь нехватает людей до 10");
         if(message.author.id == result[0].userid){
             number = 1;
         }
