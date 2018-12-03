@@ -8,7 +8,6 @@ exports.run = (client, message) => {
     });
     let number = con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, result){
         if(err) throw err;
-        if(!result[9]) return message.channel.send("Здесь нехватает людей до 10");
         if(message.author.id == result[0].userid){
             number = 1;
         }
@@ -47,6 +46,7 @@ exports.run = (client, message) => {
 
     con.query(`SELECT userid, xp FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, top){
         if(err) throw err;
+        if(!top[9]) return message.channel.send("Здесь нехватает людей до 10");
         message.channel.send("**```ini\n[1 место] - " + message.guild.members.get(top[0].userid).user.username + "\n    XP ; " + top[0].xp + 
         "\n[2 место] - " + message.guild.members.get(top[1].userid).user.username + "\n    XP ; " + top[1].xp + 
         "\n[3 место] - " + message.guild.members.get(top[2].userid).user.username + "\n    XP ; " + top[2].xp + 
