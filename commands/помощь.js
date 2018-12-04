@@ -1,9 +1,9 @@
-exports.run = (client, message, ...args) => {
+exports.run = (client, message, args) => {
     const Discord = require("discord.js");
 	if(args[0]){
-		try{	
+		try {	
 			const commandFile = require(`./commands/${args[0]}.js`);
-			commandFile.help(client)
+			commandFile.help(client, message)
 		} catch(error) {
 			message.channel.send("Команды не существует")
 		}
