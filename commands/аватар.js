@@ -9,3 +9,6 @@ exports.run = (client, message) => {
     message.channel.send(embedAvatarOther).catch((err) => console.log('Команда "аватар" использована пользователем' + message.author.username + '. Результат - ошибка :'));
     }
 }
+exports.help = (client, message) => {
+    message.channel.send(`**Информация о команде "аватар"**\n\nПозволяет увидеть ваш или чей-то аватар.\nЧтобы увидеть свой аватар, напишите \`-аватар\`\nЧтобы увидеть чужой аватар, напишите \`-аватар @упоминание\``)
+}
