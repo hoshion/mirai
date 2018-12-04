@@ -1,6 +1,5 @@
 exports.run = (client, message, args) => {
     const Discord = require("discord.js");
-	message.channel.send(args[0])
 	if(args[0]){
 		try {	
 			const commandFile = require(`../commands/${args[0]}.js`);
@@ -8,7 +7,6 @@ exports.run = (client, message, args) => {
 		} catch(error) {
 			message.channel.send("Команды не существует")
 		}
-		return
 	} else {
 		const embed = new Discord.RichEmbed()
 		.setTitle("Список команд")
