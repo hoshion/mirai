@@ -3,5 +3,5 @@ exports.run = async (client, message, args) => {
     await message.delete();
 }
 exports.help = (client, message, args) => {
-    message.channel.send(`Проверка`);
+    message.channel.send(`**Информация о команде "скажи"**\n\nЧтобы воспользоваться этой командой, напишите \`-скажи текст\``);
 }
