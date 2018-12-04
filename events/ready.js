@@ -1,6 +1,6 @@
 exports.run = (client) => {
     console.log('Бот успешно включен!');
-    client.user.setActivity("за порядком", {type: "WATCHING"});
+    client.user.setActivity("-помощь", {type: "WATCHING"});
     
     const mysql = require("mysql");
     const con = mysql.createConnection({
