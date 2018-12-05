@@ -4,8 +4,7 @@ exports.run = (client, message, args) => {
     const number2 = args[2];
     if(!args[3]){
         if(sign1 == "+"){
-            const calc = eval(number1 sign1 number2);
-            message.channel.send(calc);
+            message.channel.send(eval(`${number1} ${si} ${}`));
         }
         if(sign1 == "-"){
             const calc = parseInt(number1) - parseInt(number2);
