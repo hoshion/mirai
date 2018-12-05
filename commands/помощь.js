@@ -16,19 +16,19 @@ exports.run = (client, message, args) => {
 		.addField("Система ранкинга", "топ")
 		.addField("Пользовательская информация", "аватар,инфо,профиль,ранг")
 		.addField("Фан", "кубик,ppap,поцеловать/обнять/пнуть/ударить,cкажи,cмайлами")
-		.addField("Остальное", "**помощь**,**очистить**,**сервер**")
+		.addField("Остальное", "помощь,очистить,**сервер**")
 		.setColor("ffda8b");
 		message.channel.send("Сейчас, сейчас").then(msg => {
 			setTimeout(() => {
-				msg.edit("Бля, никак не могу найти его")
+				msg.edit("Никак не могу найти его")
 				setTimeout(()=> {
 					msg.edit("Нашёл!")
 					setTimeout(() => {
 						msg.delete();
 						message.channel.send(embed)
 					}, 1000)
-				}, 1000)
-			}, 2000)
+				}, 2000)
+			}, 1000)
 		})
 	}
 };
