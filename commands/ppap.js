@@ -4,3 +4,6 @@ exports.run = (client, message) => {
     message.channel.send(embed);
     console.log('Команда "ррар" использована пользователем ' + message.author.username + '. Результат - успешно');
 }
+exports.help = (client, message) => {
+    message.channel.send(`**Информация о команде "ppap"**\n\nФан-команда, показывающая мем с ppap.\nЧтобы увидеть картинку, напишите \`-ppap\``)
+}
