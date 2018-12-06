@@ -61,6 +61,7 @@ client.on('message', function(message){
 
     if(message.content.indexOf(prefix) !== 0) return;
 	if(!command) return;
+	if (message.channel.type !== 'text') return;
     if(message.content == "-_-") return;
     if(message.content == "--")  return;
 	if(message.content == "---") return;
