@@ -68,31 +68,22 @@ client.on('message', function(message){
     try {
         const commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
-	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
+		console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (error) {
-	client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${error.stack}\`\`\``));
-	//`\`\`\`javascript\n${error}\`\`\``
-	/*fs.writeFile(`lasterror.txt`, error, function(err){
-		if(err) console.log(err);
-		console.log("Saved!");
-		client.fetchUser('412338841651904516').then(user => user.send({
-			files: [{
-				attachment:`./lasterror.txt`,
-				name:`lasterror.txt`
-			}]
-		}))
-	})*/
-	//console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
-	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
-            if(!result[0]){
-		if(err) console.log(err);
-		message.channel.send("Команды не найдено")
-		return;
-            } else {
-                message.member.addRole(result[0].roleid);
-            	message.channel.send(message.author + result[0].message);
-            }
-        })
+		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${error.stack}\`\`\``))
+		try {
+			con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
+				if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${error.stack}\`\`\``))
+				if(!result[0]) return;
+				else {
+					message.member.addRole(result[0].roleid);
+					message.channel.send(message.author + result[0].message);
+				}
+			})
+		} catch(err) {
+			message.channel.send(`Команда не найдена, либо произошла ошибка.`)
+			console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - Ошибка`);
+		}
     }
 });
 
@@ -338,3 +329,13 @@ function play(guild, song){
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 	serverQueue.textChannel.send(`Началась песня ー **${song.title}**`)
 }*/
+	/*fs.writeFile(`lasterror.txt`, error, function(err){
+		if(err) console.log(err);
+		console.log("Saved!");
+		client.fetchUser('412338841651904516').then(user => user.send({
+			files: [{
+				attachment:`./lasterror.txt`,
+				name:`lasterror.txt`
+			}]
+		}))
+	})*/
