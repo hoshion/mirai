@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
 		await console.log(i)
 		let a = await args[i].match(/"(.+?)"/);
 		await console.log(a[1]);
-		b[i] = a[1]
+		b.push(a[1])
 	}
 	//const map = await b.map(count => `${++c} - ${b[c++]}`).join(`\n`);
 	//await message.channel.send(map);
