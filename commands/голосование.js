@@ -1,8 +1,9 @@
-exports.run = async (client, message, args) => {
+exports.run = (client, message) => {
+	const args = message.content.slice(prefix.length).trim().split(/" +"/g);
 	let c = 0;
 	var b = [];
 	for(var i = 0; i < args.length; i++){
-		let a = await args[i].match(/"(.+?)"/);
+		let a = args[i].match(/"(.+?)"/);
 		b.push(a[1])
 	}
 	console.log(b);
