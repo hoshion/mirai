@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
 		b.push(a[1])
 	}
 	console.log(b);
-	const map = b.map(count => `${++c} - ${b[count]}`).join(`\n`);
+	const map = b.map(count => `${++c} - ${count}`).join(`\n`);
 	message.channel.send(map);
 	console.log(map)
 	//message.channel.send(`${b.map(b => `${++c} - ${b}`).join(`\n`)}`);
