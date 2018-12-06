@@ -1,5 +1,6 @@
 exports.run = (client, message, args) => {
 	let i;
+	let b;
 	let c = 0;
 	for(i = 0; i < args.size; i++){
 		console.log(i)
