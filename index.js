@@ -70,9 +70,9 @@ client.on('message', function(message){
         commandFile.run(client, message, args);
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (error) {
-	//client.fetchUser('412338841651904516').then(user => user.send(`${error}`));
+	client.fetchUser('412338841651904516').then(user => user.send(`${error.name}: ${error.message}\n${error.stack}`));
 	//`\`\`\`javascript\n${error}\`\`\``
-	fs.writeFile(`lasterror.txt`, error, function(err){
+	/*fs.writeFile(`lasterror.txt`, error, function(err){
 		if(err) console.log(err);
 		console.log("Saved!");
 		client.fetchUser('412338841651904516').then(user => user.send({
@@ -81,7 +81,7 @@ client.on('message', function(message){
 				name:`lasterror.txt`
 			}]
 		}))
-	})
+	})*/
 	//console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
