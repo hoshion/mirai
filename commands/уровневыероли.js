@@ -24,7 +24,7 @@ exports.run = (client, message, args) => {
 			}
 		})
 	} 
-	if(args[0].toLowerCase == `удалить`){
+	if(args[0].toLowerCase() == `удалить`){
 		const role = message.mentions.roles;
 		if(!role) return message.channel.send(`Вы не ввели роль`);
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND roleid = ${role.id} AND type = 'leveledrole'`, function(err, result){
@@ -39,7 +39,7 @@ exports.run = (client, message, args) => {
 			}
 		})
 	}
-	if(args[0].toLowerCase == `список`){
+	if(args[0].toLowerCase() == `список`){
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
 			if(!result) return message.channel.send(`Уровневых ролей нету`)
