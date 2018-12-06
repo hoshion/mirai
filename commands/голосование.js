@@ -1,6 +1,7 @@
 exports.run = async (client, message, args) => {
-	let i, b, c = 0;
-	for(i = 0; i < args.size; i++){
+	let b, c = 0;
+	console.log(c);
+	for(var i = 0; i < args.size; i++){
 		await console.log(i)
 		let a = await args[i].match(/"(.+?)"/);
 		await console.log(a[1]);
