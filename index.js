@@ -151,13 +151,12 @@ client.on('message', async function(message){
         commandFile.run(client, message, args);
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`)
     } catch (error) {
-	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
-	message.author.send(`: ${error}`);
-	/*await fs.appendFile(`lasterror.txt`, `${error}`, function(err){
+	console.log(error);
+	await fs.appendFile(`lasterror.txt`, `${error}`, function(err){
 		if(err) console.log(err)
 		console.log("Saved!")
 	});
-	await message.author.send(`Ура`,{files: [{name: `lasterror.txt`}]});*/
+	await message.author.send(`Ура`,{files: [{name: `lasterror.txt`}]});
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
 		if(err) console.log(err);
