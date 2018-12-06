@@ -71,7 +71,7 @@ client.on('message', function(message){
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (error) {
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
-	client.fetchUser('412338841651904516').send(`\`\`\`javascript\n${error}\`\`\``)
+	client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${error}\`\`\``));
 	fs.writeFile(`lasterror.txt`, error, function(err){
 		if(err) console.log(err);
 		console.log("Saved!");
