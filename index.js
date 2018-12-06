@@ -60,7 +60,7 @@ client.on('message', function(message){
     const command = args.shift().toLowerCase();
 
     if(message.content.indexOf(prefix) !== 0) return;
-    if(!command) return message.channel.send("Вы не ввели команду!");
+	if(!command) return;
     if(message.content == "-_-") return;
     if(message.content == "--") return;
 	if(message.content == "---") return message.channel.send("Круто")
@@ -70,7 +70,6 @@ client.on('message', function(message){
         commandFile.run(client, message, args);
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (error) {
-	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
 	client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${error}\`\`\``));
 	fs.writeFile(`lasterror.txt`, error, function(err){
 		if(err) console.log(err);
@@ -82,6 +81,7 @@ client.on('message', function(message){
 			}]
 		}))
 	})
+	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
 		if(err) console.log(err);
