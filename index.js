@@ -70,7 +70,7 @@ client.on('message', function(message){
         commandFile.run(client, message, args);
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (error) {
-	client.fetchUser('412338841651904516').then(user => user.send(`${error.name}: ${error.message}\n${error.stack}`));
+	client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${error.stack}\`\`\``));
 	//`\`\`\`javascript\n${error}\`\`\``
 	/*fs.writeFile(`lasterror.txt`, error, function(err){
 		if(err) console.log(err);
