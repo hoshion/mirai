@@ -2,10 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
 const mysql = require("mysql")
-//const YouTube = require('simple-youtube-api');
-//const ytdl = require('ytdl-core');
-//const youtube = new YouTube(process.env.YOUTUBE_TOKEN);
-//const queue = new Map();
 const prefix = '-';
 
 const con = mysql.createConnection({
@@ -75,6 +71,7 @@ client.on('message', function(message){
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (error) {
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
+	client.fetchUser('412338841651904516').send(`\`\`\`javascript\n${error}\`\`\``)
 	fs.writeFile(`lasterror.txt`, error, function(err){
 		if(err) console.log(err);
 		console.log("Saved!");
@@ -206,6 +203,10 @@ function lvl(xp){
 
 client.login(process.env.TOKEN);
 
+//const YouTube = require('simple-youtube-api');
+//const ytdl = require('ytdl-core');
+//const youtube = new YouTube(process.env.YOUTUBE_TOKEN);
+//const queue = new Map();
 /*	const url = args[0] ? args[0].replace(/<(.+)>/g, '$1') : '';
 	const searchString = args.join(' ');
 	const serverQueue = queue.get(message.guild.id);
