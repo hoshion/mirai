@@ -152,7 +152,7 @@ client.on('message', async function(message){
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`)
     } catch (error) {
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
-	message.author.send(error);
+	message.author.send(`: ${error}`);
 	/*await fs.appendFile(`lasterror.txt`, `${error}`, function(err){
 		if(err) console.log(err)
 		console.log("Saved!")
