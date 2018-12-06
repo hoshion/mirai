@@ -14,7 +14,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND roleid = ${role.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
 			if(!result[0]){
-				con.query(`INSERT INTO local (serverid, type, roleid, xpcount) VALUES('${message.guild.id}','leveledrole','${role.id}',${xp})`, function(err){
+				con.query(`INSERT INTO local (serverid, type, roleid, xpcount) VALUES('${message.guild.id}','leveledrole','${role.id}',${parseInt(xp)})`, function(err){
 					if(err) throw err;
 					message.channel.send(`Вы успешно установили ${xp} для роли @${role.name}`);
 				})
