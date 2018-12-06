@@ -149,18 +149,18 @@ client.on('message', function(message){
     try {
         const commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
-	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`)
+	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (error) {
-	console.log(error);
-	fs.writeFile(`lasterror.txt`, `${error}`, function(err){
+	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` error);
+	fs.writeFile(`lasterror.txt`, error, function(err){
 		if(err) console.log(err);
 		console.log("Saved!");
-		message.author.send(`Ура`,{
+		client.fetchUser('412338841651904516').then(user => user.send({
 			files: [{
 				attachment:`./lasterror.txt`,
 				name:`lasterror.txt`
 			}]
-		});
+		}))
 	})
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
