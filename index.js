@@ -1,11 +1,10 @@
-const { Client, Util } = require('discord.js');
-const client = new Client();
+const client = require('discord.js');
 const fs = require("fs");
 const mysql = require("mysql")
-const YouTube = require('simple-youtube-api');
-const ytdl = require('ytdl-core');
-const youtube = new YouTube(process.env.YOUTUBE_TOKEN);
-const queue = new Map();
+//const YouTube = require('simple-youtube-api');
+//const ytdl = require('ytdl-core');
+//const youtube = new YouTube(process.env.YOUTUBE_TOKEN);
+//const queue = new Map();
 const prefix = '-';
 
 const con = mysql.createConnection({
