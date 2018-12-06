@@ -1,4 +1,4 @@
 exports.run = (client, message, args) => {
-	const word = args.join(" ").split(/" +?"/g);
-	message.channel.send(`${word[0]} ${word[1]} ${word[2]}`);
+	const word = args.join(" ").replace(/" +?"/g, " ");
+	message.channel.send(`${word[0]} ${word[2]} ${word[4]}`);
 }
