@@ -28,7 +28,7 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-client.on('message', function(message){
+client.on('message', async function(message){
     if(message.author.bot) return;
     
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
@@ -153,7 +153,7 @@ client.on('message', function(message){
     } catch (error) {
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
 	message.author.send(error);
-	fs.writeFile(`lasterror.txt`, `${error}`, function(err){});
+	await fs.writeFile(`./lasterror.txt`, `${error}`, function(err){});
 	message.author.send({files: [{name: `lasterror.txt`}]});
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
