@@ -82,7 +82,7 @@ client.on('message', function(message){
 			}]
 		}))
 	})
-	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
+	//console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - ` + error);
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
 		if(err) console.log(err);
