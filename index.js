@@ -26,6 +26,7 @@ fs.readdir("./events/", (err, files) => {
 
 client.on('message', function(message){
     if(message.author.bot) return;
+	if (message.channel.type !== 'text') return;
     
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
         if(err) console.log(err);
@@ -61,7 +62,6 @@ client.on('message', function(message){
 
     if(message.content.indexOf(prefix) !== 0) return;
 	if(!command) return;
-	if (message.channel.type !== 'text') return;
     if(message.content == "-_-") return;
     if(message.content == "--")  return;
 	if(message.content == "---") return;
