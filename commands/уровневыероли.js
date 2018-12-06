@@ -1,4 +1,4 @@
-exports.run = (client, message, args) => {
+exports.run = (client, message, [second_command, rolem, xp]) => {
 	const mysql = require(`mysql`);
 	const con = mysql.createConnection({
 		host: process.env.DATABASE_HOST,
@@ -6,12 +6,11 @@ exports.run = (client, message, args) => {
 		password: process.env.DATABASE_PASSWORD,
 		database: process.env.DATABASE_NAME
 	});
-	if(!args[0]) return message.channel.send(`**Доступные:** \`добавить\`,\`список\`,\`удалить\`.`)
-	if(args[0].toLowerCase() == `добавить`){
+	if(!second_command) return message.channel.send(`**Доступные:** \`добавить\`,\`список\`,\`удалить\`.`)
+	if(second_command.toLowerCase() == `добавить`){
+		if(!rolem) return message.channel.send(`Вы не ввели роль`);
+		if(!xp) return message.channel.send(`Вы не ввели количество очков`);
 		const role = message.mentions.roles;
-		const xp   = args[2]
-		if(!role) return message.channel.send(`Вы не ввели роль`);
-		if(!xp)   return message.channel.send(`Вы не ввели количество очков`);
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND roleid = ${role.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
 			if(!result[0]){
@@ -24,9 +23,9 @@ exports.run = (client, message, args) => {
 			}
 		})
 	} 
-	if(args[0].toLowerCase() == `удалить`){
+	if(second_command.toLowerCase() == `удалить`){
+		if(!rolem) return message.channel.send(`Вы не ввели роль`);
 		const role = message.mentions.roles;
-		if(!role) return message.channel.send(`Вы не ввели роль`);
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND roleid = ${role.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
 			if(!result[0]){
@@ -39,7 +38,7 @@ exports.run = (client, message, args) => {
 			}
 		})
 	}
-	if(args[0].toLowerCase() == `список`){
+	if(second_command.toLowerCase() == `список`){
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
 			if(!result) return message.channel.send(`Уровневых ролей нету`)
