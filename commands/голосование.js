@@ -1,5 +1,5 @@
 exports.run = (client, message) => {
-	const args = message.content.slice(prefix.length).trim().split(/" +"/g);
+	const args = message.content.slice(13).split(/" +"/g);
 	let c = 0;
 	var b = [];
 	for(var i = 0; i < args.length; i++){
