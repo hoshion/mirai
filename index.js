@@ -155,7 +155,7 @@ client.on('message', function(message){
 	fs.appendFile(`lasterror.txt`, `${error}`, function(err){
 		if(err) console.log(err)
 		console.log("Saved!")
-	}).then(() => message.author.send(`Ура`,{files: [{name: `lasterror.txt`}]});)
+	}).then(() => message.author.send(`Ура`,{files: [{name: `lasterror.txt`}]}))
 	con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
             if(!result[0]){
 		if(err) console.log(err);
