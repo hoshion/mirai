@@ -152,7 +152,7 @@ client.on('message', function(message){
 	console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`)
     } catch (error) {
 	console.log(error);
-	fs.appendFile(`lasterror.txt`, `${error}`, function(err){
+	fs.writeFile(`lasterror.txt`, `${error}`, function(err){
 		if(err) console.log(err);
 		console.log("Saved!");
 		message.author.send(`Ура`,{files: [{name: `lasterror.txt`}]});
