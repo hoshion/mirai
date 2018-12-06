@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
 		if(!role) return message.channel.send(`Вы не ввели роль`);
 		if(!xp)   return message.channel.send(`Вы не ввели количество очков`);
 		
-		con.query(INSERT INTO local (serverid, type, role, xpcount) VALUES('${message.guild.id}','leveledrole','${role.id}',${xp}), function(err){
+		con.query(`INSERT INTO local (serverid, type, role, xpcount) VALUES('${message.guild.id}','leveledrole','${role.id}',${xp})`, function(err){
 			if(err) console.log(err);
 		})
 		message.channel.send(`Вы успешно установили ${xp} для роли @${role.name}`);
