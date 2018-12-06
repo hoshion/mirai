@@ -1,6 +1,6 @@
 exports.run = (client, message, args) => {
 	let b;
-	for(int i = 0; i < args.size; i++){
+	for(let i = 0; i < args.size; i++){
 		let a = args[i].match(/(.+?)/);
 		b.push(a[1]);
 	}
