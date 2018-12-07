@@ -13,6 +13,7 @@ const con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
     console.log("База данных успешно подключена");
+	client.fetchUser('412338841651904516').then(user => user.send(`Я подключила базу данных!`));
   });
 
 fs.readdir("./events/", (err, files) => {
