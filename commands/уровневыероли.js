@@ -11,12 +11,11 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 		if(!rolem) return message.channel.send(`Вы не ввели роль`);
 		if(!xp) return message.channel.send(`Вы не ввели количество очков`);
 		const role = message.mentions.roles.first();
-		console.log(role.id)
 		con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND roleid = '${role.id}' AND type = 'leveledrole'`, function(err, result){
-			if(err) throw err;
+			if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
 			if(!result[0]){
 				con.query(`INSERT INTO local (serverid, type, roleid, xpcount) VALUES('${message.guild.id}','leveledrole','${role.id}',${parseInt(xp)})`, function(err){
-					if(err) throw err;
+					if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
 					message.channel.send(`Вы успешно установили ${xp} для роли @${role.name}`);
 				})
 			} else {
@@ -28,7 +27,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 		if(!rolem) return message.channel.send(`Вы не ввели роль`);
 		const role = message.mentions.roles.first();
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND roleid = ${role.id} AND type = 'leveledrole'`, function(err, result){
-			if(err) throw err;
+			if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
 			if(result[0]){
 				con.query(`DELETE FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole' AND roleid = ${role.id}`, function(err){
 					if(err) throw err;
@@ -41,7 +40,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 	}
 	if(second_command.toLowerCase() == `список`){
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole'`, function(err, result){
-			if(err) throw err;
+			if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
 			if(!result[0]) return message.channel.send(`Уровневых ролей нету`);
 			let i = 0;
 			message.channel.send(`${result.map(result => `**[${++i}]** ${message.guild.roles.get(result.roleid).name} \`(${result.xpcount})\``).join(`\n`)}`);
