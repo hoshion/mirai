@@ -30,7 +30,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND roleid = ${role.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
 			if(result[0]){
-				con.query(`DELETE FROM local WHERE userid = ${message.guild.id} AND type = leveledrole AND roleid = ${role.id}`, function(err){
+				con.query(`DELETE FROM local WHERE userid = ${message.guild.id} AND type = 'leveledrole' AND roleid = ${role.id}`, function(err){
 					if(err) throw err;
 					message.channel.send(`Роль успешно удалена из списка!`)
 				})
