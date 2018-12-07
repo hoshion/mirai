@@ -10,7 +10,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 	if(second_command.toLowerCase() == `добавить`){
 		if(!rolem) return message.channel.send(`Вы не ввели роль`);
 		if(!xp) return message.channel.send(`Вы не ввели количество очков`);
-		const role = message.mentions.roles;
+		const role = message.mentions.roles.first();
 		console.log(role.id)
 		con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND roleid = '${role.id}' AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
@@ -26,7 +26,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 	} 
 	if(second_command.toLowerCase() == `удалить`){
 		if(!rolem) return message.channel.send(`Вы не ввели роль`);
-		const role = message.mentions.roles;
+		const role = message.mentions.roles.first();
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND roleid = ${role.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
 			if(!result[0]){
