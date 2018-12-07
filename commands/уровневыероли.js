@@ -41,7 +41,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 	if(second_command.toLowerCase() == `список`){
 		con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole'`, function(err, result){
 			if(err) throw err;
-			if(!result) return message.channel.send(`Уровневых ролей нету`);
+			if(!result[0]) return message.channel.send(`Уровневых ролей нету`);
 			let i = 0;
 			message.channel.send(`${result.map(result => `**[${++i}]** \`${message.guild.roles.get(result.roleid).name}\` __(${result.xp})__`)}`)
 		})
