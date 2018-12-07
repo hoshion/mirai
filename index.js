@@ -59,8 +59,8 @@ client.on('message', function(message){
 					for(var i = 0; i<result2.length; i++){
 						if(result[0].xp > result2[i].xpcount){
 							if(!message.guild.members.get(result[0].userid).roles.has(result2[i].roleid)){
-								message.member.addRole(result2[i].role.id);
-								if(i != 0) message.member.removeRole(result2[i+1].id);
+								message.member.addRole(result2[i].roleid);
+								if(i != 0) message.member.removeRole(result2[i+1].roleid);
 								message.channel.send(`Вы успешно повысились до уровня **${message.guild.roles.get(result2[i].roleid).name}**`)
 							} else continue;
 						} else continue;
