@@ -44,7 +44,7 @@ exports.run = (client, message, [second_command, rolem, xp]) => {
 			if(err) throw err;
 			if(!result[0]) return message.channel.send(`Уровневых ролей нету`);
 			let i = 0;
-			message.channel.send(`${result.map(result => `**[${++i}]** ${message.guild.roles.get(result.roleid).name} \`(${result.xpcount})\``)}`)
+			message.channel.send(`${result.map(result => `**[${++i}]** ${message.guild.roles.get(result.roleid).name} \`(${result.xpcount})\``).join(`\n`)}`);
 		})
 	}
 }
