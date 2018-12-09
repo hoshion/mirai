@@ -1,4 +1,4 @@
-exports.run = (client, meessage, args) => {
+exports.run = (client, message, args) => {
 	if(message.author.id != `412338841651904516`) return;
 	const code   = args.join(` `);
 	let evaled = eval()
