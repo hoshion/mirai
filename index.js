@@ -61,11 +61,12 @@ client.on('message', function(message){
 					con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole' ORDER BY local.xpcount DESC`, function(err, result2){
 						if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
 						if(!result2[0]) return;
-						for(var i = 0; i<result2.length; i++){
+						for(var i = 0; i < result2.length; i++){
 							if(result[0].xp > result2[i].xpcount){
 								if(!message.guild.members.get(result[0].userid).roles.has(result2[i].roleid)){
 									message.member.addRole(result2[i].roleid);
-									if(i != result2.length){
+									if(i != (result2.length - 1)){
+										console.log(result2.length)
 										if(message.guild.members.get(result[0].userid).roles.has(result2[i+1].roleid)){
 											message.member.removeRole(result2[i+1].roleid);
 										}
