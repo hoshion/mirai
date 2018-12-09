@@ -28,53 +28,59 @@ fs.readdir("./events/", (err, files) => {
 client.on('message', function(message){
     if(message.author.bot) return;
 	if (message.channel.type !== 'text') return;
-    
-    con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
-        if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
-        if(!result[0]){
-            con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
-        } else {
-			con.query(`UPDATE global SET nickname = '${message.author.username}' WHERE userid = ${message.author.id}`)
-            con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
-			con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
-				con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
-				con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
-					if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
-					if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
+    try {
+		con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
+			if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+			if(!result[0]){
+				con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
+			} else {
+				con.query(`UPDATE global SET nickname = '${message.author.username}' WHERE userid = ${message.author.id}`)
+				con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
+				con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
+					con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
+					con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
+						if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+						if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
+					})
 				})
-			})
-        }
-    })
-    con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
-        if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
-        if(!result[0]){
-            con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
-                if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
-            })
-        } else {
-            con.query(`UPDATE local SET xp = xp + 3 WHERE userid = ${message.author.id} AND serverid = ${message.guild.id} AND type = 'member'`, function(err){
-                if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
-				con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole' ORDER BY local.xpcount DESC`, function(err, result2){
-					if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
-					if(!result2[0]) return;
-					for(var i = 0; i<result2.length; i++){
-						if(result[0].xp > result2[i].xpcount){
-							if(!message.guild.members.get(result[0].userid).roles.has(result2[i].roleid)){
-								message.member.addRole(result2[i].roleid);
-								if(i != result2.length){
-									if(message.guild.members.get(result[0].userid).roles.has(result2[i+1].roleid)){
-										message.member.removeRole(result2[i+1].roleid);
+			}
+		})
+	} catch(err) {
+		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+	}
+	try {
+		con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
+			if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+			if(!result[0]){
+				con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
+					if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+				})
+			} else {
+				con.query(`UPDATE local SET xp = xp + 3 WHERE userid = ${message.author.id} AND serverid = ${message.guild.id} AND type = 'member'`, function(err){
+					if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+					con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole' ORDER BY local.xpcount DESC`, function(err, result2){
+						if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
+						if(!result2[0]) return;
+						for(var i = 0; i<result2.length; i++){
+							if(result[0].xp > result2[i].xpcount){
+								if(!message.guild.members.get(result[0].userid).roles.has(result2[i].roleid)){
+									message.member.addRole(result2[i].roleid);
+									if(i != result2.length){
+										if(message.guild.members.get(result[0].userid).roles.has(result2[i+1].roleid)){
+											message.member.removeRole(result2[i+1].roleid);
+										}
 									}
-								}
-								message.channel.send(`Вы успешно повысились до уровня **${message.guild.roles.get(result2[i].roleid).name}**`)
+									message.channel.send(`Вы успешно повысились до уровня **${message.guild.roles.get(result2[i].roleid).name}**`)
+								} else continue;
 							} else continue;
-						} else continue;
-					};
-				})
-            });
-        };
-    });
-	
+						};
+					})
+				});
+			};
+		});
+	} catch(err) {
+		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+	}
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
