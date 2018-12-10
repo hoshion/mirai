@@ -72,7 +72,7 @@ client.on('message', function(message){
 										}
 									}
 									message.channel.send(`Вы успешно повысились до уровня **${message.guild.roles.get(result2[i].roleid).name}**`)
-								} else continue;
+								} else break;
 							} else continue;
 						};
 					})
