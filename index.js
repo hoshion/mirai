@@ -66,7 +66,6 @@ client.on('message', function(message){
 								if(!message.guild.members.get(result[0].userid).roles.has(result2[i].roleid)){
 									message.member.addRole(result2[i].roleid);
 									if(i != (result2.length - 1)){
-										console.log(result2.length)
 										if(message.guild.members.get(result[0].userid).roles.has(result2[i+1].roleid)){
 											message.member.removeRole(result2[i+1].roleid);
 										}
