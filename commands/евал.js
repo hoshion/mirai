@@ -13,6 +13,7 @@ exports.run = (client, message) => {
 		else message.channel.send(clean(evaled), {code:`xl`});
 	} catch(err) {
 		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+		message.react(`❌`);
 	}
 }
 function clean(text) {
