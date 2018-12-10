@@ -6,60 +6,24 @@ exports.run = (client, message) => {
         password: "drizba123",
         database: "drizba"
     });
-    let number = con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, result){
-        if(err) throw err;
-        if(!result[9]) return message.channel.send("Здесь нехватает людей до 10");
-        if(message.author.id == result[0].userid){
-            number = 1;
-        }
-        if(message.author.id == result[1].userid){
-            number = 2;
-        }
-        if(message.author.id == result[2].userid){
-            number = 3;
-        }
-        if(message.author.id == result[3].userid){
-            number = 4;
-        }
-        if(message.author.id == result[4].userid){
-            number = 5;
-        }
-        if(message.author.id == result[5].userid){
-            number = 6;
-        }
-        if(message.author.id == result[6].userid){
-            number = 7;
-        }
-        if(message.author.id == result[7].userid){
-            number = 8;
-        }
-        if(message.author.id == result[8].userid){
-            number = 9;
-        }
-        if(message.author.id == result[9].userid){
-            number = 10;
-        }
-    })
-    let XP = con.query(`SELECT * FROM local WHERE userid = ${message.author.id} AND serverid = ${message.guild.id} AND type = 'member'`, function(err, result){
-        if(err) throw err;
-        XP = result[0].xp;
-    })
 
-    con.query(`SELECT userid, xp FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, top){
-        if(err) throw err;
-        if(!top[9]) return;
-        message.channel.send("**```ini\n[1 место] - " + message.guild.members.get(top[0].userid).user.username + "\n    XP ; " + top[0].xp + 
-        "\n[2 место] - " + message.guild.members.get(top[1].userid).user.username + "\n    XP ; " + top[1].xp + 
-        "\n[3 место] - " + message.guild.members.get(top[2].userid).user.username + "\n    XP ; " + top[2].xp + 
-        "\n[4 место] - " + message.guild.members.get(top[3].userid).user.username + "\n    XP ; " + top[3].xp + 
-        "\n[5 место] - " + message.guild.members.get(top[4].userid).user.username + "\n    XP ; " + top[4].xp + 
-        "\n[6 место] - " + message.guild.members.get(top[5].userid).user.username + "\n    XP ; " + top[5].xp + 
-        "\n[7 место] - " + message.guild.members.get(top[6].userid).user.username + "\n    XP ; " + top[6].xp + 
-        "\n[8 место] - " + message.guild.members.get(top[7].userid).user.username + "\n    XP ; " + top[7].xp + 
-        "\n[9 место] - " + message.guild.members.get(top[8].userid).user.username + "\n    XP ; " + top[8].xp + 
-        "\n[10 место] - " + message.guild.members.get(top[9].userid).user.username + "\n    XP ; " + top[9].xp + 
-        "\n\n Ваше место - [" + number + "] Ваше XP - [" + (XP + 1) + "]```**").catch(err => {
-            if(err) message.channel.send("Ошибка")
-        })
+	con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, result){
+		try{
+			if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
+			let placeNumber = [];
+			for(let i = 0; i < result.length ; i++){
+				if(result[i].userid == message.author.id) {
+				placeNumber[i] = result[i].userid;
+				}
+			}
+			const ownPlace = placeNumber.indexOf(message.author.id) + 1;
+			let count = 0;
+			let top = result;
+			if(result.length > 10) top = result.slice(0,10);
+			let text = top.map(t =>`${++count}. ${message.guild.members.get(t.userid).user.username}\n>\tXP - ${t.xp}`).join(`\n`)
+			message.channel.send(`**\`\`\`md\n Список людей по кол-ву очков\n\n${text}\n\n Ваше место - ${ownPlace}\`\`\`**`);
+		} catch(err) {
+			client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
+		}
     });
 };
