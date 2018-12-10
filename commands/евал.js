@@ -1,6 +1,8 @@
 exports.run = (client, message) => {
 	if(message.author.id !== `412338841651904516`) return;
 	const args = message.content.split(" ").slice(1);
+	const mysql = require(`mysql`);
+	const Discord = require(`discord.js`)
 	const con = mysql.createConnection({
 	    host: process.env.DATABASE_HOST,
 	    user: process.env.DATABASE_USER,
