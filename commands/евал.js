@@ -8,8 +8,9 @@ exports.run = (client, message) => {
 		
 		if (typeof evaled !== "string")
 			evaled = require("util").inspect(evaled);
-		
-		message.channel.send(clean(evaled), {code:`xl`});
+		const word = code.match(/messsage\.channel\.send\(.+\)/g)
+		if(!word) return message.react(`:white_check_mark:`);
+		else message.channel.send(clean(evaled), {code:`xl`});
 	} catch(err) {
 		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 	}
