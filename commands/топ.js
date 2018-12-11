@@ -20,7 +20,7 @@ exports.run = (client, message) => {
 			let count = 0;
 			let top = result;
 			if(result.length > 10) top = result.slice(0,10);
-			let text = top.map(t =>`${++count}. ${message.guild.members.get(t.userid).user.username}\n>\tXP - ${t.xp}`).join(`\n`)
+			let text = top.map(t =>`${++count}. ${message.guild.members.get(t.userid).user.tag}\n>\tXP - ${t.xp}`).join(`\n`)
 			message.channel.send(`**\`\`\`md\n Список людей по кол-ву очков\n\n${text}\n\n Ваше место - ${ownPlace}\`\`\`**`);
 		} catch(err) {
 			client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
