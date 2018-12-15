@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
        .setTitle('Серверинфо')
        .setDescription('Данные:')
        .addField('id', message.guild.id, true)
-       .addField('Владелец', message.guild.owner, true)
+       .addField('Владелец', message.guild.owner.user.tag, true)
        .addField('id владельца', message.guild.ownerID, true)
        .addField('Роли', message.guild.roles.size, true)
        .addField('Регион', regionRename(message.guild.region), true)
