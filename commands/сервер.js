@@ -25,3 +25,4 @@ function regionRename(region){
 function nullAFK(channel){
     if(!channel) return "Нету";
     else return channel;
+}
