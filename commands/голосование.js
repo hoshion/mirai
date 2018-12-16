@@ -1,4 +1,5 @@
 exports.run = (client, message) => {
+	try { 
 	const args = message.content.slice(13).split(/" +"/g);
 	let c = 0;
 	var b = [];
@@ -11,4 +12,7 @@ exports.run = (client, message) => {
 	message.channel.send(map);
 	console.log(map)
 	//message.channel.send(`${b.map(b => `${++c} - ${b}`).join(`\n`)}`);
+	} catch(err) {
+		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
+	}
 }
