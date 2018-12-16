@@ -1,7 +1,5 @@
 exports.run = (client, message, args) => {
     const Discord = require("discord.js");
-    const fs = require("fs");
-    const mentionMember = message.mentions.members.first();
     const mysql = require("mysql");
     const con = mysql.createConnection({
         host: process.env.DATABASE_HOST,
@@ -9,31 +7,35 @@ exports.run = (client, message, args) => {
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME
     });
-
-    if(mentionMember){
-        con.query(`SELECT id,hug FROM hug ORDER BY hug.id DESC`, function(err, result){
-            if(err) throw err;
-            const lastID = result[0].id;
-            const random = Math.floor(Math.random() * lastID) + 1;
-            con.query(`SELECT hug FROM hug WHERE id=${random}`, function(err, result){
+    try {
+         const mentionMember = message.mentions.members.first();
+        if(mentionMember){
+            con.query(`SELECT id,hug FROM hug ORDER BY hug.id DESC`, function(err, result){
                 if(err) throw err;
-                const embed = new Discord.RichEmbed().setDescription(message.author + " обнял(а) " + mentionMember).setImage(result[0].hug).setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL).setColor("ffda8b");
-                message.channel.send(embed)
-                console.log('Команда "обнять" использована пользователем ' + message.author.username + '. Результат - успешно');
+                const lastID = result[0].id;
+                const random = Math.floor(Math.random() * lastID) + 1;
+                con.query(`SELECT hug FROM hug WHERE id=${random}`, function(err, result){
+                    if(err) throw err;
+                    const embed = new Discord.RichEmbed().setDescription(message.author + " обнял(а) " + mentionMember).setImage(result[0].hug).setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL).setColor("ffda8b");
+                    message.channel.send(embed)
+                    console.log('Команда "обнять" использована пользователем ' + message.author.username + '. Результат - успешно');
+                })
             })
-        })
-    }
-    if(!mentionMember){
-        con.query(`SELECT id,hug FROM hug ORDER BY hug.id DESC`, function(err, result){
-            if(err) console.log(err);
-            const lastID = result[0].id;
-            const random = Math.floor(Math.random() * lastID) + 1;
-            con.query(`SELECT hug FROM hug WHERE id=${random}`, function(err, result){
+        }
+        if(!mentionMember){
+            con.query(`SELECT id,hug FROM hug ORDER BY hug.id DESC`, function(err, result){
                 if(err) console.log(err);
-                const embed = new Discord.RichEmbed().setDescription(message.author + " обнял(а)... Самого себя?").setImage(result[0].hug).setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL).setColor("ffda8b");
-                message.channel.send(embed)
-                console.log('Команда "обнять" использована пользователем ' + message.author.username + '. Результат - успешно');
+                const lastID = result[0].id;
+                const random = Math.floor(Math.random() * lastID) + 1;
+                con.query(`SELECT hug FROM hug WHERE id=${random}`, function(err, result){
+                    if(err) console.log(err);
+                    const embed = new Discord.RichEmbed().setDescription(message.author + " обнял(а)... Самого себя?").setImage(result[0].hug).setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL).setColor("ffda8b");
+                    message.channel.send(embed)
+                    console.log('Команда "обнять" использована пользователем ' + message.author.username + '. Результат - успешно');
+                })
             })
-        })
+        }
+    } catch(err) {
+        client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
     }
 }
