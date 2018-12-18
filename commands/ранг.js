@@ -9,7 +9,11 @@ exports.run = async (client, message, args) => {
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME
     });
+    const place = con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER BY local.xp DESC`, function(err, result) {
 
+		
+		
+	});
     const mentionMember = message.mentions.members.first();
     const tag = message.author.tag;
     const avatar = message.author.avatarURL;
