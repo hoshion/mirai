@@ -15,7 +15,7 @@ exports.run = (client, message) => {
 			for(let i = 0; i < result.length ; i++){
 				con.query(`SELECT * FROM global WHERE userid = ${result[i].userid}`, function(err, result){
 					if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
-					userName[i] = result.nickname;
+					userName[i] = result[0].nickname;
 				});
 				if(result[i].userid == message.author.id) {
 				placeNumber[i] = result[i].userid;
