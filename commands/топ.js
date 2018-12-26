@@ -1,4 +1,4 @@
-exports.run = async (client, message) => {
+exports.run = async function(client, message){
     const mysql = require("mysql");
     const con = mysql.createConnection({
         host: "db4free.net",
