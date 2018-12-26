@@ -1,4 +1,4 @@
-exports.run = async function(client, message){
+exports.run = (client, message) => {
     const mysql = require("mysql");
     const con = mysql.createConnection({
         host: "db4free.net",
@@ -7,7 +7,7 @@ exports.run = async function(client, message){
         database: "drizba"
     });
 
-	con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, function(err, result){
+	con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'member' ORDER by local.xp DESC`, async function(err, result){
 		try{
 			if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
 			let placeNumber = [];
