@@ -1,4 +1,4 @@
-exports.run = (client, message) => {
+exports.run = async (client, message) => {
     const mysql = require("mysql");
     const con = mysql.createConnection({
         host: "db4free.net",
@@ -13,7 +13,7 @@ exports.run = (client, message) => {
 			let placeNumber = [];
 			let userName = [];
 			for(let i = 0; i < result.length ; i++){
-				con.query(`SELECT * FROM global WHERE userid = ${result[i].userid}`, function(err, result){
+				await con.query(`SELECT * FROM global WHERE userid = ${result[i].userid}`, function(err, result){
 					if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
 					userName[i] = result[0].nickname;
 				});
