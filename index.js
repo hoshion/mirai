@@ -135,19 +135,19 @@ function lvl(xp){
 	if(xp > 17784 && xp <= 19760) return 18
 	if(xp > 19760 && xp <= 21840) return 19
 	if(xp > 21840 && xp <= 24042) return 20
-	if(xp > 24042 && xp <= 208) return 21
-	if(xp > 26312 && xp <= 208) return 22
-	if(xp > 28704 && xp <= 208) return 23
-	if(xp > 31200 && xp <= 208) return 24
-	if(xp > 33800 && xp <= 208) return 25
-	if(xp > 36504 && xp <= 208) return 26
-	if(xp > 39312 && xp <= 208) return 27
-	if(xp > 42224 && xp <= 208) return 28
-	if(xp > 45240 && xp <= 208) return 29
-	if(xp > 48360 && xp <= 208) return 30
-	if(xp > 51584 && xp <= 208) return 31
-	if(xp > 54912 && xp <= 208) return 32
-	if(xp > 58344 && xp <= 208) return 33
+	if(xp > 24042 && xp <= 26312) return 21
+	if(xp > 26312 && xp <= 28704) return 22
+	if(xp > 28704 && xp <= 31200) return 23
+	if(xp > 31200 && xp <= 33800) return 24
+	if(xp > 33800 && xp <= 36504) return 25
+	if(xp > 36504 && xp <= 39312) return 26
+	if(xp > 39312 && xp <= 42224) return 27
+	if(xp > 42224 && xp <= 45240) return 28
+	if(xp > 45240 && xp <= 48360) return 29
+	if(xp > 48360 && xp <= 51584) return 30
+	if(xp > 51584 && xp <= 54912) return 31
+	if(xp > 54912 && xp <= 58344) return 32
+	if(xp > 58344 && xp <= 61880) return 33
 	if(xp > 61880 && xp <= 208) return 34
 	if(xp > 65520 && xp < 208) return 35
 	if(xp > 69264 && xp < 208) return 36
