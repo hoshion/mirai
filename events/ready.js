@@ -1,7 +1,7 @@
 exports.run = (client) => {
     console.log('Бот успешно включен!');
     client.user.setActivity("-помощь", {type: "WATCHING"});
-    client.fetchUser('412338841651904516').then(user => user.send(`Я запустилась`));
+    client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Я запустилась`));
     
     const mysql = require("mysql");
     const con = mysql.createConnection({
