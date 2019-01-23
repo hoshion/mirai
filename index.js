@@ -13,7 +13,7 @@ const con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
     console.log("База данных успешно подключена");
-	client.fetchUser('412338841651904516').then(user => user.send(`Я подключила базу данных!`));
+	client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Я подключила базу данных!`));
   });
 
 fs.readdir("./events/", (err, files) => {
@@ -30,7 +30,7 @@ client.on('message', function(message){
 	if (message.channel.type !== 'text') return;
     try {
 		con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
-			if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+			if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 			if(!result[0]){
 				con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
 			} else {
@@ -39,21 +39,21 @@ client.on('message', function(message){
 				con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
 					con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
 					con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
-						if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+						if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 						if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
 					})
 				})
 			}
 		})
 	} catch(err) {
-		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 	}
 	try {
 		con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
-			if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+			if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 			if(!result[0]){
 				con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
-					if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+					if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 				})
 			} else {
 				con.query(`UPDATE local SET xp = xp + 3 WHERE userid = ${message.author.id} AND serverid = ${message.guild.id} AND type = 'member'`, function(err){
@@ -79,7 +79,7 @@ client.on('message', function(message){
 			};
 		});
 	} catch(err) {
-		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 	}
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -95,10 +95,10 @@ client.on('message', function(message){
         commandFile.run(client, message, args);
 		console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
     } catch (err) {
-		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 		try {
 			con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
-				if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+				if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
 				if(!result[0]) return;
 				else {
 					message.member.addRole(result[0].roleid);
