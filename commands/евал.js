@@ -20,7 +20,7 @@ exports.run = (client, message) => {
 		if(!word) return message.react(`✅`);
 		else message.channel.send(clean(evaled), {code:`xl`});
 	} catch(err) {
-		client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+		process.env.FEDDBACKERROR;
 		message.react(`❌`);
 	}
 }
