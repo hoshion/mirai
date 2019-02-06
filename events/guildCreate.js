@@ -6,5 +6,4 @@ exports.run = async (client, guild) => {
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME
     });
-    con.query(`CREATE TABLE ${guild.id} (type VARCHAR(128), id VARCHAR(128), xp INT(128), lvl VARCHAR(128), sex VARCHAR(128), profileback VARCHAR(128))`)
 }
