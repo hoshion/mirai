@@ -27,6 +27,7 @@ fs.readdir("./events/", (err, files) => {
 
 client.on('messageReactionAdd', (user, reaction) => {
     let {message} = reaction;
+	console.log(reaction.message, message);
     if (!('guild' in message)) return;
     if (message.id !== 'id') return;
     let member = reaction.message.guild.members.get(user.id);
