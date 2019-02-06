@@ -1,5 +1,5 @@
 exports.run = (client, message) => {
-	if(message.author.id != 412338841651904516) return;
+	if(message.author.id != process.env.OWNER_ID) return;
 	const args = message.content.split(" ").slice(1);
 	const mysql = require(`mysql`);
 	const Discord = require(`discord.js`)
