@@ -8,12 +8,12 @@ exports.run = async (client, member) => {
         database: process.env.DATABASE_NAME
     });
     con.query(`SELECT * FROM local WHERE serverid = '${member.guild.id}' AND type = 'autorole'`, function(err, result){
-		if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
+		if(err) return process.env.FEEDBACKEFFOR;
 		if(!result[0]) return;
 		member.addRole(member.guild.roles.get(result[0].roleid));
     })
 	con.query(`SELECT * FROM local WHERE serverid = '${member.guild.id}' AND type = 'welcome'`, function(err, result){
-		if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
+		if(err) return process.env.FEEDBACKEFFOR;
 		if(!result[0]) return;
 		member.guild.channels.get(result[0].channelid).send(`${eval(result[0].message)}`);
 	})
