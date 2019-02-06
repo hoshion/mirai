@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const fs = require("fs");
 const mysql = require("mysql")
 const prefix = '-';
 
@@ -11,13 +10,12 @@ const con = mysql.createConnection({
     database: process.env.DATABASE_NAME
 });
 con.connect(function(err) {
-    if (err) throw err;
-    console.log("База данных успешно подключена");
+    if (err) process.env.FEEDBACKEFFOR;
 	client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Я подключила базу данных!`));
   });
 
 fs.readdir("./events/", (err, files) => {
-    if (err) return console.error(err);
+    if (err) return process.env.FEEDBACKEFFOR;
     files.forEach(file => {
         let eventFunction = require(`./events/${file}`);
         let eventName = file.split(".")[0];
@@ -26,31 +24,35 @@ fs.readdir("./events/", (err, files) => {
 });
 
 client.on('messageReactionAdd', (user, reaction) => {
-    let {message} = reaction;
-	if (!message) return;
-    if (!('guild' in message)) return;
-    if (message.id !== 'id') return;
-    let member = reaction.message.guild.members.get(user.id);
-    switch (reaction.emoji.name) {
-        case 'computer':
-            member.addRole('537761284704174082');
-            break;
-        case 'girl':
-            member.addRole('id');
-            break;
-		case 'boy':
-			member.addRole('');
-			break;
-		case 'boy':
-			member.addRole('');
-			break;
-		case 'boy':
-			member.addRole('');
-			break;
-		case 'boy':
-			member.addRole('');
-			break;
-    }
+	try{
+		let {message} = reaction;
+		if (!message) return;
+		if (!('guild' in message)) return;
+		if (message.id !== 'id') return;
+		let member = reaction.message.guild.members.get(user.id);
+		switch (reaction.emoji.name) {
+			case 'computer':
+				member.addRole('537761284704174082');
+				break;
+			case 'girl':
+				member.addRole('id');
+				break;
+			case 'boy':
+				member.addRole('');
+				break;
+			case 'boy':
+				member.addRole('');
+				break;
+			case 'boy':
+				member.addRole('');
+				break;
+			case 'boy':
+				member.addRole('');
+				break;
+		}
+	}catch(err){
+		process.env.FEEDBACKEFFOR;
+	}
 });
 
 client.on('message', function(message){
@@ -58,7 +60,7 @@ client.on('message', function(message){
 	if (message.channel.type !== 'text') return;
     try {
 		con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
-			if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+			if(err) return process.env.FEEDBACKEFFOR;
 			if(!result[0]){
 				con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
 			} else {
@@ -67,27 +69,27 @@ client.on('message', function(message){
 				con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
 					con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
 					con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
-						if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+						if(err) return process.env.FEEDBACKEFFOR;
 						if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
 					})
 				})
 			}
 		})
 	} catch(err) {
-		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+		process.env.FEEDBACKEFFOR;
 	}
 	try {
 		con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
-			if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+			if(err) return process.env.FEEDBACKEFFOR;
 			if(!result[0]){
 				con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
-					if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+					if(err) return process.env.FEEDBACKEFFOR;
 				})
 			} else {
 				con.query(`UPDATE local SET xp = xp + 3 WHERE userid = ${message.author.id} AND serverid = ${message.guild.id} AND type = 'member'`, function(err){
-					if(err) return client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+					if(err) return process.env.FEEDBACKEFFOR;
 					con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole' ORDER BY local.xpcount DESC`, function(err, result2){
-						if(err) client.fetchUser('412338841651904516').then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``));
+						if(err) process.env.FEEDBACKEFFOR;
 						if(!result2[0]) return;
 						for(var i = 0; i < result2.length; i++){
 							if(result[0].xp > result2[i].xpcount){
@@ -107,7 +109,7 @@ client.on('message', function(message){
 			};
 		});
 	} catch(err) {
-		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
+		process.env.FEEDBACKEFFOR;
 	}
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -122,21 +124,17 @@ client.on('message', function(message){
         const commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
 		console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - успешно`);
+		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Команда "${command}" была использована пользователем ${message.author.username} в группе ${message.guild.name} (${message.guild.id})`));
     } catch (err) {
-		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
-		try {
-			con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
-				if(err) return client.fetchUser(process.env.OWNER_ID).then(user => user.send(`\`\`\`javascript\n${err.stack}\`\`\``))
-				if(!result[0]) return;
-				else {
-					message.member.addRole(result[0].roleid);
-					message.channel.send(message.author + result[0].message);
-				}
-			})
-		} catch(err) {
-			message.channel.send(`Команда не найдена, либо произошла ошибка.`)
-			console.log(`Команда "${command}" была использована пользователем ${message.author.username}. Результат - Ошибка`);
-		}
+		process.env.FEEDBACKEFFOR;
+		con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
+			if(err) return process.env.FEEDBACKEFFOR;
+			if(!result[0]) return;
+			else {
+				message.member.addRole(result[0].roleid);
+				message.channel.send(message.author + result[0].message);
+			}
+		})
     }
 });
 
