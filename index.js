@@ -58,7 +58,7 @@ client.on('messageReactionAdd', (user, reaction) => {
 
 client.on('message', function(message){
     if(message.author.bot) return;
-	if (message.channel.type !== 'text') return;
+	if(message.channel.type !== 'text') return;
     try {
 		con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
