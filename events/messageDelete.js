@@ -9,8 +9,9 @@ exports.run = (client, message) => {
     });
 
     con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'logs'`, function(err, result){
+        if(err) process.env.FEEDBACKERROR;
         if(!result[0]) {
-        return
+        return;
         } else {
             const embed = new Discord.RichEmbed()
             .setAuthor(message.author.username, message.author.avatarURL)
