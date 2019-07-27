@@ -24,38 +24,6 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-client.on('messageReactionAdd', (user, reaction) => {
-	try{
-		let {message} = reaction;
-		if (!message) return;
-		if (!('guild' in message)) return;
-		if (message.id !== 'id') return;
-		let member = reaction.message.guild.members.get(user.id);
-		switch (reaction.emoji.name) {
-			case 'computer':
-				member.addRole('537761284704174082');
-				break;
-			case 'girl':
-				member.addRole('id');
-				break;
-			case 'boy':
-				member.addRole('');
-				break;
-			case 'boy':
-				member.addRole('');
-				break;
-			case 'boy':
-				member.addRole('');
-				break;
-			case 'boy':
-				member.addRole('');
-				break;
-		}
-	}catch(err){
-		process.env.FEEDBACKEFFOR;
-	}
-});
-
 client.on('message', function(message){
     if(message.author.bot) return;
 	if(message.channel.type !== 'text') return;
