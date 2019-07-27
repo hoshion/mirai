@@ -47,6 +47,7 @@ client.on('message', function(message){
 	} catch(err) {
 		process.env.FEEDBACKEFFOR;
 	}
+	
 	try {
 		con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
