@@ -10,22 +10,26 @@ exports.run = (client, message) => {
 
     con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'logs'`, function(err, result){
         if(err) process.env.FEEDBACKERROR;
-        if(!result[0]) {
-        return;
-        } else {
-            const embed = new Discord.RichEmbed()
-            .setAuthor(message.author.username, message.author.avatarURL)
-            .setDescription("Удалил сообщение\nВ канале : " + message.channel 
-                + "\nСодержание сообщения : " + message.toString() 
-                + "\nВремя создания : " + message.createdAt.getHours()
-                + ":" + message.createdAt.getMinutes() 
-                + ":" + message.createdAt.getSeconds()
-                + ", " + message.createdAt.getDate()
-                + ".0" + message.createdAt.getMonth()
-                + "." + message.createdAt.getFullYear())
-            .setColor("ffda8b")
-            .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
-            message.guild.channels.get(result[0].channelid).send(embed);
-        }    
-    })
+        try {
+            if(!result[0]) {
+            return;
+            } else {
+                const embed = new Discord.RichEmbed()
+                .setAuthor(message.author.username, message.author.avatarURL)
+                .setDescription("Удалил сообщение\nВ канале : " + message.channel 
+                    + "\nСодержание сообщения : " + message.toString() 
+                    + "\nВремя создания : " + message.createdAt.getHours()
+                    + ":" + message.createdAt.getMinutes() 
+                    + ":" + message.createdAt.getSeconds()
+                    + ", " + message.createdAt.getDate()
+                    + ".0" + message.createdAt.getMonth()
+                    + "." + message.createdAt.getFullYear())
+                .setColor("ffda8b")
+                .setFooter("Ваш бот - Дружелюбная изба", client.user.avatarURL);
+                message.guild.channels.get(result[0].channelid).send(embed);
+            }   
+        }catch(err){
+            return process.env.FEEDBACKERROR;
+        } 
+    });
 };
