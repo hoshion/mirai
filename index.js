@@ -12,7 +12,7 @@ const con = mysql.createConnection({
 });
 
 con.connect(function(err) {
-  if (err) process.env.FEEDBACKEFFOR;
+  if (err) console.log(err);
 	client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Я подключила базу данных!`));
 });
 
