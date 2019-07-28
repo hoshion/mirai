@@ -27,7 +27,6 @@ fs.readdir("./events/", (err, files) => {
 client.on('message', function(message){
     if(message.author.bot) return;
 	if(message.channel.type !== 'text') return;
-    try {
 		con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
 			if(!result){
@@ -44,10 +43,6 @@ client.on('message', function(message){
 				})
 			}
 		})
-	} catch(err) {
-		process.env.FEEDBACKEFFOR;
-	}
-	
 	try {
 		con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
