@@ -60,7 +60,7 @@ client.on('message', function(message){
 					if(err) return process.env.FEEDBACKEFFOR;
 					con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole' ORDER BY local.xpcount DESC`, function(err, result2){
 						if(err) process.env.FEEDBACKEFFOR;
-						if(!result2[0]) return;
+						if(!result2) return;
 						for(var i = 0; i < result2.length; i++){
 							if(result[0].xp > result2[i].xpcount){
 								if(!message.guild.members.get(result[0].userid).roles.has(result2[i].roleid)){
