@@ -30,7 +30,7 @@ client.on('message', function(message){
 	  if(message.channel.type == 'text') {
 
     con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
-		    if(err) return console.log("Пасасай святочка цыганочка");
+		    if(err) return console.log(err);
 			  if(!result){
             console.log("Не сасай)");
 				    con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
