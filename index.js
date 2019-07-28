@@ -30,7 +30,7 @@ client.on('message', function(message){
     try {
 		con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
-			if(!result[0]){
+			if(!result){
 				con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
 			} else {
 				con.query(`UPDATE global SET nickname = '${message.author.username}' WHERE userid = ${message.author.id}`)
@@ -51,7 +51,7 @@ client.on('message', function(message){
 	try {
 		con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
-			if(!result[0]){
+			if(!result){
 				con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
 					if(err) return process.env.FEEDBACKEFFOR;
 				})
@@ -99,7 +99,7 @@ client.on('message', function(message){
 		process.env.FEEDBACKEFFOR;
 		con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
-			if(!result[0]) return;
+			if(!result) return;
 			else {
 				message.member.addRole(result[0].roleid);
 				message.channel.send(message.author + result[0].message);
