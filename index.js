@@ -8,8 +8,9 @@ const con = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-	database: process.env.DATABASE_NAME
+	  database: process.env.DATABASE_NAME
 });
+
 con.connect(function(err) {
     if (err) process.env.FEEDBACKEFFOR;
 	client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Я подключила базу данных!`));
@@ -310,7 +311,7 @@ async function videoHandler(video, message, voiceChannel){
 		}
 		queue.set(message.guild.id, queueConstructor)
 		queueConstructor.songs.push(song);
-		
+
 		try {
 			const connection = await voiceChannel.join();
 			queueConstructor.connection = connection;
