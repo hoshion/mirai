@@ -12,9 +12,9 @@ const con = mysql.createConnection({
 });
 
 con.connect(function(err) {
-    if (err) process.env.FEEDBACKEFFOR;
+  if (err) process.env.FEEDBACKEFFOR;
 	client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Я подключила базу данных!`));
-  });
+});
 
 fs.readdir("./events/", (err, files) => {
     if (err) return process.env.FEEDBACKEFFOR;
@@ -27,31 +27,33 @@ fs.readdir("./events/", (err, files) => {
 
 client.on('message', function(message){
     if(message.author.bot) return;
-	if(message.channel.type !== 'text') return;
-		con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
-			if(err) return process.env.FEEDBACKEFFOR;
-			if(!result){
-				con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
-			} else {
-				con.query(`UPDATE global SET nickname = '${message.author.username}' WHERE userid = ${message.author.id}`)
-				con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
-				con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
-					con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
-					con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
-						if(err) return process.env.FEEDBACKEFFOR;
-						if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
-					})
-				})
-			}
-		})
-	try {
-		con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
-			if(err) return process.env.FEEDBACKEFFOR;
-			if(!result){
-				con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
-					if(err) return process.env.FEEDBACKEFFOR;
-				})
-			} else {
+	  if(message.channel.type == 'text') {
+
+    con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
+		    if(err) return console.log("Пасасай святочка цыганочка");
+			  if(!result){
+            console.log("Не сасай)");
+				    con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
+			  } else {
+				    con.query(`UPDATE global SET nickname = '${message.author.username}' WHERE userid = ${message.author.id}`)
+				    con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
+				    con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
+					      con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
+					      con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
+						        if(err) return process.env.FEEDBACKEFFOR;
+						        if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
+					      })
+				    })
+			  }
+		});
+
+		/*con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
+		    if(err) return process.env.FEEDBACKEFFOR;
+			  if(!result){
+				    con.query(`INSERT INTO local (serverid, type, userid) VALUES('${message.guild.id}', 'member', '${message.author.id}')`, function(err, result){
+			           if(err) return process.env.FEEDBACKEFFOR;
+				    })
+			  } else {
 				con.query(`UPDATE local SET xp = xp + 3 WHERE userid = ${message.author.id} AND serverid = ${message.guild.id} AND type = 'member'`, function(err){
 					if(err) return process.env.FEEDBACKEFFOR;
 					con.query(`SELECT * FROM local WHERE serverid = ${message.guild.id} AND type = 'leveledrole' ORDER BY local.xpcount DESC`, function(err, result2){
@@ -73,18 +75,16 @@ client.on('message', function(message){
 					})
 				});
 			};
-		});
-	} catch(err) {
-		process.env.FEEDBACKEFFOR;
-	}
+		});*/
+
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
     if(message.content.indexOf(prefix) !== 0) return;
-	if(!command) return;
+	  if(!command) return;
     if(message.content == "-_-") return;
     if(message.content == "--")  return;
-	if(message.content == "---") return;
+	  if(message.content == "---") return;
 
     try {
         const commandFile = require(`./commands/${command}.js`);
@@ -102,6 +102,7 @@ client.on('message', function(message){
 			}
 		})
     }
+  }
 });
 
 
