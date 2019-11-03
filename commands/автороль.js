@@ -1,11 +1,11 @@
 exports.run = (client, message, args) => {
-    const mysql = require("mysql");
-    const con = mysql.createConnection({
-        host: "db4free.net",
-        user: "botdrizba",
-        password: "drizba123",
-        database: "drizba"
-    });
+  const mysql = require("mysql");
+  const con = mysql.createConnection({
+      host: process.env.DATABASE_HOST,
+      user: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME
+  });
 	try{
 		con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND type = 'autorole'`,function (err,result){
 			if(!args[0]){
