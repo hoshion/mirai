@@ -14,7 +14,7 @@ function SELECT(item, place, addition){
 }
 
 function INSERT(place, item){
-  con.query(`INSERT INTO ${place} VALUES${item}`);
+  con.query(`INSERT INTO ${place} VALUES ${item}`);
 }
 
 function UPDATE(place, item, addition){
@@ -24,5 +24,5 @@ function UPDATE(place, item, addition){
 module.exports = {
   SELECT : SELECT,
   INSERT : INSERT,
-  UPDATE : UPDATE,
+  UPDATE : UPDATE
 }
