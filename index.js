@@ -3,16 +3,10 @@ const client = new Discord.Client();
 const fs = require("fs");
 const mysql = require("mysql")
 const prefix = '-';
-
-const con = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-	  database: process.env.DATABASE_NAME
-});
+const mysqlQuery = require("./main/queries.js")
 
 con.connect(function(err) {
-  if (err) console.log(err);
+  if (err) process.env.FEEDBACKEFFOR;
 	client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Я подключила базу данных!`));
 });
 
@@ -29,23 +23,19 @@ client.on('message', function(message){
     if(message.author.bot) return;
 	  if(message.channel.type == 'text') {
 
-    con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result){
-		    if(err) return console.log(err);
-			  if(!result){
-            console.log("Не сасай)");
-				    con.query(`INSERT INTO global (userid) VALUES('${message.author.id}')`)
-			  } else {
-				    con.query(`UPDATE global SET nickname = '${message.author.username}' WHERE userid = ${message.author.id}`)
-				    con.query(`UPDATE global SET xp = xp + 3 WHERE userid = ${message.author.id}`)
-				    con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result2){
-					      con.query(`UPDATE global SET lvl = ${lvl(result2[0].xp)} WHERE userid = ${message.author.id}`)
-					      con.query(`SELECT * FROM global WHERE userid = ${message.author.id}`, function(err, result3){
-						        if(err) return process.env.FEEDBACKEFFOR;
-						        if(result2[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`)
-					      })
-				    })
-			  }
-		});
+    result = mysqlQuery.SELECT("*", "global", `WHERE userid = ${message.author.id}`);
+	  if(!result){
+      mysqlQuery.INSERT("global (userid)", `('${message.author.id}')`);
+		} else {
+      mysqlQuery.UPDATE(`global`, `username = '${message.author.username}'`, `WHERE userid = ${message.author.id}`);
+      mysqlQuery.UPDATE(`global`, `xp = xp + 3`, `WHERE userid = ${message.author.id}`);
+
+      result2 = mysqlQuery.SELECT(`*`, `global`, `WHERE userid = ${message.author.id}`);
+      mysqlQuery.UPDATE(`global`, `level = ${lvl(result2[0].xp)}`, `WHERE userid = ${message.author.id}`);
+
+      result3 = mysqlQuery.SELECT(`*`, `global`, `WHERE userid = ${message.author.id}`);
+      if(result[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`);
+		}
 
 		/*con.query(`SELECT * FROM local WHERE userid='${message.author.id}' AND serverid = '${message.guild.id}'`, function(err, result){
 		    if(err) return process.env.FEEDBACKEFFOR;
