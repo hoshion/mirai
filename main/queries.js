@@ -22,7 +22,7 @@ function UPDATE(place, item, addition){
 }
 
 module.exports = {
-  SELECT : SELECT;
-  INSERT : INSERT;
-  UPDATE : UPDATE;
+  SELECT : SELECT
+  INSERT : INSERT
+  UPDATE : UPDATE
 }
