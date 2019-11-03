@@ -21,7 +21,7 @@ function UPDATE(place, item, addition){
   con.query(`UPDATE ${place} SET ${item} ${addition}`);
 }
 
-module.exports{
+module.exports = {
   SELECT : SELECT;
   INSERT : INSERT;
   UPDATE : UPDATE;
