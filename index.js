@@ -29,14 +29,14 @@ client.on('message', function(message){
     if(message.author.bot) return;
 	  if(message.channel.type == 'text') {
 
-    result = mysqlQuery.SELECT("*", "`global`", `WHERE userid = ${message.author.id}`);
+    result = mysqlQuery.SELECT("*", "`global`", `WHERE userid = '${message.author.id}'`);
 	  if(!result){
       mysqlQuery.INSERT('`global`(userid, username)', `('${message.author.id}', '${message.author.username}')`);
 		} else {
-      mysqlQuery.UPDATE('`global`', `username = '${message.author.username}'`, `WHERE userid = ${message.author.id}`);
-      mysqlQuery.UPDATE(`global`, `xp = xp + 3`, `WHERE userid = ${message.author.id}`);
+      mysqlQuery.UPDATE('`global`', `username = '${message.author.username}'`, `WHERE userid = '${message.author.id}'`);
+      mysqlQuery.UPDATE(`global`, `xp = xp + 3`, `WHERE userid = '${message.author.id}'`);
 
-      result2 = mysqlQuery.SELECT(`*`, `global`, `WHERE userid = ${message.author.id}`);
+      result2 = mysqlQuery.SELECT(`*`, `global`, `WHERE userid = '${message.author.id}'`);
       mysqlQuery.UPDATE(`global`, `level = ${lvl(result2[0].xp)}`, `WHERE userid = ${message.author.id}`);
 
       result3 = mysqlQuery.SELECT(`*`, `global`, `WHERE userid = ${message.author.id}`);
