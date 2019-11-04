@@ -7,13 +7,14 @@ exports.run = (client, message) => {
 	    host: process.env.DATABASE_HOST,
 	    user: process.env.DATABASE_USER,
 	    password: process.env.DATABASE_PASSWORD,
-	    database: process.env.DATABASE_NAME
+	    database: process.env.DATABASE_NAME,
+			port: 3306
 	});
-	
+
 	try {
 		const code = args.join(` `);
 		let evaled = eval(code)
-		
+
 		if (typeof evaled !== "string")
 			evaled = require("util").inspect(evaled);
 		const word = code.match(/messsage\.channel\.send\(.+\)/g)
