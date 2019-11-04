@@ -31,7 +31,7 @@ client.on('message', function(message){
 
     result = mysqlQuery.SELECT("*", "global", `WHERE userid = ${message.author.id}`);
 	  if(!result){
-      mysqlQuery.INSERT("global(userid, username)", `('${message.author.id}', '${message.author.username}')`);
+      mysqlQuery.INSERT("'global'(userid, username)", `('${message.author.id}', '${message.author.username}')`);
 		} else {
       mysqlQuery.UPDATE(`global`, `username = '${message.author.username}'`, `WHERE userid = ${message.author.id}`);
       mysqlQuery.UPDATE(`global`, `xp = xp + 3`, `WHERE userid = ${message.author.id}`);
