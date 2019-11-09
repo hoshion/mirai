@@ -7,12 +7,14 @@ const con = mysql.createConnection({
 });
 
 function SELECT(item, place, addition){
-  let result1;
-  con.query(`SELECT ${item} FROM ${place} ${addition}`, (err, result) => {
-    if(err) process.env.FEEDBACKEFFOR;
-    result1 = result;
+
+  let promise = new Promise(function(resolve, reject) {
+    con.query(`SELECT ${item} FROM ${place} ${addition}`, (err, result) => {
+      if(err) process.env.FEEDBACKEFFOR;
+      resolve(result);
+    });
   });
-  return result1;
+  promise.then(result => return result);
 }
 
 function INSERT(place, item){
