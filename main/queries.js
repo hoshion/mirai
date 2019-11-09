@@ -7,7 +7,7 @@ const con = mysql.createConnection({
 });
 
 function SELECT(item, place, addition){
-  con.query(`SELECT ${item} FROM ${place} ${addition}`, function(err, result){
+  con.query(`SELECT ${item} FROM ${place} ${addition}`, (err, result) => {
     if(err) process.env.FEEDBACKEFFOR;
     return result;
   });
