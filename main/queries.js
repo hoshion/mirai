@@ -4,7 +4,6 @@ const con = mysql.createConnection({
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-  port: 3306
 });
 
 function SELECT(item, place, addition){
