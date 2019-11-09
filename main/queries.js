@@ -7,10 +7,12 @@ const con = mysql.createConnection({
 });
 
 function SELECT(item, place, addition){
+  let result1;
   con.query(`SELECT ${item} FROM ${place} ${addition}`, (err, result) => {
     if(err) process.env.FEEDBACKEFFOR;
-    return result;
+    result1 = result;
   });
+  return result1;
 }
 
 function INSERT(place, item){
