@@ -14,7 +14,9 @@ function SELECT(item, place, addition){
       resolve(result);
     });
   });
-  promise.then(result => return result);
+  promise.then(result => {
+    return result
+  });
 }
 
 function INSERT(place, item){
