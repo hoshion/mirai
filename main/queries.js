@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const con = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
@@ -6,17 +6,13 @@ const con = mysql.createConnection({
   database: process.env.DATABASE_NAME
 });
 
-function SELECT(item, place, addition){
-
-  let promise = new Promise(function(resolve, reject) {
-    con.query(`SELECT ${item} FROM ${place} ${addition}`, (err, result) => {
-      if(err) process.env.FEEDBACKEFFOR;
-      resolve(result);
-    });
-  });
-  promise.then(result => {
+async function SELECT(item, place, addition){
+  try {
+    const result = await con.query(`SELECT ${item} FROM ${place} ${addition}`);
     return result
-  });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function INSERT(place, item){
