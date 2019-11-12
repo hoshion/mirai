@@ -24,11 +24,11 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-client.on('message', function(message){
+client.on('message',async function(message){
     if(message.author.bot) return;
 	  if(message.channel.type == 'text') {
 
-    result = mysqlQuery.SELECT("*", "global", `WHERE userid = ${message.author.id}`);
+    result = await mysqlQuery.SELECT("*", "global", `WHERE userid = ${message.author.id}`);
     console.log(result);
 	  if(!result){
       mysqlQuery.INSERT('`global`(userid, username)', `('${message.author.id}', '${message.author.username}')`);
