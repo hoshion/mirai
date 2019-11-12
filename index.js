@@ -25,7 +25,7 @@ client.on('message',async function(message){
       mysqlQuery.UPDATE('global', 'xp = xp + 3', `WHERE userid = ${message.author.id}`);
 
       result2 = await mysqlQuery.SELECT("*", "global", `WHERE userid = ${message.author.id}`);
-      //mysqlQuery.UPDATE('global', `level = ${lvl(result2[0].xp)}`, `WHERE userid = ${message.author.id}`);
+      mysqlQuery.UPDATE('global', `level = ${parseInt(lvl(result2[0].xp))}`, `WHERE userid = ${message.author.id}`);
 
       result3 = await mysqlQuery.SELECT(`*`, `global`, `WHERE userid = ${message.author.id}`);
       if(result[0].lvl !== result3[0].lvl) message.channel.send(`Поздравляем с **${result3[0].lvl}** уровнем, ${message.author}!`);
