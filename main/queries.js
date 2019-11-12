@@ -9,11 +9,12 @@ const con = mysql.createConnection({
 async function SELECT(item, place, addition){
   try {
     const result = await con.promise().query(`SELECT ${item} FROM ${place} ${addition}`);
-    return [result]
+    return [result];
+    con.end();
   } catch (err) {
     console.log(err);
+    con.end();
   }
-  con.end();
 }
 
 function INSERT(place, item){
