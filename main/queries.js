@@ -13,17 +13,18 @@ async function SELECT(item, place, addition){
   } catch (err) {
     console.log(err);
   }
+  con.end();
 }
 
 function INSERT(place, item){
   con.query(`INSERT INTO ${place} VALUES ${item}`);
+  con.end();
 }
 
 function UPDATE(place, item, addition){
   con.query(`UPDATE ${place} SET ${item} ${addition}`);
+  con.end();
 }
-
-con.end();
 
 module.exports = {
   SELECT : SELECT,
