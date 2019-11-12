@@ -1,19 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
-const mysql = require("mysql")
 const prefix = '-';
 const mysqlQuery = require("./main/queries.js")
-const con = mysql.createConnection({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME
-});
-
-con.connect(function(err) {
-  if (err) console.log(err);
-});
 
 fs.readdir("./events/", (err, files) => {
     if (err) return process.env.FEEDBACKEFFOR;
@@ -89,14 +78,14 @@ client.on('message',async function(message){
 		client.fetchUser(process.env.OWNER_ID).then(user => user.send(`Команда "${command}" была использована пользователем ${message.author.username} в группе ${message.guild.name} (${message.guild.id})`));
     } catch (err) {
 		process.env.FEEDBACKEFFOR;
-		con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
+		/*con.query(`SELECT * FROM local WHERE serverid = '${message.guild.id}' AND command = '${command}'`, function(err, result){
 			if(err) return process.env.FEEDBACKEFFOR;
 			if(!result) return;
 			else {
 				message.member.addRole(result[0].roleid);
 				message.channel.send(message.author + result[0].message);
 			}
-		})
+		})*/
     }
   }
 });
