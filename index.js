@@ -29,6 +29,7 @@ client.on('message', function(message){
 	  if(message.channel.type == 'text') {
 
     result = mysqlQuery.SELECT("*", "global", `WHERE userid = ${message.author.id}`);
+    console.log(result);
 	  if(!result){
       mysqlQuery.INSERT('`global`(userid, username)', `('${message.author.id}', '${message.author.username}')`);
 		} else {
